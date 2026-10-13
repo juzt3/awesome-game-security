@@ -666,7 +666,7 @@ npx skills add https://github.com/gmh5225/awesome-game-security --skill reverse-
 - https://github.com/WangXuan95/Xilinx-FPGA-PCIe-XDMA-Tutorial [DMA Tutorial]
 - https://github.com/NetKingJ/awesome-android-security [Android (Samsung) Security Research References]
 - https://github.com/gregkh/kernel-development [Linux kernel development]
-- https://github.com/MatheuZSecurity/Rootkit [Collection of codes focused on Linux rootkits]
+- https://github.com/gmh5225/Rootkit [Collection of codes focused on Linux rootkits]
 - https://github.com/ARandomPerson7/Appsealing-Reversal [A Reversal and bypass for Appsealing]
 - https://klecko.github.io/posts/selinux-bypasses [Bypass selinux]
 - https://github.com/Solaree/pairipcore [Public researchings of the Google's Android apps protection]
@@ -1005,7 +1005,7 @@ npx skills add https://github.com/gmh5225/awesome-game-security --skill reverse-
 - https://github.com/gmh5225/NTMemory [Usermode NT Explorer - Query kernel addresses, translate virtual to physical addresses, inspect the PFN database, and more.]
 
 > Linux Kernel Explorer
-- https://github.com/MatheuZSecurity/Rootkit [Collection of codes focused on Linux rootkits]
+- https://github.com/gmh5225/Rootkit [Collection of codes focused on Linux rootkits]
 - https://github.com/gmh5225/ksentinel [Kernel integrity monitor for detecting syscall hooking]
 - https://github.com/gmh5225/kLLDB [LLDB based debugger for Linux Kernel]
 - https://github.com/gmh5225/venom [Linux Kernel Rookit Hooking Mechanism]
