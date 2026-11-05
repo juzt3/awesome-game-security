@@ -1,0 +1,4221 @@
+Project Path: arc_gmh5225_KawaiiPhysics_somvc9o6
+
+Source Tree:
+
+```txt
+arc_gmh5225_KawaiiPhysics_somvc9o6
+├── Config
+│   ├── DefaultEditor.ini
+│   ├── DefaultEngine.ini
+│   └── DefaultGame.ini
+├── Content
+│   └── KawaiiPhysicsSample
+│       ├── Chain
+│       │   ├── AnimBP_ChainAnimDynamics.uasset
+│       │   ├── AnimBP_ChainKawaiiPhysics.uasset
+│       │   ├── AnimBP_ChainKawaiiPhysicsCollision0.uasset
+│       │   ├── AnimBP_ChainKawaiiPhysicsCollision1.uasset
+│       │   ├── AnimBP_ChainKawaiiPhysicsCollision2.uasset
+│       │   ├── AnimBP_ChainKawaiiPhysicsCollision_World.uasset
+│       │   ├── BP_Chain.uasset
+│       │   ├── M_Metal_Lighter.uasset
+│       │   ├── S_Chain.uasset
+│       │   ├── S_Chain_PhysicsDefault.uasset
+│       │   ├── S_Chain_PhysicsSimulated.uasset
+│       │   └── S_Chain_Skeleton.uasset
+│       ├── Cloth
+│       │   ├── CLOTH_SimpleCloth.uasset
+│       │   ├── CLOTH_SimpleCloth_PhysicsAsset.uasset
+│       │   ├── CLOTH_SimpleCloth_Skeleton.uasset
+│       │   └── M_ClothingMaterial.uasset
+│       ├── GrayChan
+│       │   ├── AnimBP_GrayChanAnimDynamics.uasset
+│       │   ├── AnimBP_GrayChanKawaiiPhysics.uasset
+│       │   ├── AnimBP_GrayChanKawaiiPhysicsSkirt.uasset
+│       │   ├── Animations
+│       │   │   ├── ThirdPersonIdle.uasset
+│       │   │   └── ThirdPersonRun.uasset
+│       │   ├── BP_GrayChan.uasset
+│       │   ├── LimitsData
+│       │   │   └── Data_KawaiiPhysicsLimits.uasset
+│       │   ├── Materials
+│       │   │   ├── MI_GrayChan_Eyballs_Ex.uasset
+│       │   │   ├── MI_GrayChan_Logo_Tim.uasset
+│       │   │   ├── M_GrayChan_Cloth.uasset
+│       │   │   ├── M_GrayChan_Eyballs_Ex.uasset
+│       │   │   ├── M_GrayChan_Hair.uasset
+│       │   │   ├── M_GrayChan_Logo_Tim.uasset
+│       │   │   └── M_GrayChan_Skin.uasset
+│       │   ├── Mesh
+│       │   │   ├── GrayChan.uasset
+│       │   │   ├── GrayChan_PhysicsAsset.uasset
+│       │   │   ├── GrayChan_PhysicsAssetTailSimulated.uasset
+│       │   │   └── GrayChan_Skeleton.uasset
+│       │   └── Textures
+│       │       ├── T_GrayChan_Cloth.uasset
+│       │       ├── T_GrayChan_Cloth_Details.uasset
+│       │       ├── T_GrayChan_Cloth_MSR.uasset
+│       │       ├── T_GrayChan_Eyeball.uasset
+│       │       ├── T_GrayChan_Eyeball_Beta.uasset
+│       │       ├── T_GrayChan_Eyeball_GuruguruAlp.uasset
+│       │       ├── T_GrayChan_Eyeball_HeartAlp.uasset
+│       │       ├── T_GrayChan_Eyeball_Highlight.uasset
+│       │       ├── T_GrayChan_Eyeball_ShiitakeAlp.uasset
+│       │       ├── T_GrayChan_Hair.uasset
+│       │       ├── T_GrayChan_Hair_LUT.uasset
+│       │       └── T_GrayChan_Skin.uasset
+│       ├── KawaiiPhysicsSample.umap
+│       └── Others
+│           ├── LS_TeleportDistance.uasset
+│           ├── LS_TeleportRotation.uasset
+│           └── LS_WorldDampingRotation.uasset
+├── KawaiiPhysicsSample.uproject
+├── LICENSE
+├── Plugins
+│   └── KawaiiPhysics
+│       ├── Binaries
+│       ├── KawaiiPhysics.uplugin
+│       ├── Resources
+│       │   └── Icon128.png
+│       └── Source
+│           ├── KawaiiPhysics
+│           │   ├── KawaiiPhysics.Build.cs
+│           │   ├── Private
+│           │   │   ├── AnimNode_KawaiiPhysics.cpp
+│           │   │   ├── KawaiiPhysics.cpp
+│           │   │   └── KawaiiPhysicsLimitsDataAsset.cpp
+│           │   └── Public
+│           │       ├── AnimNode_KawaiiPhysics.h
+│           │       ├── KawaiiPhysics.h
+│           │       └── KawaiiPhysicsLimitsDataAsset.h
+│           └── KawaiiPhysicsEd
+│               ├── KawaiiPhysicsEd.Build.cs
+│               ├── Private
+│               │   ├── AnimGraphNode_KawaiiPhysics.cpp
+│               │   ├── KawaiiPhysicsEd.cpp
+│               │   ├── KawaiiPhysicsEditMode.cpp
+│               │   └── KawaiiPhysicsEditModeBase.cpp
+│               └── Public
+│                   ├── AnimGraphNode_KawaiiPhysics.h
+│                   ├── KawaiiPhysicsEd.h
+│                   ├── KawaiiPhysicsEditMode.h
+│                   └── KawaiiPhysicsEditModeBase.h
+├── README.md
+└── README_en.md
+
+```
+
+`Config/DefaultEngine.ini`:
+
+```ini
+[URL]
+[/Script/Engine.RendererSettings]
+r.DefaultFeature.AutoExposure.ExtendDefaultLuminanceRange=True
+
+[/Script/HardwareTargeting.HardwareTargetingSettings]
+TargetedHardwareClass=Desktop
+AppliedTargetedHardwareClass=Desktop
+DefaultGraphicsPerformance=Maximum
+AppliedDefaultGraphicsPerformance=Maximum
+
+[/Script/EngineSettings.GameMapsSettings]
+EditorStartupMap=/Game/KawaiiPhysicsSample/KawaiiPhysicsSample.KawaiiPhysicsSample
+GameDefaultMap=/Game/KawaiiPhysicsSample/KawaiiPhysicsSample.KawaiiPhysicsSample
+
+[/Script/Engine.PhysicsSettings]
+DefaultGravityZ=-980.000000
+DefaultTerminalVelocity=4000.000000
+DefaultFluidFriction=0.300000
+SimulateScratchMemorySize=262144
+RagdollAggregateThreshold=4
+TriangleMeshTriangleMinAreaThreshold=5.000000
+bEnableShapeSharing=False
+bEnablePCM=True
+bEnableStabilization=False
+bWarnMissingLocks=True
+bEnable2DPhysics=False
+PhysicErrorCorrection=(PingExtrapolation=0.100000,PingLimit=100.000000,ErrorPerLinearDifference=1.000000,ErrorPerAngularDifference=1.000000,MaxRestoredStateError=1.000000,MaxLinearHardSnapDistance=400.000000,PositionLerp=0.000000,AngleLerp=0.400000,LinearVelocityCoefficient=100.000000,AngularVelocityCoefficient=10.000000,ErrorAccumulationSeconds=0.500000,ErrorAccumulationDistanceSq=15.000000,ErrorAccumulationSimilarity=100.000000)
+LockedAxis=Invalid
+DefaultDegreesOfFreedom=Full3D
+BounceThresholdVelocity=200.000000
+FrictionCombineMode=Average
+RestitutionCombineMode=Average
+MaxAngularVelocity=3600.000000
+MaxDepenetrationVelocity=0.000000
+ContactOffsetMultiplier=0.020000
+MinContactOffset=2.000000
+MaxContactOffset=8.000000
+bSimulateSkeletalMeshOnDedicatedServer=True
+DefaultShapeComplexity=CTF_UseSimpleAndComplex
+bDefaultHasComplexCollision=True
+bSuppressFaceRemapTable=False
+bSupportUVFromHitResults=False
+bDisableActiveActors=False
+bDisableKinematicStaticPairs=False
+bDisableKinematicKinematicPairs=False
+bDisableCCD=False
+bEnableEnhancedDeterminism=False
+MaxPhysicsDeltaTime=0.033333
+bSubstepping=False
+bSubsteppingAsync=False
+MaxSubstepDeltaTime=0.016667
+MaxSubsteps=6
+SyncSceneSmoothingFactor=0.000000
+InitialAverageFrameRate=0.016667
+PhysXTreeRebuildRate=10
+DefaultBroadphaseSettings=(bUseMBPOnClient=False,bUseMBPOnServer=False,MBPBounds=(Min=(X=0.000000,Y=0.000000,Z=0.000000),Max=(X=0.000000,Y=0.000000,Z=0.000000),IsValid=0),MBPNumSubdivs=2)
+
+
+
+```
+
+`Config/DefaultGame.ini`:
+
+```ini
+[/Script/EngineSettings.GeneralProjectSettings]
+ProjectID=16B4F7024E386C8CB97EF2BAEC2AD01A
+
+[/Script/UnrealEd.ProjectPackagingSettings]
+IncludeDebugFiles=True
+
+
+```
+
+`KawaiiPhysicsSample.uproject`:
+
+```uproject
+{
+	"FileVersion": 3,
+	"EngineAssociation": "4.27",
+	"Category": "",
+	"Description": ""
+}
+```
+
+`LICENSE`:
+
+```
+MIT License
+
+Copyright (c) 2019-2022 pafuhana1213
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+
+```
+
+`Plugins/KawaiiPhysics/KawaiiPhysics.uplugin`:
+
+```uplugin
+{
+	"FileVersion": 3,
+	"Version": 1,
+	"VersionName": "1.9.0",
+	"FriendlyName": "KawaiiPhysics",
+	"Description": "",
+	"Category": "Animation",
+	"CreatedBy": "pafuhana1213",
+	"CreatedByURL": "https://twitter.com/pafuhana1213",
+	"DocsURL": "https://github.com/pafuhana1213/KawaiiPhysics",
+	"MarketplaceURL": "KawaiiPhysics : Simple fake Physics for UnrealEngine4&5",
+	"SupportURL": "https://github.com/pafuhana1213/KawaiiPhysics/issues",
+	"CanContainContent": false,
+	"IsBetaVersion": false,
+	"IsExperimentalVersion": false,
+	"Installed": false,
+	"Modules": [
+		{
+			"Name": "KawaiiPhysics",
+			"Type": "Runtime",
+			"LoadingPhase": "PostConfigInit"
+		},
+		{
+			"Name": "KawaiiPhysicsEd",
+			"Type": "UncookedOnly",
+			"LoadingPhase": "PreDefault"
+		}
+	]
+}
+```
+
+`Plugins/KawaiiPhysics/Source/KawaiiPhysics/KawaiiPhysics.Build.cs`:
+
+```cs
+// Copyright 1998-2019 Epic Games, Inc. All Rights Reserved.
+
+using UnrealBuildTool;
+
+public class KawaiiPhysics : ModuleRules
+{
+	public KawaiiPhysics(ReadOnlyTargetRules Target) : base(Target)
+	{
+		PCHUsage = ModuleRules.PCHUsageMode.UseExplicitOrSharedPCHs;
+		
+		PublicIncludePaths.AddRange(
+			new string[] {
+				// ... add public include paths required here ...
+			}
+			);
+				
+		
+		PrivateIncludePaths.AddRange(
+			new string[] {
+				// ... add other private include paths required here ...
+			}
+			);
+			
+		
+		PublicDependencyModuleNames.AddRange(
+			new string[]
+			{
+				"Core",
+				// ... add other public dependencies that you statically link with here ...
+                 "AnimGraphRuntime",
+            }
+			);
+			
+		
+		PrivateDependencyModuleNames.AddRange(
+			new string[]
+			{
+				"CoreUObject",
+				"Engine",
+				"Slate",
+				"SlateCore",
+				// ... add private dependencies that you statically link with here ...	
+               
+            }
+			);
+		
+		
+		DynamicallyLoadedModuleNames.AddRange(
+			new string[]
+			{
+				// ... add any modules that your module loads dynamically here ...
+			}
+			);
+	}
+}
+
+```
+
+`Plugins/KawaiiPhysics/Source/KawaiiPhysics/Private/AnimNode_KawaiiPhysics.cpp`:
+
+```cpp
+#include "AnimNode_KawaiiPhysics.h"
+
+#include "KawaiiPhysics.h"
+#include "AnimationRuntime.h"
+#include "Animation/AnimInstanceProxy.h"
+#include "Curves/CurveFloat.h"
+#include "KawaiiPhysicsLimitsDataAsset.h"
+
+TAutoConsoleVariable<int32> CVarEnableOldPhysicsMethodGrayity(TEXT("p.KawaiiPhysics.EnableOldPhysicsMethodGravity"), 0, 
+	TEXT("Enables/Disables old physics method for gravity before v1.3.1. This is the setting for the transition period when changing the physical calculation."));
+TAutoConsoleVariable<int32> CVarEnableOldPhysicsMethodSphereLimit(TEXT("p.KawaiiPhysics.EnableOldPhysicsMethodSphereLimit"), 0,
+	TEXT("Enables/Disables old physics method for sphere limit before v1.3.1. This is the setting for the transition period when changing the physical calculation."));
+
+FAnimNode_KawaiiPhysics::FAnimNode_KawaiiPhysics()
+{
+
+}
+
+void FAnimNode_KawaiiPhysics::Initialize_AnyThread(const FAnimationInitializeContext& Context)
+{
+	FAnimNode_SkeletalControlBase::Initialize_AnyThread(Context);
+	FBoneContainer& RequiredBones = Context.AnimInstanceProxy->GetRequiredBones();
+
+	ApplyLimitsDataAsset(RequiredBones);
+
+	InitializeBoneReferences(RequiredBones);
+
+	ModifyBones.Empty();
+
+	// For Avoiding Zero Divide in the first frame
+	DeltaTimeOld = 1.0f / TargetFramerate;
+
+	bResetDynamics = false;
+
+#if WITH_EDITOR
+	auto World = Context.AnimInstanceProxy->GetSkelMeshComponent()->GetWorld();
+	if (World->WorldType == EWorldType::Editor ||
+		World->WorldType == EWorldType::EditorPreview)
+	{
+		bEditing = true;
+	}
+#endif
+}
+
+void FAnimNode_KawaiiPhysics::CacheBones_AnyThread(const FAnimationCacheBonesContext& Context)
+{
+	FAnimNode_SkeletalControlBase::CacheBones_AnyThread(Context);
+
+}
+
+void FAnimNode_KawaiiPhysics::ResetDynamics(ETeleportType InTeleportType)
+{
+	bResetDynamics |= (ETeleportType::ResetPhysics == InTeleportType);
+}
+
+void FAnimNode_KawaiiPhysics::UpdateInternal(const FAnimationUpdateContext& Context)
+{
+	FAnimNode_SkeletalControlBase::UpdateInternal(Context);
+
+	DeltaTime = Context.GetDeltaTime();
+}
+
+DECLARE_CYCLE_STAT(TEXT("KawaiiPhysics_Eval"), STAT_KawaiiPhysics_Eval, STATGROUP_Anim);
+
+void FAnimNode_KawaiiPhysics::EvaluateSkeletalControl_AnyThread(FComponentSpacePoseContext& Output, TArray<FBoneTransform>& OutBoneTransforms)
+{
+	SCOPE_CYCLE_COUNTER(STAT_KawaiiPhysics_Eval);
+
+	check(OutBoneTransforms.Num() == 0);
+
+	if(bResetDynamics)
+	{
+		ModifyBones.Empty(ModifyBones.Num());
+		bResetDynamics = false;
+		bInitPhysicsSettings = false;
+	}
+
+	const FBoneContainer& BoneContainer = Output.Pose.GetPose().GetBoneContainer();
+	FTransform ComponentTransform = Output.AnimInstanceProxy->GetComponentTransform();
+
+#if WITH_EDITOR
+	// sync editing on other Nodes
+	if (LimitsDataAsset)
+	{ 
+		ApplyLimitsDataAsset(BoneContainer);
+	}
+#endif
+
+	if (!RootBone.IsValidToEvaluate(BoneContainer))
+	{
+		return;
+	}
+
+	if (ModifyBones.Num() == 0)
+	{
+		InitModifyBones(Output, BoneContainer);
+		PreSkelCompTransform = ComponentTransform;
+	}
+
+	// Update each parameters and collision
+	if (!bInitPhysicsSettings || bUpdatePhysicsSettingsInGame)
+	{
+		UpdatePhysicsSettingsOfModifyBones();
+		
+#if WITH_EDITORONLY_DATA
+		if (!bEditing)
+#endif
+		{
+			bInitPhysicsSettings = true;
+		}
+	}
+	UpdateSphericalLimits(SphericalLimits, Output, BoneContainer, ComponentTransform);
+	UpdateSphericalLimits(SphericalLimitsData, Output, BoneContainer, ComponentTransform);
+	UpdateCapsuleLimits(CapsuleLimits, Output, BoneContainer, ComponentTransform);
+	UpdateCapsuleLimits(CapsuleLimitsData, Output, BoneContainer, ComponentTransform);
+	UpdatePlanerLimits(PlanarLimits,Output, BoneContainer, ComponentTransform);
+	UpdatePlanerLimits(PlanarLimitsData, Output, BoneContainer, ComponentTransform);
+	for (auto& Bone : ModifyBones)
+	{
+		if (!Bone.bDummy)
+		{
+			Bone.UpdatePoseTranform(BoneContainer, Output.Pose, ResetBoneTransformWhenBoneNotFound);
+		}
+		else
+		{
+			auto ParentBone = ModifyBones[Bone.ParentIndex];
+			Bone.PoseLocation = ParentBone.PoseLocation + GetBoneForwardVector(ParentBone.PoseRotation) * DummyBoneLength;
+			Bone.PoseRotation = ParentBone.PoseRotation;
+			Bone.PoseScale = ParentBone.PoseScale;
+		}
+	}
+	
+
+	// Calc SkeletalMeshComponent movement in World Space
+	SkelCompMoveVector = ComponentTransform.InverseTransformPosition(PreSkelCompTransform.GetLocation());
+	if (SkelCompMoveVector.SizeSquared() > TeleportDistanceThreshold * TeleportDistanceThreshold)
+	{
+		SkelCompMoveVector = FVector::ZeroVector;
+	}
+
+	SkelCompMoveRotation = ComponentTransform.InverseTransformRotation(PreSkelCompTransform.GetRotation());
+	if ( TeleportRotationThreshold >= 0 && FMath::RadiansToDegrees( SkelCompMoveRotation.GetAngle() ) > TeleportRotationThreshold )
+	{
+		SkelCompMoveRotation = FQuat::Identity;
+	}
+
+	PreSkelCompTransform = ComponentTransform;
+
+	// Simulate Physics and Apply
+	SimulateModifyBones(Output, BoneContainer, ComponentTransform);
+	ApplySimuateResult(Output, BoneContainer, OutBoneTransforms);
+}
+
+bool FAnimNode_KawaiiPhysics::IsValidToEvaluate(const USkeleton* Skeleton, const FBoneContainer& RequiredBones)
+{
+	return RootBone.IsValidToEvaluate(RequiredBones);
+}
+
+void FAnimNode_KawaiiPhysics::InitializeBoneReferences(const FBoneContainer& RequiredBones)
+{
+	RootBone.Initialize(RequiredBones);
+
+	for (auto& Bone : ModifyBones)
+	{
+		Bone.BoneRef.Initialize(RequiredBones);
+	}
+
+	for (auto& Sphere : SphericalLimits)
+	{
+		Sphere.DrivingBone.Initialize(RequiredBones);
+	}
+	for (auto& Capsule : CapsuleLimits)
+	{
+		Capsule.DrivingBone.Initialize(RequiredBones);
+	}
+	for (auto& Planer : PlanarLimits)
+	{
+		Planer.DrivingBone.Initialize(RequiredBones);
+	}
+
+}
+
+DECLARE_CYCLE_STAT(TEXT("KawaiiPhysics_InitModifyBones"), STAT_KawaiiPhysics_InitModifyBones, STATGROUP_Anim);
+
+void FAnimNode_KawaiiPhysics::InitModifyBones(FComponentSpacePoseContext& Output, const FBoneContainer& BoneContainer)
+{
+	SCOPE_CYCLE_COUNTER(STAT_KawaiiPhysics_InitModifyBones);
+
+	auto Skeleton = BoneContainer.GetSkeletonAsset();
+	auto& RefSkeleton = Skeleton->GetReferenceSkeleton();
+
+	ModifyBones.Empty();
+	AddModifyBone(Output, BoneContainer, RefSkeleton, RefSkeleton.FindBoneIndex(RootBone.BoneName));
+	if (ModifyBones.Num() > 0)
+	{
+
+#if	ENGINE_MAJOR_VERSION == 5
+		TArray<FTransform> Bones;
+		BoneContainer.FillWithCompactRefPose(Bones);
+		CalcBoneLength(ModifyBones[0], Bones);
+#else
+		CalcBoneLength(ModifyBones[0], BoneContainer.GetRefPoseCompactArray());
+#endif
+	}
+}
+
+
+
+
+void FAnimNode_KawaiiPhysics::ApplyLimitsDataAsset(const FBoneContainer& RequiredBones)
+{
+	SphericalLimitsData.Empty();
+	CapsuleLimitsData.Empty();
+	PlanarLimitsData.Empty();
+	if (LimitsDataAsset)
+	{
+		SphericalLimitsData = LimitsDataAsset->SphericalLimits;
+		CapsuleLimitsData = LimitsDataAsset->CapsuleLimits;
+		PlanarLimitsData = LimitsDataAsset->PlanarLimits;
+	}
+
+	for (auto& Sphere : SphericalLimitsData)
+	{
+		Sphere.DrivingBone.Initialize(RequiredBones);
+	}
+
+	for (auto& Capsule : CapsuleLimitsData)
+	{
+		Capsule.DrivingBone.Initialize(RequiredBones);
+	}
+	for (auto& Planer : PlanarLimitsData)
+	{
+		Planer.DrivingBone.Initialize(RequiredBones);
+	}
+}
+
+int FAnimNode_KawaiiPhysics::AddModifyBone(FComponentSpacePoseContext& Output, const FBoneContainer& BoneContainer, 
+	const FReferenceSkeleton& RefSkeleton, int BoneIndex)
+{
+	if (BoneIndex < 0 || RefSkeleton.GetNum() < BoneIndex)
+	{
+		return INDEX_NONE;
+	}
+
+	FBoneReference BoneRef;
+	BoneRef.BoneName = RefSkeleton.GetBoneName(BoneIndex);
+
+	if (ExcludeBones.Num() > 0 && ExcludeBones.Find(BoneRef) >= 0)
+	{
+		return INDEX_NONE;
+	}
+
+	FKawaiiPhysicsModifyBone NewModifyBone;
+	NewModifyBone.BoneRef = BoneRef;
+	NewModifyBone.BoneRef.Initialize(BoneContainer);
+	if (NewModifyBone.BoneRef.CachedCompactPoseIndex == INDEX_NONE)
+	{
+		return INDEX_NONE;
+	}
+
+	auto& RefBonePoseTransform = Output.Pose.GetComponentSpaceTransform(NewModifyBone.BoneRef.CachedCompactPoseIndex);
+	NewModifyBone.Location = RefBonePoseTransform.GetLocation();  
+	NewModifyBone.PrevLocation = NewModifyBone.Location;
+	NewModifyBone.PoseLocation = NewModifyBone.Location;
+	NewModifyBone.PrevRotation = RefBonePoseTransform.GetRotation();
+	NewModifyBone.PoseRotation = NewModifyBone.PrevRotation;
+	NewModifyBone.PoseScale = RefBonePoseTransform.GetScale3D();
+	int ModifyBoneIndex = ModifyBones.Add(NewModifyBone);
+
+	TArray<int32> ChildBoneIndexs;
+	CollectChildBones(RefSkeleton, BoneIndex, ChildBoneIndexs);
+	bool AddedChildBone = false;
+	if (ChildBoneIndexs.Num() > 0)
+	{
+		//for some mesh where tip bone is empty (without any skinning weight in the mesh), ChildBoneIndexs > 0 but no actual child bones are created
+		for (auto ChildBoneIndex : ChildBoneIndexs)
+		{
+			auto ChildModifyBoneIndex = AddModifyBone(Output, BoneContainer, RefSkeleton, ChildBoneIndex);
+			if (ChildModifyBoneIndex >= 0)
+			{
+				ModifyBones[ModifyBoneIndex].ChildIndexs.Add(ChildModifyBoneIndex);
+				ModifyBones[ChildModifyBoneIndex].ParentIndex = ModifyBoneIndex;
+				AddedChildBone = true;
+			}
+		}
+	}
+
+	if(!AddedChildBone && DummyBoneLength > 0.0f)
+	{
+		// Add dummy modify bone
+		FKawaiiPhysicsModifyBone DummyModifyBone;
+		DummyModifyBone.bDummy = true;
+		DummyModifyBone.Location = NewModifyBone.Location + GetBoneForwardVector(NewModifyBone.PrevRotation) * DummyBoneLength;
+		DummyModifyBone.PrevLocation = DummyModifyBone.Location;
+		DummyModifyBone.PoseLocation = DummyModifyBone.Location;
+		DummyModifyBone.PrevRotation = NewModifyBone.PrevRotation;
+		DummyModifyBone.PoseRotation = DummyModifyBone.PrevRotation;
+		DummyModifyBone.PoseScale = RefBonePoseTransform.GetScale3D();
+
+		int DummyBoneIndex = ModifyBones.Add(DummyModifyBone);
+		ModifyBones[ModifyBoneIndex].ChildIndexs.Add(DummyBoneIndex);
+		ModifyBones[DummyBoneIndex].ParentIndex = ModifyBoneIndex;
+	}
+
+
+	return ModifyBoneIndex;
+}
+
+int32 FAnimNode_KawaiiPhysics::CollectChildBones(const FReferenceSkeleton& RefSkeleton, int32 ParentBoneIndex, TArray<int32> & Children) const
+{
+	Children.Reset();
+
+	const int32 NumBones = RefSkeleton.GetNum();
+	for (int32 ChildIndex = ParentBoneIndex + 1; ChildIndex < NumBones; ChildIndex++)
+	{
+		if (ParentBoneIndex == RefSkeleton.GetParentIndex(ChildIndex))
+		{
+			Children.Add(ChildIndex);
+		}
+	}
+
+	return Children.Num();
+}
+
+void FAnimNode_KawaiiPhysics::CalcBoneLength(FKawaiiPhysicsModifyBone& Bone, const TArray<FTransform>& RefBonePose)
+{
+	if (Bone.ParentIndex < 0)
+	{
+		Bone.LengthFromRoot = 0.0f;
+	}
+	else
+	{
+		if (!Bone.bDummy)
+		{
+			Bone.LengthFromRoot = ModifyBones[Bone.ParentIndex].LengthFromRoot
+				+ RefBonePose[Bone.BoneRef.BoneIndex].GetLocation().Size();
+		}
+		else
+		{
+			Bone.LengthFromRoot = ModifyBones[Bone.ParentIndex].LengthFromRoot + DummyBoneLength;
+		}
+		
+		TotalBoneLength = FMath::Max(TotalBoneLength, Bone.LengthFromRoot);
+	}
+
+	for (int ChildIndex : Bone.ChildIndexs)
+	{
+		CalcBoneLength(ModifyBones[ChildIndex], RefBonePose);
+	}
+}
+
+DECLARE_CYCLE_STAT(TEXT("KawaiiPhysics_UpdatePhysicsSetting"), STAT_KawaiiPhysics_UpdatePhysicsSetting, STATGROUP_Anim);
+
+void FAnimNode_KawaiiPhysics::UpdatePhysicsSettingsOfModifyBones()
+{
+	for (auto& Bone : ModifyBones)
+	{
+		SCOPE_CYCLE_COUNTER(STAT_KawaiiPhysics_UpdatePhysicsSetting);
+
+		float LengthRate = Bone.LengthFromRoot / TotalBoneLength;
+
+		// Damping
+		Bone.PhysicsSettings.Damping = PhysicsSettings.Damping;
+		if (TotalBoneLength > 0 && !DampingCurveData.GetRichCurve()->IsEmpty())
+		{
+			Bone.PhysicsSettings.Damping *= DampingCurveData.GetRichCurve()->Eval(LengthRate);
+		}
+		Bone.PhysicsSettings.Damping = FMath::Clamp<float>(Bone.PhysicsSettings.Damping, 0.0f, 1.0f);
+
+		// WorldLocationDamping
+		Bone.PhysicsSettings.WorldDampingLocation = PhysicsSettings.WorldDampingLocation;
+		if (TotalBoneLength > 0 && !WorldDampingLocationCurveData.GetRichCurve()->IsEmpty())
+		{
+			Bone.PhysicsSettings.WorldDampingLocation *= WorldDampingLocationCurveData.GetRichCurve()->Eval(LengthRate);
+		}
+		Bone.PhysicsSettings.WorldDampingLocation = FMath::Clamp<float>(Bone.PhysicsSettings.WorldDampingLocation, 0.0f, 1.0f);
+
+		// WorldRotationDamping
+		Bone.PhysicsSettings.WorldDampingRotation = PhysicsSettings.WorldDampingRotation;
+		if (TotalBoneLength > 0 && !WorldDampingRotationCurveData.GetRichCurve()->IsEmpty())
+		{
+			Bone.PhysicsSettings.WorldDampingRotation *= WorldDampingRotationCurveData.GetRichCurve()->Eval(LengthRate);
+		}
+		Bone.PhysicsSettings.WorldDampingRotation = FMath::Clamp<float>(Bone.PhysicsSettings.WorldDampingRotation, 0.0f, 1.0f);
+
+		// Stiffness
+		Bone.PhysicsSettings.Stiffness = PhysicsSettings.Stiffness;
+		if (TotalBoneLength > 0 && !StiffnessCurveData.GetRichCurve()->IsEmpty())
+		{
+			Bone.PhysicsSettings.Stiffness *= StiffnessCurveData.GetRichCurve()->Eval(LengthRate);
+		}
+		Bone.PhysicsSettings.Stiffness = FMath::Clamp<float>(Bone.PhysicsSettings.Stiffness, 0.0f, 1.0f);
+
+		// Radius
+		Bone.PhysicsSettings.Radius = PhysicsSettings.Radius;
+		if (TotalBoneLength > 0 && !RadiusCurveData.GetRichCurve()->IsEmpty())
+		{
+			Bone.PhysicsSettings.Radius *= RadiusCurveData.GetRichCurve()->Eval(LengthRate);
+		}
+		Bone.PhysicsSettings.Radius = FMath::Max<float>(Bone.PhysicsSettings.Radius, 0.0f);
+
+		// LimitAngle
+		Bone.PhysicsSettings.LimitAngle = PhysicsSettings.LimitAngle;
+		if (TotalBoneLength > 0 && !LimitAngleCurveData.GetRichCurve()->IsEmpty())
+		{
+			Bone.PhysicsSettings.LimitAngle *= LimitAngleCurveData.GetRichCurve()->Eval(LengthRate);
+		}
+		Bone.PhysicsSettings.LimitAngle = FMath::Max<float>(Bone.PhysicsSettings.LimitAngle, 0.0f);
+	}
+}
+
+DECLARE_CYCLE_STAT(TEXT("KawaiiPhysics_UpdateSphericalLimit"), STAT_KawaiiPhysics_UpdateSphericalLimit, STATGROUP_Anim);
+
+void FAnimNode_KawaiiPhysics::UpdateSphericalLimits(TArray<FSphericalLimit>& Limits, FComponentSpacePoseContext& Output, const FBoneContainer& BoneContainer, FTransform& ComponentTransform)
+{
+	for (auto& Sphere : Limits)
+	{
+		SCOPE_CYCLE_COUNTER(STAT_KawaiiPhysics_UpdateSphericalLimit);
+
+		if (Sphere.DrivingBone.BoneIndex >= 0)
+		{		
+			FCompactPoseBoneIndex CompactPoseIndex = Sphere.DrivingBone.GetCompactPoseIndex(BoneContainer);
+			FTransform BoneTransform = Output.Pose.GetComponentSpaceTransform(CompactPoseIndex);
+
+			FAnimationRuntime::ConvertCSTransformToBoneSpace(ComponentTransform, Output.Pose, BoneTransform, CompactPoseIndex, BCS_BoneSpace);
+			BoneTransform.SetRotation(Sphere.OffsetRotation.Quaternion() * BoneTransform.GetRotation());
+			BoneTransform.AddToTranslation(Sphere.OffsetLocation);
+
+			FAnimationRuntime::ConvertBoneSpaceTransformToCS(ComponentTransform, Output.Pose, BoneTransform, CompactPoseIndex, BCS_BoneSpace);
+			Sphere.Location = BoneTransform.GetLocation();
+			Sphere.Rotation = BoneTransform.GetRotation();
+		}
+		else
+		{
+			Sphere.Location = Sphere.OffsetLocation;
+		}
+	}
+}
+
+DECLARE_CYCLE_STAT(TEXT("KawaiiPhysics_UpdateCapsuleLimit"), STAT_KawaiiPhysics_UpdateCapsuleLimit, STATGROUP_Anim);
+
+void FAnimNode_KawaiiPhysics::UpdateCapsuleLimits(TArray<FCapsuleLimit>& Limits, FComponentSpacePoseContext& Output, const FBoneContainer& BoneContainer, FTransform& ComponentTransform)
+{
+	for (auto& Capsule : Limits)
+	{
+		SCOPE_CYCLE_COUNTER(STAT_KawaiiPhysics_UpdateCapsuleLimit);
+
+		if (Capsule.DrivingBone.BoneIndex >= 0)
+		{			
+			FCompactPoseBoneIndex CompactPoseIndex = Capsule.DrivingBone.GetCompactPoseIndex(BoneContainer);
+			FTransform BoneTransform = Output.Pose.GetComponentSpaceTransform(CompactPoseIndex);
+
+			FAnimationRuntime::ConvertCSTransformToBoneSpace(ComponentTransform, Output.Pose, BoneTransform, CompactPoseIndex, BCS_BoneSpace);
+			BoneTransform.SetRotation(Capsule.OffsetRotation.Quaternion() * BoneTransform.GetRotation());
+			BoneTransform.AddToTranslation(Capsule.OffsetLocation);
+
+			FAnimationRuntime::ConvertBoneSpaceTransformToCS(ComponentTransform, Output.Pose, BoneTransform, CompactPoseIndex, BCS_BoneSpace);
+			Capsule.Location = BoneTransform.GetLocation();
+			Capsule.Rotation = BoneTransform.GetRotation();
+		}
+		else
+		{			
+			Capsule.Location = Capsule.OffsetLocation;
+			Capsule.Rotation = Capsule.OffsetRotation.Quaternion();
+		}
+	}
+}
+
+DECLARE_CYCLE_STAT(TEXT("KawaiiPhysics_UpdatePlanerLimit"), STAT_KawaiiPhysics_UpdatePlanerLimit, STATGROUP_Anim);
+
+void FAnimNode_KawaiiPhysics::UpdatePlanerLimits(TArray<FPlanarLimit>& Limits, FComponentSpacePoseContext& Output, const FBoneContainer& BoneContainer, FTransform& ComponentTransform)
+{
+	for (auto& Planar : Limits)
+	{
+		SCOPE_CYCLE_COUNTER(STAT_KawaiiPhysics_UpdatePlanerLimit);
+
+		if (Planar.DrivingBone.BoneIndex >= 0)
+		{
+			FCompactPoseBoneIndex CompactPoseIndex = Planar.DrivingBone.GetCompactPoseIndex(BoneContainer);
+			FTransform BoneTransform = Output.Pose.GetComponentSpaceTransform(CompactPoseIndex);
+
+			FAnimationRuntime::ConvertCSTransformToBoneSpace(ComponentTransform, Output.Pose, BoneTransform, CompactPoseIndex, BCS_BoneSpace);
+			BoneTransform.SetRotation(Planar.OffsetRotation.Quaternion() * BoneTransform.GetRotation());
+			BoneTransform.AddToTranslation(Planar.OffsetLocation);
+
+			FAnimationRuntime::ConvertBoneSpaceTransformToCS(ComponentTransform, Output.Pose, BoneTransform, CompactPoseIndex, BCS_BoneSpace);
+			Planar.Location = BoneTransform.GetLocation();
+			Planar.Rotation = BoneTransform.GetRotation();
+			Planar.Rotation.Normalize();
+			Planar.Plane = FPlane(Planar.Location, Planar.Rotation.GetUpVector());
+		}
+		else
+		{
+			Planar.Location = Planar.OffsetLocation;
+			Planar.Rotation = Planar.OffsetRotation.Quaternion();
+			Planar.Rotation.Normalize();
+			Planar.Plane = FPlane(Planar.Location, Planar.Rotation.GetUpVector());
+		}
+	}
+}
+
+DECLARE_CYCLE_STAT(TEXT("KawaiiPhysics_SimulatemodifyBones"), STAT_KawaiiPhysics_SimulatemodifyBones, STATGROUP_Anim);
+DECLARE_CYCLE_STAT(TEXT("KawaiiPhysics_SimulatemodifyBone"), STAT_KawaiiPhysics_SimulatemodifyBone, STATGROUP_Anim);
+DECLARE_CYCLE_STAT(TEXT("KawaiiPhysics_AdjustBone"), STAT_KawaiiPhysics_AdjustBone, STATGROUP_Anim);
+DECLARE_CYCLE_STAT(TEXT("KawaiiPhysics_Wind"), STAT_KawaiiPhysics_Wind, STATGROUP_Anim);
+DECLARE_CYCLE_STAT(TEXT("KawaiiPhysics_WorldCollision"), STAT_KawaiiPhysics_WorldCollision, STATGROUP_Anim);
+void FAnimNode_KawaiiPhysics::SimulateModifyBones(FComponentSpacePoseContext& Output, const FBoneContainer& BoneContainer, FTransform& ComponentTransform)
+{
+	SCOPE_CYCLE_COUNTER(STAT_KawaiiPhysics_SimulatemodifyBones);
+
+	if (DeltaTime <= 0.0f)
+	{
+		return;
+	}
+
+	// for wind
+	FVector WindDirection;
+	float WindSpeed;
+	float WindMinGust;
+	float WindMaxGust;
+
+	const USkeletalMeshComponent* SkelComp = Output.AnimInstanceProxy->GetSkelMeshComponent();
+	const UWorld* World = SkelComp ? SkelComp->GetWorld() : nullptr;
+	FSceneInterface* Scene = World && World->Scene ? World->Scene : nullptr;
+	const float Exponent = TargetFramerate * DeltaTime;
+
+	//transform gravity to component space
+	FVector GravityCS = ComponentTransform.InverseTransformVector(Gravity);
+
+	for (int i = 0; i < ModifyBones.Num(); ++i)
+	{
+		SCOPE_CYCLE_COUNTER(STAT_KawaiiPhysics_SimulatemodifyBone);
+
+		auto& Bone = ModifyBones[i];
+		if (Bone.BoneRef.BoneIndex < 0 && !Bone.bDummy)
+		{
+			continue;
+		}
+
+		if (Bone.ParentIndex < 0)
+		{
+			Bone.PrevLocation = Bone.Location;
+			Bone.Location = Bone.PoseLocation;
+			continue;
+		}
+
+		auto& ParentBone = ModifyBones[Bone.ParentIndex];
+		FVector BonePoseLocation = Bone.PoseLocation;
+		FVector ParentBonePoseLocation = ParentBone.PoseLocation;
+
+		// Move using Velocity( = movement amount in pre frame ) and Damping
+		{
+			FVector Velocity = (Bone.Location - Bone.PrevLocation) / DeltaTimeOld;
+			Bone.PrevLocation = Bone.Location;
+			Velocity *= (1.0f - Bone.PhysicsSettings.Damping);
+
+			// wind
+			if (bEnableWind && Scene)
+			{
+				SCOPE_CYCLE_COUNTER(STAT_KawaiiPhysics_Wind);
+
+				Scene->GetWindParameters_GameThread(ComponentTransform.TransformPosition(Bone.PoseLocation), WindDirection, WindSpeed, WindMinGust, WindMaxGust);
+				WindDirection = ComponentTransform.Inverse().TransformVector(WindDirection);
+				FVector WindVelocity = WindDirection * WindSpeed * WindScale;
+
+				// TODO:Migrate if there are more good method (Currently copying AnimDynamics implementation)
+				WindVelocity *= FMath::FRandRange(0.0f, 2.0f);
+
+				Velocity += WindVelocity * TargetFramerate;
+			}
+			Bone.Location += Velocity * DeltaTime;
+		}
+
+		// Follow Translation
+        Bone.Location += SkelCompMoveVector * (1.0f - Bone.PhysicsSettings.WorldDampingLocation);
+
+		// Follow Rotation
+		Bone.Location += (SkelCompMoveRotation.RotateVector(Bone.PrevLocation) - Bone.PrevLocation)
+			* (1.0f - Bone.PhysicsSettings.WorldDampingRotation);
+
+		// Gravity
+		// TODO:Migrate if there are more good method (Currently copying AnimDynamics implementation)
+		if (CVarEnableOldPhysicsMethodGrayity.GetValueOnAnyThread() == 0)
+		{
+			Bone.Location += 0.5 * GravityCS * DeltaTime * DeltaTime;
+		}
+		else
+		{
+			Bone.Location += GravityCS * DeltaTime;
+		}
+		
+		// Pull to Pose Location
+		FVector BaseLocation = ParentBone.Location + (BonePoseLocation - ParentBonePoseLocation);
+		Bone.Location += (BaseLocation - Bone.Location) *
+			(1.0f - FMath::Pow(1.0f - Bone.PhysicsSettings.Stiffness, Exponent));
+
+		{
+			SCOPE_CYCLE_COUNTER(STAT_KawaiiPhysics_AdjustBone);
+
+			// Adjust by each collisions
+			AdjustBySphereCollision(Bone, SphericalLimits);
+			AdjustBySphereCollision(Bone, SphericalLimitsData);
+			AdjustByCapsuleCollision(Bone, CapsuleLimits);
+			AdjustByCapsuleCollision(Bone, CapsuleLimitsData);
+			AdjustByPlanerCollision(Bone, PlanarLimits);
+			AdjustByPlanerCollision(Bone, PlanarLimitsData);
+			if (bAllowWorldCollision)
+			{
+				SCOPE_CYCLE_COUNTER(STAT_KawaiiPhysics_WorldCollision);
+				AdjustByWorldCollision(Bone, SkelComp, BoneContainer);
+			}
+			// Adjust by angle limit
+			AdjustByAngleLimit(Output, BoneContainer, ComponentTransform, Bone, ParentBone);
+
+			// Adjust by Planar Constraint
+			AdjustByPlanarConstraint(Bone, ParentBone);
+		}
+
+		// Restore Bone Length
+		float BoneLength = (BonePoseLocation - ParentBonePoseLocation).Size();
+		Bone.Location = (Bone.Location - ParentBone.Location).GetSafeNormal() * BoneLength + ParentBone.Location;
+	}
+	DeltaTimeOld = DeltaTime;
+}
+
+void FAnimNode_KawaiiPhysics::AdjustByWorldCollision(FKawaiiPhysicsModifyBone& Bone, const USkeletalMeshComponent* OwningComp, const FBoneContainer& BoneContainer)
+{
+	if (!OwningComp || Bone.ParentIndex < 0) 
+	{
+		return;
+	}
+
+	/** the trace is not done in game thread, so TraceTag does not draw debug traces*/
+	FCollisionQueryParams Params(SCENE_QUERY_STAT(KawaiiCollision));
+	
+	if (bIgnoreSelfComponent)
+	{
+		Params.AddIgnoredComponent(OwningComp);
+	}
+
+	// Get collision settings from component	
+	ECollisionChannel TraceChannel = bOverrideCollisionParams ? CollisionChannelSettings.GetObjectType():OwningComp->GetCollisionObjectType();
+	FCollisionResponseParams ResponseParams = bOverrideCollisionParams ? FCollisionResponseParams(CollisionChannelSettings.GetResponseToChannels()):FCollisionResponseParams(OwningComp->GetCollisionResponseToChannels());
+	auto CompTransform = OwningComp->GetComponentTransform();
+	CompTransform.TransformPosition(Bone.PrevLocation);
+
+	const UWorld* World = OwningComp->GetWorld();
+	if (World)
+	{
+		if (bIgnoreSelfComponent)
+		{
+			// Do sphere sweep
+			FHitResult Result;
+			bool bHit = World->SweepSingleByChannel(Result, CompTransform.TransformPosition(Bone.PrevLocation), CompTransform.TransformPosition(Bone.Location), FQuat::Identity, TraceChannel, FCollisionShape::MakeSphere(Bone.PhysicsSettings.Radius), Params, ResponseParams);
+			if (bHit) 
+			{
+				if (Result.bStartPenetrating)
+				{
+					Bone.Location = CompTransform.InverseTransformPosition(CompTransform.TransformPosition(Bone.Location) + (Result.Normal * Result.PenetrationDepth));
+				}
+				else
+				{
+					Bone.Location = CompTransform.InverseTransformPosition(Result.Location);
+				}
+			}
+		}
+		else
+		{
+			// Do sphere sweep and ignore bones later
+			TArray<FHitResult> Results;
+			bool bHit = World->SweepMultiByChannel(Results, CompTransform.TransformPosition(Bone.PrevLocation), CompTransform.TransformPosition(Bone.Location), FQuat::Identity, TraceChannel, FCollisionShape::MakeSphere(Bone.PhysicsSettings.Radius), Params, ResponseParams);
+			if (bHit)
+			{
+				auto Skeleton = BoneContainer.GetSkeletonAsset();
+				auto& RefSkeleton = Skeleton->GetReferenceSkeleton();
+				bool IsIgnoreHit;
+				for (const auto &Hit : Results)
+				{
+					if (Hit.bBlockingHit)
+					{
+						//should we ignore this hit?
+						IsIgnoreHit = false;
+						if (Hit.Component == OwningComp && Hit.BoneName != NAME_None)
+						{
+							IsIgnoreHit = Hit.BoneName == Bone.BoneRef.BoneName;
+							if (!IsIgnoreHit)
+							{
+								for (auto BoneRef : IgnoreBones)
+								{
+									if (BoneRef.BoneName == Hit.BoneName)
+									{
+										IsIgnoreHit = true;
+										break;
+									}
+								}
+							}
+							if (!IsIgnoreHit)
+							{
+								for (auto BoneNamePrefix : IgnoreBoneNamePrefix)
+								{
+									if (Hit.BoneName.ToString().StartsWith(BoneNamePrefix.ToString()))
+									{
+										IsIgnoreHit = true;
+										break;
+									}
+								}
+							}
+						}
+						//found the blocking hit we shouldn't ignore!
+						if (!IsIgnoreHit)
+						{
+							if (Hit.bStartPenetrating)
+							{
+								Bone.Location = CompTransform.InverseTransformPosition(CompTransform.TransformPosition(Bone.Location) + (Hit.Normal * Hit.PenetrationDepth));
+							}
+							else
+							{
+								Bone.Location = CompTransform.InverseTransformPosition(Hit.Location);
+							}
+							break;
+						}
+					}
+				}
+			}
+		}
+	}
+}
+
+
+void FAnimNode_KawaiiPhysics::AdjustBySphereCollision(FKawaiiPhysicsModifyBone& Bone, TArray<FSphericalLimit>& Limits)
+{
+	for (auto& Sphere : Limits)
+	{
+		if (Sphere.Radius <= 0.0f)
+		{
+			continue;
+		}
+
+		float LimitDistance = Bone.PhysicsSettings.Radius + Sphere.Radius;
+		if (Sphere.LimitType == ESphericalLimitType::Outer)
+		{
+			if ((Bone.Location - Sphere.Location).SizeSquared() > LimitDistance * LimitDistance)
+			{
+				continue;
+			}
+			else
+			{
+				Bone.Location += (LimitDistance - (Bone.Location - Sphere.Location).Size())
+					* (Bone.Location - Sphere.Location).GetSafeNormal();
+			}
+		}
+		else
+		{
+			if ((Bone.Location - Sphere.Location).SizeSquared() < LimitDistance * LimitDistance)
+			{
+				continue;
+			}
+			else
+			{
+				if (CVarEnableOldPhysicsMethodSphereLimit.GetValueOnAnyThread() == 0)
+				{
+					Bone.Location = Sphere.Location + (Sphere.Radius - Bone.PhysicsSettings.Radius) * (Bone.Location - Sphere.Location).GetSafeNormal();
+				}
+				else
+				{
+					Bone.Location = Sphere.Location + Sphere.Radius * (Bone.Location - Sphere.Location).GetSafeNormal();
+				}
+			}
+		}
+	}
+}
+
+void FAnimNode_KawaiiPhysics::AdjustByCapsuleCollision(FKawaiiPhysicsModifyBone& Bone, TArray<FCapsuleLimit>& Limits)
+{
+	for (auto& Capsule : Limits)
+	{
+		if (Capsule.Radius <= 0 || Capsule.Length <= 0)
+		{
+			continue;
+		}
+
+		FVector StartPoint = Capsule.Location + Capsule.Rotation.GetAxisZ() * Capsule.Length * 0.5f;
+		FVector EndPoint = Capsule.Location + Capsule.Rotation.GetAxisZ() * Capsule.Length * -0.5f;
+		float DistSquared = FMath::PointDistToSegmentSquared(Bone.Location, StartPoint, EndPoint);
+
+		float LimitDistance = Bone.PhysicsSettings.Radius + Capsule.Radius;
+		if (DistSquared < LimitDistance* LimitDistance)
+		{
+			FVector ClosestPoint = FMath::ClosestPointOnSegment(Bone.Location, StartPoint, EndPoint);
+			Bone.Location = ClosestPoint + (Bone.Location - ClosestPoint).GetSafeNormal() * LimitDistance;
+		}
+	}
+}
+
+void FAnimNode_KawaiiPhysics::AdjustByPlanerCollision(FKawaiiPhysicsModifyBone& Bone, TArray<FPlanarLimit>& Limits)
+{
+	for (auto& Planar : Limits)
+	{
+		FVector PointOnPlane = FVector::PointPlaneProject(Bone.Location, Planar.Plane);
+		float DistSquared = (Bone.Location - PointOnPlane).SizeSquared();
+
+		FVector IntersectionPoint;
+		if (DistSquared < Bone.PhysicsSettings.Radius * Bone.PhysicsSettings.Radius ||
+			FMath::SegmentPlaneIntersection(Bone.Location, Bone.PrevLocation, Planar.Plane, IntersectionPoint))
+		{
+			Bone.Location = PointOnPlane + Planar.Rotation.GetUpVector() * Bone.PhysicsSettings.Radius;
+			continue;;
+		}
+	}
+}
+
+void FAnimNode_KawaiiPhysics::AdjustByAngleLimit(FComponentSpacePoseContext& Output, const FBoneContainer& BoneContainer, FTransform& ComponentTransform, 
+	FKawaiiPhysicsModifyBone& Bone, FKawaiiPhysicsModifyBone& ParentBone)
+{
+	if (Bone.PhysicsSettings.LimitAngle == 0.0f)
+	{
+		return;
+	}
+
+	FVector BoneDir = (Bone.Location - ParentBone.Location).GetSafeNormal();
+	FVector PoseDir = (Bone.PoseLocation - ParentBone.PoseLocation).GetSafeNormal();
+	FVector Axis = FVector::CrossProduct(PoseDir, BoneDir);
+	float Angle = FMath::Atan2(Axis.Size(), FVector::DotProduct(PoseDir, BoneDir));
+	float AngleOverLimit= FMath::RadiansToDegrees(Angle) - Bone.PhysicsSettings.LimitAngle;
+
+	if (AngleOverLimit > 0.0f)
+	{
+		BoneDir = BoneDir.RotateAngleAxis(-AngleOverLimit, Axis);
+		Bone.Location = BoneDir * (Bone.Location - ParentBone.Location).Size() + ParentBone.Location;
+	}
+}
+
+void FAnimNode_KawaiiPhysics::AdjustByPlanarConstraint(FKawaiiPhysicsModifyBone& Bone, FKawaiiPhysicsModifyBone& ParentBone)
+{
+	FPlane Plane;
+	if (PlanarConstraint != EPlanarConstraint::None)
+	{
+		switch (PlanarConstraint)
+		{
+		case EPlanarConstraint::X:
+			Plane = FPlane(ParentBone.Location, ParentBone.PoseRotation.GetAxisX());
+			break;
+		case EPlanarConstraint::Y:
+			Plane = FPlane(ParentBone.Location, ParentBone.PoseRotation.GetAxisY());
+			break;
+		case EPlanarConstraint::Z:
+			Plane = FPlane(ParentBone.Location, ParentBone.PoseRotation.GetAxisZ());
+			break;
+		}
+		Bone.Location  = FVector::PointPlaneProject(Bone.Location, Plane);
+	}
+}
+
+void FAnimNode_KawaiiPhysics::ApplySimuateResult(FComponentSpacePoseContext& Output, const FBoneContainer& BoneContainer, TArray<FBoneTransform>& OutBoneTransforms)
+{
+	for (int i = 0; i < ModifyBones.Num(); ++i)
+	{
+		OutBoneTransforms.Add(FBoneTransform(ModifyBones[i].BoneRef.GetCompactPoseIndex(BoneContainer), 
+			FTransform(ModifyBones[i].PoseRotation, ModifyBones[i].PoseLocation, ModifyBones[i].PoseScale)));
+	}	
+
+	for (int i = 1; i < ModifyBones.Num(); ++i)
+	{
+		FKawaiiPhysicsModifyBone& Bone = ModifyBones[i];
+		FKawaiiPhysicsModifyBone& ParentBone = ModifyBones[Bone.ParentIndex];
+
+		if (ParentBone.ChildIndexs.Num() <= 1)
+		{
+			if (ParentBone.BoneRef.BoneIndex >= 0)
+			{
+				FVector PoseVector = Bone.PoseLocation - ParentBone.PoseLocation;
+				FVector SimulateVector = Bone.Location - ParentBone.Location;
+
+				if (PoseVector.GetSafeNormal() == SimulateVector.GetSafeNormal())
+				{
+					continue;
+				}
+
+				if (BoneForwardAxis == EBoneForwardAxis::X_Negative || BoneForwardAxis == EBoneForwardAxis::Y_Negative || BoneForwardAxis == EBoneForwardAxis::Z_Negative)
+				{
+					PoseVector *= -1;
+					SimulateVector *= -1;
+				}
+
+				FQuat SimulateRotation = FQuat::FindBetweenVectors(PoseVector, SimulateVector) * ParentBone.PoseRotation;
+				OutBoneTransforms[Bone.ParentIndex].Transform.SetRotation(SimulateRotation);
+				ParentBone.PrevRotation = SimulateRotation;
+			}
+		}
+
+		if (Bone.BoneRef.BoneIndex >= 0 && !Bone.bDummy)
+		{
+			OutBoneTransforms[i].Transform.SetLocation(Bone.Location);
+		}
+	}
+
+	OutBoneTransforms.RemoveAll([](const FBoneTransform& BoneTransform) {
+		return BoneTransform.BoneIndex < 0;
+	});
+
+	// for check in FCSPose<PoseType>::LocalBlendCSBoneTransforms
+	OutBoneTransforms.Sort(FCompareBoneTransformIndex());
+}
+
+```
+
+`Plugins/KawaiiPhysics/Source/KawaiiPhysics/Private/KawaiiPhysics.cpp`:
+
+```cpp
+// Copyright 1998-2019 Epic Games, Inc. All Rights Reserved.
+
+#include "KawaiiPhysics.h"
+
+#define LOCTEXT_NAMESPACE "FKawaiiPhysicsModule"
+
+void FKawaiiPhysicsModule::StartupModule()
+{
+	// This code will execute after your module is loaded into memory; the exact timing is specified in the .uplugin file per-module
+}
+
+void FKawaiiPhysicsModule::ShutdownModule()
+{
+	// This function may be called during shutdown to clean up your module.  For modules that support dynamic reloading,
+	// we call this function before unloading the module.
+}
+
+#undef LOCTEXT_NAMESPACE
+	
+IMPLEMENT_MODULE(FKawaiiPhysicsModule, KawaiiPhysics)
+```
+
+`Plugins/KawaiiPhysics/Source/KawaiiPhysics/Private/KawaiiPhysicsLimitsDataAsset.cpp`:
+
+```cpp
+// Fill out your copyright notice in the Description page of Project Settings.
+
+
+#include "KawaiiPhysicsLimitsDataAsset.h"
+#include "AnimNode_KawaiiPhysics.h"
+
+#if WITH_EDITOR
+
+void UKawaiiPhysicsLimitsDataAsset::UpdateLimit(FCollisionLimitBase* Limit)
+{
+	switch (Limit->Type)
+	{
+		case ECollisionLimitType::Spherical:
+
+			for (FSphericalLimitData& LimitData : SphericalLimitsData)
+			{
+				if (LimitData.Guid == Limit->Guid)
+				{
+					LimitData.Update((FSphericalLimit*)Limit);
+					break;
+				}
+			}
+
+			SphericalLimits.Empty();
+			for (FSphericalLimitData& Data : SphericalLimitsData)
+			{
+				SphericalLimits.Add(Data.Convert());
+			}
+
+		break;
+		case ECollisionLimitType::Capsule:
+
+			for (FCapsuleLimitData& LimitData : CapsuleLimitsData)
+			{
+				if (LimitData.Guid == Limit->Guid)
+				{
+					LimitData.Update((FCapsuleLimit*)Limit);
+					break;
+				}
+			}
+
+			CapsuleLimits.Empty();
+			for (FCapsuleLimitData& Data : CapsuleLimitsData)
+			{
+				CapsuleLimits.Add(Data.Convert());
+			}
+
+		break;
+		case ECollisionLimitType::Planar:
+
+			for (FPlanarLimitData& LimitData : PlanarLimitsData)
+			{
+				if (LimitData.Guid == Limit->Guid)
+				{
+					LimitData.Update((FPlanarLimit*)Limit);
+					break;
+				}
+			}
+
+			PlanarLimits.Empty();
+			for (FPlanarLimitData& Data : PlanarLimitsData)
+			{
+				PlanarLimits.Add(Data.Convert());
+			}
+
+		break;;
+	}
+
+	MarkPackageDirty();
+}
+
+void UKawaiiPhysicsLimitsDataAsset::PostEditChangeProperty(struct FPropertyChangedEvent& PropertyChangedEvent)
+{
+	const FName PropertyName = PropertyChangedEvent.MemberProperty ? PropertyChangedEvent.MemberProperty->GetFName() : NAME_None;
+
+	if (PropertyName == FName(TEXT("SphericalLimitsData")))
+	{
+		if (PropertyChangedEvent.ChangeType == EPropertyChangeType::Duplicate)
+		{
+			SphericalLimitsData[PropertyChangedEvent.GetArrayIndex(PropertyName.ToString())].Guid = FGuid::NewGuid();
+		}
+
+		SphericalLimits.Empty();
+		for (FSphericalLimitData& Data : SphericalLimitsData)
+		{
+			SphericalLimits.Add(Data.Convert());
+		}
+	}
+	else if (PropertyName == FName(TEXT("CapsuleLimitsData")))
+	{
+		if (PropertyChangedEvent.ChangeType == EPropertyChangeType::Duplicate)
+		{
+			CapsuleLimitsData[PropertyChangedEvent.GetArrayIndex(PropertyName.ToString())].Guid = FGuid::NewGuid();
+		}
+
+		CapsuleLimits.Empty();
+		for (FCapsuleLimitData& Data : CapsuleLimitsData)
+		{
+			CapsuleLimits.Add(Data.Convert());
+		}
+	}
+	else if (PropertyName == FName(TEXT("PlanarLimitsData")))
+	{
+		if (PropertyChangedEvent.ChangeType == EPropertyChangeType::Duplicate)
+		{
+			PlanarLimitsData[PropertyChangedEvent.GetArrayIndex(PropertyName.ToString())].Guid = FGuid::NewGuid();
+		}
+
+		PlanarLimits.Empty();
+		for (FPlanarLimitData& Data : PlanarLimitsData)
+		{
+			PlanarLimits.Add(Data.Convert());
+		}
+	}
+}
+
+
+#endif
+
+```
+
+`Plugins/KawaiiPhysics/Source/KawaiiPhysics/Public/AnimNode_KawaiiPhysics.h`:
+
+```h
+#pragma once
+
+#include "CoreMinimal.h"
+
+#include "Animation/AnimNodeBase.h"
+#include "Animation/AnimNodeSpaceConversions.h"
+#include "BoneControllers/AnimNode_ModifyBone.h"
+#include "BoneControllers/AnimNode_AnimDynamics.h"
+
+#include "BoneContainer.h"
+#include "BonePose.h"
+#include "BoneControllers/AnimNode_SkeletalControlBase.h"
+//#include "KawaiiPhysicsLimitsDataAsset.h"
+
+class UKawaiiPhysicsLimitsDataAsset;
+
+#include "AnimNode_KawaiiPhysics.generated.h"
+
+
+UENUM()
+enum class EPlanarConstraint : uint8
+{
+	None,
+	X,
+	Y,
+	Z,
+};
+
+UENUM()
+enum class EBoneForwardAxis : uint8
+{
+	X_Positive,
+	X_Negative,
+	Y_Positive,
+	Y_Negative,
+	Z_Positive,
+	Z_Negative,
+};
+
+
+UENUM()
+enum class ECollisionLimitType : uint8
+{
+	None,
+	Spherical,
+	Capsule,
+	Planar,
+};
+
+USTRUCT()
+struct FCollisionLimitBase
+{
+	GENERATED_BODY();
+
+	/** Bone to attach the sphere to */
+	UPROPERTY(EditAnywhere, Category = CollisionLimitBase)
+	FBoneReference DrivingBone;
+
+	UPROPERTY(EditAnywhere, Category = CollisionLimitBase)
+	FVector OffsetLocation = FVector::ZeroVector;
+
+	UPROPERTY(EditAnywhere, Category = CollisionLimitBase, meta = (ClampMin = "-360", ClampMax = "360"))
+	FRotator OffsetRotation = FRotator::ZeroRotator;
+
+	UPROPERTY()
+	FVector Location = FVector::ZeroVector;
+
+	UPROPERTY()
+	FQuat Rotation = FQuat::Identity;
+
+#if WITH_EDITORONLY_DATA
+
+	UPROPERTY()
+	bool bFromDataAsset = false;
+
+	UPROPERTY(VisibleAnywhere, Category = Debug, meta = (IgnoreForMemberInitializationTest))
+	FGuid Guid = FGuid::NewGuid();
+
+	UPROPERTY()
+	ECollisionLimitType Type = ECollisionLimitType::None;
+
+#endif
+
+};
+
+USTRUCT()
+struct FSphericalLimit : public FCollisionLimitBase
+{
+	GENERATED_BODY();
+
+	FSphericalLimit()
+	{
+#if WITH_EDITORONLY_DATA
+		Type = ECollisionLimitType::Spherical;
+#endif
+	}
+
+	/** Radius of the sphere */
+	UPROPERTY(EditAnywhere, Category = SphericalLimit, meta = (ClampMin = "0"))
+	float Radius = 5.0f;
+
+	/** Whether to lock bodies inside or outside of the sphere */
+	UPROPERTY(EditAnywhere, Category = SphericalLimit)
+	ESphericalLimitType LimitType = ESphericalLimitType::Outer;
+};
+
+USTRUCT()
+struct FCapsuleLimit : public FCollisionLimitBase
+{
+	GENERATED_BODY();
+
+
+	FCapsuleLimit()
+	{
+#if WITH_EDITORONLY_DATA
+		Type = ECollisionLimitType::Capsule;
+#endif
+	}
+
+	UPROPERTY(EditAnywhere, Category = CapsuleLimit, meta = (ClampMin = "0"))
+	float Radius = 5.0f;
+
+	UPROPERTY(EditAnywhere, Category = CapsuleLimit, meta = (ClampMin = "0"))
+	float Length = 10.0f;
+};
+
+USTRUCT()
+struct FPlanarLimit : public FCollisionLimitBase
+{
+	GENERATED_BODY();
+
+	FPlanarLimit()
+	{
+#if WITH_EDITORONLY_DATA
+		Type = ECollisionLimitType::Planar;
+#endif
+	}
+
+	UPROPERTY()
+	FPlane Plane = FPlane(0, 0, 0, 0);
+};
+
+USTRUCT(BlueprintType)
+struct KAWAIIPHYSICS_API FKawaiiPhysicsSettings
+{
+	GENERATED_BODY()
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, meta = (ClampMin = "0"), category = "KawaiiPhysics")
+	float Damping = 0.1f;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, meta = (ClampMin = "0"), category = "KawaiiPhysics")
+	float WorldDampingLocation = 0.8f;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, meta = (ClampMin = "0"), category = "KawaiiPhysics")
+	float WorldDampingRotation = 0.8f;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, meta = (ClampMin = "0"), category = "KawaiiPhysics")
+	float Stiffness = 0.05f;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, meta = (ClampMin = "0"), category = "KawaiiPhysics")
+	float Radius = 3.0f;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, meta = (PinHiddenByDefault, ClampMin = "0"), category = "KawaiiPhysics")
+	float LimitAngle = 0.0f;
+};
+
+USTRUCT()
+struct KAWAIIPHYSICS_API FKawaiiPhysicsModifyBone
+{
+	GENERATED_USTRUCT_BODY()
+	
+public:
+	UPROPERTY()
+	FBoneReference BoneRef;
+	UPROPERTY()
+	int ParentIndex = -1;
+	UPROPERTY()
+	TArray<int> ChildIndexs;
+
+	UPROPERTY()
+	FKawaiiPhysicsSettings PhysicsSettings;
+
+	UPROPERTY()
+	FVector Location;
+	UPROPERTY()
+	FVector PrevLocation;
+	UPROPERTY()
+	FQuat PrevRotation;
+	UPROPERTY()
+	FVector PoseLocation;
+	UPROPERTY()
+	FQuat PoseRotation;
+	UPROPERTY()
+	FVector PoseScale;
+	UPROPERTY()
+	float LengthFromRoot;
+	UPROPERTY()
+	bool bDummy = false;
+
+
+public:
+
+	void UpdatePoseTranform(const FBoneContainer& BoneContainer, FCSPose<FCompactPose>& Pose, bool ResetBoneTransformWhenBoneNotFound)
+	{
+		auto CompactPoseIndex = BoneRef.GetCompactPoseIndex(BoneContainer);
+		if (CompactPoseIndex < 0)
+		{
+			// Reset bone location and rotation may cause trouble when switching between skeleton LODs #44
+			if(ResetBoneTransformWhenBoneNotFound)
+			{
+				PoseLocation = FVector::ZeroVector;
+				PoseRotation = FQuat::Identity;
+				PoseScale = FVector::OneVector;
+			}
+			return;
+		}
+
+		auto ComponentSpaceTransform = Pose.GetComponentSpaceTransform(CompactPoseIndex);
+		PoseLocation = ComponentSpaceTransform.GetLocation();
+		PoseRotation = ComponentSpaceTransform.GetRotation();
+		PoseScale = ComponentSpaceTransform.GetScale3D();
+	}
+	FKawaiiPhysicsModifyBone(){}
+
+};
+
+USTRUCT(BlueprintType)
+struct KAWAIIPHYSICS_API FAnimNode_KawaiiPhysics : public FAnimNode_SkeletalControlBase
+{
+	GENERATED_USTRUCT_BODY()
+
+public:
+	UPROPERTY(EditAnywhere, Category = ModifyTarget)
+	FBoneReference RootBone;
+	UPROPERTY(EditAnywhere, Category = ModifyTarget)
+	TArray<FBoneReference> ExcludeBones;
+
+	UPROPERTY(EditAnywhere, Category = TargetFramerate, meta = (EditCondition = "OverrideTargetFramerate"))
+	int TargetFramerate = 60;
+	UPROPERTY(EditAnywhere, Category = TargetFramerate, meta = (InlineEditConditionToggle))
+	bool OverrideTargetFramerate = false;
+
+	/** Settings for control of physical behavior */
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Physics Settings", meta = (PinHiddenByDefault))
+	FKawaiiPhysicsSettings PhysicsSettings;
+	
+	/** Curve for adjusting the set value of physical behavior. Use rate of bone length from Root */
+	UPROPERTY()
+	UCurveFloat* DampingCurve_DEPRECATED = nullptr;
+
+	/** Curve for adjusting the set value of physical behavior. Use rate of bone length from Root */
+	UPROPERTY()
+	UCurveFloat* WorldDampingLocationCurve_DEPRECATED = nullptr;
+
+	/** Curve for adjusting the set value of physical behavior. Use rate of bone length from Root */
+	UPROPERTY()
+	UCurveFloat* WorldDampingRotationCurve_DEPRECATED = nullptr;
+
+	/** Curve for adjusting the set value of physical behavior. Use rate of bone length from Root */
+	UPROPERTY()
+	UCurveFloat* StiffnessCurve_DEPRECATED = nullptr;
+
+	/** Curve for adjusting the set value of physical behavior. Use rate of bone length from Root */
+	UPROPERTY()
+	UCurveFloat* RadiusCurve_DEPRECATED = nullptr;
+
+	/** Curve for adjusting the set value of physical behavior. Use rate of bone length from Root */
+	UPROPERTY()
+	UCurveFloat* LimitAngleCurve_DEPRECATED = nullptr;
+
+	//  START SKYBLUE MOD
+	/** Curve for adjusting the set value of physical behavior. Use rate of bone length from Root */
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Physics Settings", meta = (PinHiddenByDefault))
+	FRuntimeFloatCurve DampingCurveData;
+
+	/** Curve for adjusting the set value of physical behavior. Use rate of bone length from Root */
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Physics Settings", meta = (PinHiddenByDefault))
+	FRuntimeFloatCurve WorldDampingLocationCurveData;
+
+	/** Curve for adjusting the set value of physical behavior. Use rate of bone length from Root */
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Physics Settings", meta = (PinHiddenByDefault))
+	FRuntimeFloatCurve WorldDampingRotationCurveData;
+
+	/** Curve for adjusting the set value of physical behavior. Use rate of bone length from Root */
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Physics Settings", meta = (PinHiddenByDefault))
+	FRuntimeFloatCurve StiffnessCurveData;
+
+	/** Curve for adjusting the set value of physical behavior. Use rate of bone length from Root */
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Physics Settings", meta = (PinHiddenByDefault))
+	FRuntimeFloatCurve RadiusCurveData;
+
+	/** Curve for adjusting the set value of physical behavior. Use rate of bone length from Root */
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Physics Settings", meta = (PinHiddenByDefault))
+	FRuntimeFloatCurve LimitAngleCurveData;
+
+	/** Flag to update each frame physical parameter. Disable to improve performance */
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Advanced Physics Settings", meta = (PinHiddenByDefault))
+	bool bUpdatePhysicsSettingsInGame = true;
+	
+	/** Add a dummy bone to the end bone if it's above 0. It affects end bone rotation. For example, it rotates well if it is short */
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "DummyBone", meta = (PinHiddenByDefault, ClampMin = "0"))
+	float DummyBoneLength = 0.0f;
+
+	/** Bone forward direction */
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "DummyBone", meta = (PinHiddenByDefault))
+	EBoneForwardAxis BoneForwardAxis = EBoneForwardAxis::X_Positive;
+
+	/** Fix the bone on the specified plane  */
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Advanced Physics Settings", meta = (PinHiddenByDefault))
+	EPlanarConstraint PlanarConstraint = EPlanarConstraint::None;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Advanced Physics Settings", meta = (PinHiddenByDefault))
+	bool ResetBoneTransformWhenBoneNotFound = false;
+
+
+	UPROPERTY(EditAnywhere, Category = "Spherical Limits")
+	TArray< FSphericalLimit> SphericalLimits;
+	UPROPERTY(EditAnywhere, Category = "Capsule Limits")
+	TArray< FCapsuleLimit> CapsuleLimits;
+	UPROPERTY(EditAnywhere, Category = "Planar Limits")
+	TArray< FPlanarLimit> PlanarLimits;
+
+	UPROPERTY(EditAnywhere, Category = "Limits Data(Experimental)")
+	UKawaiiPhysicsLimitsDataAsset* LimitsDataAsset = nullptr;
+	UPROPERTY(VisibleAnywhere, AdvancedDisplay, Category = "Limits Data(Experimental)")
+	TArray< FSphericalLimit> SphericalLimitsData;
+	UPROPERTY(VisibleAnywhere, AdvancedDisplay, Category = "Limits Data(Experimental)")
+	TArray< FCapsuleLimit> CapsuleLimitsData;
+	UPROPERTY(VisibleAnywhere, AdvancedDisplay, Category = "Limits Data(Experimental)")
+	TArray< FPlanarLimit> PlanarLimitsData;
+
+
+	/** If the movement amount of one frame exceeds the threshold, ignore the movement  */
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Teleport", meta = (PinHiddenByDefault))
+	float TeleportDistanceThreshold = 300.0f;
+
+	/** If the rotation amount of one frame exceeds the threshold, ignore the rotation  */
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Teleport", meta = (PinHiddenByDefault))
+	float TeleportRotationThreshold = 10.0f;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "ExternalForce", meta = (PinHiddenByDefault))
+	FVector Gravity = FVector::ZeroVector;
+	
+	/** Whether or not wind is enabled for the bodies in this simulation */
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Wind", meta = (PinHiddenByDefault))
+	bool bEnableWind = false;
+
+	/** Scale to apply to calculated wind velocities in the solver */
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Wind", meta = (DisplayAfter = "bEnableWind"), meta = (PinHiddenByDefault))
+	float WindScale = 1.0f;
+
+	/**
+	 *	EXPERIMENTAL. Perform sweeps for each simulating bodies to avoid collisions with the world.
+	 *	This greatly increases the cost of the physics simulation.
+	 */
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Collision", meta = (PinHiddenByDefault))
+	bool bAllowWorldCollision = false;
+	//use component collision channel settings by default
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Collision", meta = (PinHiddenByDefault, EditCondition = "bAllowWorldCollision"))
+	bool bOverrideCollisionParams = false;
+	/** Types of objects that this physics objects will collide with. */
+	UPROPERTY(EditAnywhere, Category = "Collision", meta = (FullyExpand = "true", EditCondition = "bAllowWorldCollision&&bOverrideCollisionParams"))
+	FBodyInstance CollisionChannelSettings;
+
+
+	/** Self collision is best done by setting the "Limits" in this node, but if you really need using PhysicsAsset collision, uncheck this!*/
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Collision", meta = (PinHiddenByDefault, EditCondition = "bAllowWorldCollision"))
+	bool bIgnoreSelfComponent = true;
+	/** Self bone is always ignored*/
+	UPROPERTY(EditAnywhere, Category = "Collision", meta = (EditCondition = "!bIgnoreSelfComponent"))
+	TArray<FBoneReference> IgnoreBones;
+	/** If the bone starts with this name, will be ignored (Self bone is always ignored)*/
+	UPROPERTY(EditAnywhere, Category = "Collision", meta = (EditCondition = "!bIgnoreSelfComponent"))
+	TArray<FName> IgnoreBoneNamePrefix;
+
+	UPROPERTY()
+	TArray< FKawaiiPhysicsModifyBone > ModifyBones;
+
+private:
+	UPROPERTY()
+	float TotalBoneLength = 0;
+	UPROPERTY()
+	FTransform PreSkelCompTransform;
+	UPROPERTY()
+	bool bInitPhysicsSettings = false;
+
+#if WITH_EDITORONLY_DATA
+	UPROPERTY()
+	bool bEditing = false;
+#endif
+
+	FVector SkelCompMoveVector;
+	FQuat SkelCompMoveRotation;
+	float DeltaTime;
+	float DeltaTimeOld;
+	bool bResetDynamics;
+
+public:
+	FAnimNode_KawaiiPhysics();
+
+	// FAnimNode_Base interface
+	//virtual void GatherDebugData(FNodeDebugData& DebugData) override;
+	virtual void Initialize_AnyThread(const FAnimationInitializeContext& Context) override;
+	virtual void CacheBones_AnyThread(const FAnimationCacheBonesContext& Context) override;
+	virtual bool NeedsDynamicReset() const override { return true; }
+	virtual void ResetDynamics(ETeleportType InTeleportType) override;
+	// End of FAnimNode_Base interface
+
+	// FAnimNode_SkeletalControlBase interface
+	virtual void EvaluateSkeletalControl_AnyThread(FComponentSpacePoseContext& Output, TArray<FBoneTransform>& OutBoneTransforms) override;
+	virtual bool IsValidToEvaluate(const USkeleton* Skeleton, const FBoneContainer& RequiredBones) override;
+	virtual void UpdateInternal(const FAnimationUpdateContext& Context) override;
+	// End of FAnimNode_SkeletalControlBase interface
+
+	// 
+	void InitModifyBones(FComponentSpacePoseContext& Output, const FBoneContainer& BoneContainer);
+	float GetTotalBoneLength() 
+	{
+		return TotalBoneLength;
+	}
+	
+private:
+	FVector GetBoneForwardVector(const FQuat& Rotation)
+	{
+		switch(BoneForwardAxis) {
+		default:
+		case EBoneForwardAxis::X_Positive:
+			return Rotation.GetAxisX();
+		case EBoneForwardAxis::X_Negative:
+			return -Rotation.GetAxisX();
+		case EBoneForwardAxis::Y_Positive:
+			return Rotation.GetAxisY();
+		case EBoneForwardAxis::Y_Negative:
+			return -Rotation.GetAxisY();
+		case EBoneForwardAxis::Z_Positive:
+			return Rotation.GetAxisZ();
+		case EBoneForwardAxis::Z_Negative:
+			return -Rotation.GetAxisZ();
+		}
+	}
+	// FAnimNode_SkeletalControlBase interface
+	virtual void InitializeBoneReferences(const FBoneContainer& RequiredBones) override;
+	// End of FAnimNode_SkeletalControlBase interface
+
+	void ApplyLimitsDataAsset(const FBoneContainer& RequiredBones);
+
+	int AddModifyBone(FComponentSpacePoseContext& Output, const FBoneContainer& BoneContainer, const FReferenceSkeleton& RefSkeleton, int BoneIndex);
+	
+	// clone from FReferenceSkeleton::GetDirectChildBones
+	int32 CollectChildBones(const FReferenceSkeleton& RefSkeleton, int32 ParentBoneIndex, TArray<int32> & Children) const;
+	void CalcBoneLength(FKawaiiPhysicsModifyBone& Bone, const TArray<FTransform>& RefBonePose);
+
+	void UpdatePhysicsSettingsOfModifyBones();
+	void UpdateSphericalLimits(TArray<FSphericalLimit>& Limits, FComponentSpacePoseContext& Output, const FBoneContainer& BoneContainer, FTransform& ComponentTransform);
+	void UpdateCapsuleLimits(TArray<FCapsuleLimit>& Limits, FComponentSpacePoseContext& Output, const FBoneContainer& BoneContainer, FTransform& ComponentTransform);
+	void UpdatePlanerLimits(TArray<FPlanarLimit>& Limits, FComponentSpacePoseContext& Output, const FBoneContainer& BoneContainer, FTransform& ComponentTransform);
+
+	void SimulateModifyBones(FComponentSpacePoseContext& Output, const FBoneContainer& BoneContainer, FTransform& ComponentTransform);
+	void AdjustByWorldCollision(FKawaiiPhysicsModifyBone& Bone, const USkeletalMeshComponent* OwningComp, const FBoneContainer& BoneContainer);
+	void AdjustBySphereCollision(FKawaiiPhysicsModifyBone& Bone, TArray<FSphericalLimit>& Limits);
+	void AdjustByCapsuleCollision(FKawaiiPhysicsModifyBone& Bone, TArray<FCapsuleLimit>& Limits);
+	void AdjustByPlanerCollision(FKawaiiPhysicsModifyBone& Bone, TArray<FPlanarLimit>& Limits);
+	void AdjustByAngleLimit(FComponentSpacePoseContext& Output, const FBoneContainer& BoneContainer, FTransform& ComponentTransform, FKawaiiPhysicsModifyBone& Bone, FKawaiiPhysicsModifyBone& ParentBone);
+	void AdjustByPlanarConstraint(FKawaiiPhysicsModifyBone& Bone, FKawaiiPhysicsModifyBone& ParentBone);
+	
+
+	void ApplySimuateResult(FComponentSpacePoseContext& Output, const FBoneContainer& BoneContainer, TArray<FBoneTransform>& OutBoneTransforms);
+	
+};
+```
+
+`Plugins/KawaiiPhysics/Source/KawaiiPhysics/Public/KawaiiPhysics.h`:
+
+```h
+// Copyright 1998-2019 Epic Games, Inc. All Rights Reserved.
+
+#pragma once
+
+#include "CoreMinimal.h"
+#include "Modules/ModuleManager.h"
+
+class FKawaiiPhysicsModule : public IModuleInterface
+{
+public:
+
+	/** IModuleInterface implementation */
+	virtual void StartupModule() override;
+	virtual void ShutdownModule() override;
+};
+
+```
+
+`Plugins/KawaiiPhysics/Source/KawaiiPhysics/Public/KawaiiPhysicsLimitsDataAsset.h`:
+
+```h
+// Fill out your copyright notice in the Description page of Project Settings.
+
+#pragma once
+
+#include "CoreMinimal.h"
+#include "Engine/DataAsset.h"
+#include "AnimNode_KawaiiPhysics.h"
+#include "KawaiiPhysicsLimitsDataAsset.generated.h"
+
+// I chose this design because using FBoneReference with anything other than Persona gives me an error. 
+// I want to make it simpler...
+USTRUCT(BlueprintType)
+struct FCollisionLimitDataBase
+{
+	GENERATED_BODY();
+	
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = CollisionLimitBase, meta=(DisplayPriority="1"))
+	FName DrivingBoneName;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = CollisionLimitBase)
+	FVector OffsetLocation = FVector::ZeroVector;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = CollisionLimitBase, meta = (ClampMin = "-360", ClampMax = "360"))
+	FRotator OffsetRotation = FRotator::ZeroRotator;
+
+	UPROPERTY(EditAnywhere, Category = CollisionLimitBase, BlueprintReadWrite)
+	FVector Location = FVector::ZeroVector;
+
+	UPROPERTY(EditAnywhere, Category = CollisionLimitBase, BlueprintReadWrite)
+	FQuat Rotation = FQuat::Identity;
+
+	UPROPERTY(VisibleAnywhere, Category = Debug, meta = (IgnoreForMemberInitializationTest))
+	FGuid Guid = FGuid::NewGuid();
+
+public:
+
+protected:
+
+	void UpdateBase(FCollisionLimitBase* Limit)
+	{
+		DrivingBoneName = Limit->DrivingBone.BoneName;
+		OffsetLocation = Limit->OffsetLocation;
+		OffsetRotation = Limit->OffsetRotation;
+		Location = Limit->Location;
+		Rotation = Limit->Rotation;
+	}
+
+	void ConvertBase(FCollisionLimitBase& Limit)
+	{
+		Limit.DrivingBone.BoneName = DrivingBoneName;
+		Limit.OffsetLocation = OffsetLocation;
+		Limit.OffsetRotation = OffsetRotation;
+		Limit.Location = Location;
+		Limit.Rotation = Rotation;
+
+#if  WITH_EDITORONLY_DATA
+		Limit.bFromDataAsset = true;
+		Limit.Guid = Guid;
+#endif
+	}
+};
+
+USTRUCT(BlueprintType)
+struct FSphericalLimitData : public FCollisionLimitDataBase
+{
+	GENERATED_BODY();
+
+	/** Radius of the sphere */
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = SphericalLimit, meta = (ClampMin = "0"))
+	float Radius = 5.0f;
+
+	/** Whether to lock bodies inside or outside of the sphere */
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = SphericalLimit)
+	ESphericalLimitType LimitType = ESphericalLimitType::Outer;
+
+	void Update(FSphericalLimit* Limit) 
+	{
+		UpdateBase(Limit);
+		Radius = Limit->Radius;
+		LimitType = Limit->LimitType;
+	}
+
+	FSphericalLimit Convert()
+	{
+		FSphericalLimit Limit;
+		ConvertBase(Limit);
+		Limit.Radius = Radius;
+		Limit.LimitType = LimitType;
+
+		return Limit;
+	}
+};
+
+USTRUCT(BlueprintType)
+struct FCapsuleLimitData : public FCollisionLimitDataBase
+{
+	GENERATED_BODY();
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = CapsuleLimit, meta = (ClampMin = "0"))
+	float Radius = 5.0f;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = CapsuleLimit, meta = (ClampMin = "0"))
+	float Length = 10.0f;
+
+	void Update(FCapsuleLimit* Limit)
+	{
+		UpdateBase(Limit);
+		Radius = Limit->Radius;
+		Length = Limit->Length;
+	}
+
+	FCapsuleLimit Convert()
+	{
+		FCapsuleLimit Limit;
+		ConvertBase(Limit);
+		Limit.Radius = Radius;
+		Limit.Length = Length;
+
+		return Limit;
+	}
+};
+
+USTRUCT(BlueprintType)
+struct FPlanarLimitData : public FCollisionLimitDataBase
+{
+	GENERATED_BODY();
+
+	UPROPERTY(EditAnywhere, Category = PlanarLimit, BlueprintReadWrite)
+	FPlane Plane;
+
+	void Update(FPlanarLimit* Limit)
+	{
+		UpdateBase(Limit);
+		Plane = Limit->Plane;
+	}
+
+	FPlanarLimit Convert()
+	{
+		FPlanarLimit Limit;
+		ConvertBase(Limit);
+		Limit.Plane = Plane;
+
+		return Limit;
+	}
+};
+//#endif
+
+/**
+ * 
+ */
+UCLASS(Blueprintable)
+class KAWAIIPHYSICS_API UKawaiiPhysicsLimitsDataAsset : public UDataAsset
+{
+	GENERATED_BODY()
+	
+public:
+
+#if WITH_EDITORONLY_DATA 
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Spherical Limits")
+	TArray< FSphericalLimitData> SphericalLimitsData;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Capsule Limits")
+	TArray< FCapsuleLimitData> CapsuleLimitsData;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Planar Limits")
+	TArray< FPlanarLimitData> PlanarLimitsData;
+
+#endif
+
+#if WITH_EDITOR
+
+	//void UpdateLimit(FSphericalLimit* Limit);
+	//void UpdateLimit(FCapsuleLimit* Limit);
+	//void UpdateLimit(FPlanarLimit* Limit);
+	void UpdateLimit(FCollisionLimitBase* Limit);
+
+#endif
+
+	UPROPERTY()
+	TArray< FSphericalLimit> SphericalLimits;
+	UPROPERTY()
+	TArray< FCapsuleLimit> CapsuleLimits;
+	UPROPERTY()
+	TArray< FPlanarLimit> PlanarLimits;
+
+#if WITH_EDITOR
+	virtual void PostEditChangeProperty(struct FPropertyChangedEvent& PropertyChangedEvent) override;
+#endif
+
+/*
+#if WITH_EDITORONLY_DATA 
+	UPROPERTY(EditAnywhere)
+	USkeleton* MeshForPreviewBoneHierarchy;
+
+	UPROPERTY()
+	TArray<FName> BoneNameTree;
+#endif
+*/
+
+};
+
+```
+
+`Plugins/KawaiiPhysics/Source/KawaiiPhysicsEd/KawaiiPhysicsEd.Build.cs`:
+
+```cs
+// Fill out your copyright notice in the Description page of Project Settings.
+
+using UnrealBuildTool;
+
+public class KawaiiPhysicsEd : ModuleRules
+{
+	public KawaiiPhysicsEd(ReadOnlyTargetRules Target) : base(Target)
+	{
+		PCHUsage = PCHUsageMode.UseExplicitOrSharedPCHs;
+
+        PrivateDependencyModuleNames.AddRange(new string[] { "Core", "CoreUObject", "Engine", "InputCore", "KawaiiPhysics" });
+        PrivateDependencyModuleNames.AddRange(new string[] { "AnimGraph", "BlueprintGraph", "Persona", "UnrealEd", "AnimGraphRuntime", "SlateCore"});
+
+        BuildVersion Version;
+        if (BuildVersion.TryRead(BuildVersion.GetDefaultFileName(), out Version))
+        {
+            if (Version.MajorVersion == 5)
+            {
+				PrivateDependencyModuleNames.AddRange(new string[] { "EditorFramework" });
+			}
+        }
+
+		// Uncomment if you are using Slate UI
+		// PrivateDependencyModuleNames.AddRange(new string[] { "Slate", "SlateCore" });
+
+		// Uncomment if you are using online features
+		// PrivateDependencyModuleNames.Add("OnlineSubsystem");
+
+		// To include OnlineSubsystemSteam, add it to the plugins section in your uproject file with the Enabled attribute set to true
+	}
+}
+
+```
+
+`Plugins/KawaiiPhysics/Source/KawaiiPhysicsEd/Private/AnimGraphNode_KawaiiPhysics.cpp`:
+
+```cpp
+#include "AnimGraphNode_KawaiiPhysics.h"
+#include "Kismet2/CompilerResultsLog.h"
+#include "Materials/MaterialInstanceDynamic.h"
+
+#define LOCTEXT_NAMESPACE "KawaiiPhysics"
+
+// ----------------------------------------------------------------------------
+UAnimGraphNode_KawaiiPhysics::UAnimGraphNode_KawaiiPhysics(const FObjectInitializer& ObjectInitializer)
+	: Super(ObjectInitializer)
+{
+}
+
+FText UAnimGraphNode_KawaiiPhysics::GetControllerDescription() const
+{
+	return LOCTEXT("Kawaii Physics", "Kawaii Physics");
+}
+
+
+// ----------------------------------------------------------------------------
+FText UAnimGraphNode_KawaiiPhysics::GetNodeTitle(ENodeTitleType::Type TitleType) const
+{
+	if ((TitleType == ENodeTitleType::ListView || TitleType == ENodeTitleType::MenuTitle))
+	{
+		return GetControllerDescription();
+	}
+	// @TODO: the bone can be altered in the property editor, so we have to 
+	//        choose to mark this dirty when that happens for this to properly work
+	else //if (!CachedNodeTitles.IsTitleCached(TitleType, this))
+	{
+		FFormatNamedArguments Args;
+		Args.Add(TEXT("ControllerDescription"), GetControllerDescription());
+		Args.Add(TEXT("RootBoneName"), FText::FromName(Node.RootBone.BoneName));
+
+		// FText::Format() is slow, so we cache this to save on performance
+		if (TitleType == ENodeTitleType::ListView || TitleType == ENodeTitleType::MenuTitle)
+		{
+			CachedNodeTitles.SetCachedTitle(TitleType, FText::Format(LOCTEXT("AnimGraphNode_KawaiiPhysics_ListTitle", "{ControllerDescription} - Root: {RootBoneName}"), Args), this);
+		}
+		else
+		{
+			CachedNodeTitles.SetCachedTitle(TitleType, FText::Format(LOCTEXT("AnimGraphNode_KawaiiPhysics_Title", "{ControllerDescription}\nRoot: {RootBoneName} "), Args), this);
+		}
+	}
+	return CachedNodeTitles[TitleType];
+}
+
+void UAnimGraphNode_KawaiiPhysics::PostEditChangeProperty(struct FPropertyChangedEvent& PropertyChangedEvent)
+{
+	Super::PostEditChangeProperty(PropertyChangedEvent);
+
+	Node.ModifyBones.Empty();
+	ReconstructNode();
+}
+
+FEditorModeID UAnimGraphNode_KawaiiPhysics::GetEditorMode() const
+{
+	return "AnimGraph.SkeletalControl.KawaiiPhysics";
+}
+
+void UAnimGraphNode_KawaiiPhysics::Draw(FPrimitiveDrawInterface* PDI, USkeletalMeshComponent* SkelMeshComp) const
+{
+	if (!SkelMeshComp)
+	{
+		return;
+	}
+
+	FAnimNode_KawaiiPhysics* ActiveNode = GetActiveInstanceNode<FAnimNode_KawaiiPhysics>(SkelMeshComp->GetAnimInstance());
+	if (!ActiveNode)
+	{
+		return;
+	}
+
+	if (bEnableDebugDrawBone)
+	{
+		for (auto& Bone : ActiveNode->ModifyBones)
+		{
+			PDI->DrawPoint(Bone.Location, FLinearColor::White, 5.0f, SDPG_Foreground);
+
+			if (Bone.PhysicsSettings.Radius > 0)
+			{
+				auto Color = Bone.bDummy ? FColor::Red : FColor::Yellow;
+				DrawWireSphere(PDI, Bone.Location, Color, Bone.PhysicsSettings.Radius, 16, SDPG_Foreground);
+			}
+
+			for (int ChildIndex : Bone.ChildIndexs)
+			{
+				DrawDashedLine(PDI, Bone.Location, ActiveNode->ModifyBones[ChildIndex].Location,
+					FLinearColor::White, 1, SDPG_Foreground);
+			}
+		}
+	}
+
+	if (bEnableDebugDrawAngleLimit)
+	{
+		for (auto& Bone : ActiveNode->ModifyBones)
+		{
+			if (Bone.ParentIndex < 0 || Bone.PhysicsSettings.LimitAngle <= 0)
+			{
+				continue;
+			}
+
+			auto& ParentBone = ActiveNode->ModifyBones[Bone.ParentIndex];
+			FTransform ParentBoneTransform =
+				FTransform(FQuat::FindBetween(FVector::ForwardVector, Bone.PoseLocation - ParentBone.PoseLocation), ParentBone.Location);
+			TArray<FVector> Verts;
+			DrawWireCone(PDI, Verts, ParentBoneTransform, (Bone.PoseLocation - ParentBone.PoseLocation).Size(),
+				Bone.PhysicsSettings.LimitAngle, 16, FColor::Green, SDPG_World);
+		}
+	}
+}
+
+void UAnimGraphNode_KawaiiPhysics::ValidateAnimNodePostCompile(FCompilerResultsLog& MessageLog, UAnimBlueprintGeneratedClass* CompiledClass, int32 CompiledNodeIndex)
+{
+	UAnimGraphNode_SkeletalControlBase::ValidateAnimNodePostCompile(MessageLog, CompiledClass, CompiledNodeIndex);
+
+	Node.RootBone.Initialize(CompiledClass->TargetSkeleton);
+	if (Node.RootBone.BoneIndex >= 0)
+	{
+		if (Node.ExcludeBones.Contains(Node.RootBone))
+		{
+			MessageLog.Warning(TEXT("@@ ExcludeBones should NOT has RootBone."), this);
+		}
+	}
+	else
+	{
+		MessageLog.Warning(TEXT("@@ RootBone is empty."), this);
+	}
+	
+}
+
+struct FKawaiiPhysicsVersion
+{
+	enum Type
+	{
+		BeforeCustomVersionWasAdded,
+		UseRuntimeFloatCurve,
+		// -----<new versions can be added above this line>-------------------------------------------------
+		VersionPlusOne,
+		LatestVersion = VersionPlusOne - 1
+	};
+
+	// The GUID for this custom version number
+	const static FGuid GUID;
+
+private:
+	FKawaiiPhysicsVersion() {};
+};
+
+const FGuid FKawaiiPhysicsVersion::GUID(0x4B2D3E25, 0xCD681D29, 0x2DB298D7, 0xAD3E55FA);
+
+const FCustomVersionRegistration GRegisterKawaiiPhysCustomVersion(FKawaiiPhysicsVersion::GUID, FKawaiiPhysicsVersion::LatestVersion, TEXT("Kawaii-Phys"));
+
+void UAnimGraphNode_KawaiiPhysics::Serialize(FArchive& Ar)
+{
+	Super::Serialize(Ar);
+
+	Ar.UsingCustomVersion(FKawaiiPhysicsVersion::GUID);
+
+	if (Ar.CustomVer(FKawaiiPhysicsVersion::GUID) < FKawaiiPhysicsVersion::UseRuntimeFloatCurve)
+	{
+		Node.DampingCurveData.ExternalCurve = Node.DampingCurve_DEPRECATED;
+		Node.WorldDampingLocationCurveData.ExternalCurve = Node.WorldDampingLocationCurve_DEPRECATED;
+		Node.WorldDampingRotationCurveData.ExternalCurve = Node.WorldDampingRotationCurve_DEPRECATED;
+		Node.StiffnessCurveData.ExternalCurve = Node.StiffnessCurve_DEPRECATED;
+		Node.RadiusCurveData.ExternalCurve = Node.RadiusCurve_DEPRECATED;
+		Node.LimitAngleCurveData.ExternalCurve = Node.LimitAngleCurve_DEPRECATED;
+	}
+
+
+}
+
+#undef LOCTEXT_NAMESPACE
+```
+
+`Plugins/KawaiiPhysics/Source/KawaiiPhysicsEd/Private/KawaiiPhysicsEd.cpp`:
+
+```cpp
+// Fill out your copyright notice in the Description page of Project Settings.
+
+#include "KawaiiPhysicsEd.h"
+#include "Modules/ModuleManager.h"
+#include "Textures/SlateIcon.h"
+#include "KawaiiPhysicsEditMode.h"
+
+#define LOCTEXT_NAMESPACE "FKawaiiPhysicsModuleEd"
+
+
+
+void FKawaiiPhysicsEdModule::StartupModule()
+{
+	FEditorModeRegistry::Get().RegisterMode<FKawaiiPhysicsEditMode>("AnimGraph.SkeletalControl.KawaiiPhysics", LOCTEXT("FKawaiiPhysicsEditMode", "Kawaii Physics"), FSlateIcon(), false);
+}
+
+
+
+void FKawaiiPhysicsEdModule::ShutdownModule()
+{
+	FEditorModeRegistry::Get().UnregisterMode("AnimGraph.SkeletalControl.KawaiiPhysics");
+}
+
+#undef LOCTEXT_NAMESPACE
+
+IMPLEMENT_MODULE(FKawaiiPhysicsEdModule, KawaiiPhysicsEd)
+//IMPLEMENT_PRIMARY_GAME_MODULE( FDefaultGameModuleImpl, KawaiiPhysicsEd, "KawaiiPhysicsEd" );
+
+```
+
+`Plugins/KawaiiPhysics/Source/KawaiiPhysicsEd/Private/KawaiiPhysicsEditMode.cpp`:
+
+```cpp
+#include "KawaiiPhysicsEditMode.h"
+#include "SceneManagement.h"
+#include "EngineUtils.h"
+#include "IPersonaPreviewScene.h"
+#include "Animation/DebugSkelMeshComponent.h"
+#include "EditorModeManager.h"
+#include "CanvasItem.h"
+#include "CanvasTypes.h"
+#include "Materials/MaterialInstanceDynamic.h"
+#include "AnimationRuntime.h"
+#include "KawaiiPhysicsLimitsDataAsset.h"
+
+#define LOCTEXT_NAMESPACE "KawaiiPhysicsEditMode"
+
+struct HKawaiiPhysicsHitProxy : public HHitProxy
+{
+	DECLARE_HIT_PROXY()
+
+	HKawaiiPhysicsHitProxy(ECollisionLimitType InType, int InIndex, bool InFromDataAsset = false)
+		: HHitProxy(HPP_Wireframe)
+		, CollisionType(InType)
+		, CollisionIndex(InIndex)
+		, bFromDataAsset(InFromDataAsset)
+	{
+	}
+
+	virtual EMouseCursor::Type GetMouseCursor() override
+	{
+		return EMouseCursor::Crosshairs;
+	}
+
+	ECollisionLimitType CollisionType;
+	int CollisionIndex;
+	bool bFromDataAsset;
+};
+IMPLEMENT_HIT_PROXY(HKawaiiPhysicsHitProxy, HHitProxy);
+
+
+FKawaiiPhysicsEditMode::FKawaiiPhysicsEditMode()
+	: RuntimeNode(nullptr)
+	, GraphNode(nullptr)
+	, CurWidgetMode(UE_WIDGET::EWidgetMode::WM_Translate)
+{
+}
+
+void FKawaiiPhysicsEditMode::EnterMode(UAnimGraphNode_Base* InEditorNode, FAnimNode_Base* InRuntimeNode)
+{
+	RuntimeNode = static_cast<FAnimNode_KawaiiPhysics*>(InRuntimeNode);
+	GraphNode = CastChecked<UAnimGraphNode_KawaiiPhysics>(InEditorNode);
+
+	GraphNode->Node.SphericalLimitsData = RuntimeNode->SphericalLimitsData;
+	GraphNode->Node.CapsuleLimitsData = RuntimeNode->CapsuleLimitsData;
+	GraphNode->Node.PlanarLimitsData = RuntimeNode->PlanarLimitsData;
+
+	NodePropertyDelegateHandle = GraphNode->OnNodePropertyChanged().AddSP(this, &FKawaiiPhysicsEditMode::OnExternalNodePropertyChange);
+
+	FKawaiiPhysicsEditModeBase::EnterMode(InEditorNode, InRuntimeNode);
+}
+
+void FKawaiiPhysicsEditMode::ExitMode()
+{
+	GraphNode->OnNodePropertyChanged().Remove(NodePropertyDelegateHandle);
+
+	GraphNode = nullptr;
+	RuntimeNode = nullptr;
+
+	FKawaiiPhysicsEditModeBase::ExitMode();
+}
+
+void FKawaiiPhysicsEditMode::Render(const FSceneView* View, FViewport* Viewport, FPrimitiveDrawInterface* PDI)
+{
+	USkeletalMeshComponent* SkelMeshComp = GetAnimPreviewScene().GetPreviewMeshComponent();
+	if (SkelMeshComp && SkelMeshComp->SkeletalMesh && SkelMeshComp->SkeletalMesh->GetSkeleton())
+	{
+		RenderSphericalLimits(PDI);
+		RenderCapsuleLimit(PDI);
+		RenderPlanerLimit(PDI);
+		PDI->SetHitProxy(nullptr);
+
+		if (IsValidSelectCollision())
+		{
+			FCollisionLimitBase* Collision = GetSelectCollisionLimitRuntime();
+			if (Collision)
+			{
+				FTransform BoneTransform = FTransform::Identity;
+				if (Collision->DrivingBone.BoneIndex >= 0)
+				{
+					BoneTransform = RuntimeNode->ForwardedPose.GetComponentSpaceTransform(
+						Collision->DrivingBone.GetCompactPoseIndex(RuntimeNode->ForwardedPose.GetPose().GetBoneContainer()));
+				}
+				PDI->DrawPoint(BoneTransform.GetLocation(), FLinearColor::White, 10.0f, SDPG_Foreground);
+				DrawDashedLine(PDI, Collision->Location, BoneTransform.GetLocation(),
+					FLinearColor::White, 1, SDPG_Foreground);
+				DrawCoordinateSystem(PDI, BoneTransform.GetLocation(), Collision->Rotation.Rotator(), 20, SDPG_World + 1);
+
+			}
+		}
+	}
+	FKawaiiPhysicsEditModeBase::Render(View, Viewport, PDI);
+}
+
+void FKawaiiPhysicsEditMode::RenderSphericalLimits(FPrimitiveDrawInterface* PDI)
+{
+	if (GraphNode->bEnableDebugDrawSphereLimit)
+	{
+		for( int i=0; i< RuntimeNode->SphericalLimits.Num(); i++)
+		{
+			auto& Sphere = RuntimeNode->SphericalLimits[i];
+			if (Sphere.Radius > 0)
+			{
+				FTransform SphereTransform = FTransform(Sphere.Location);
+
+				PDI->SetHitProxy(new HKawaiiPhysicsHitProxy(ECollisionLimitType::Spherical, i));
+				DrawSphere(PDI, Sphere.Location, FRotator::ZeroRotator, FVector(Sphere.Radius), 24, 6,
+					GEngine->ConstraintLimitMaterialPrismatic->GetRenderProxy(), SDPG_World);
+				DrawWireSphere(PDI, Sphere.Location, FLinearColor::Black, Sphere.Radius, 24, SDPG_World);
+				DrawCoordinateSystem(PDI, Sphere.Location, Sphere.Rotation.Rotator(), Sphere.Radius, SDPG_World + 1);
+			}
+		}
+
+		for (int i = 0; i < RuntimeNode->SphericalLimitsData.Num(); i++)
+		{
+			auto& Sphere = RuntimeNode->SphericalLimitsData[i];
+			if (Sphere.Radius > 0)
+			{
+				FTransform SphereTransform = FTransform(Sphere.Location);
+
+				PDI->SetHitProxy(new HKawaiiPhysicsHitProxy(ECollisionLimitType::Spherical, i, true));
+				DrawSphere(PDI, Sphere.Location, FRotator::ZeroRotator, FVector(Sphere.Radius), 24, 6,
+					GEngine->ConstraintLimitMaterialZ->GetRenderProxy(), SDPG_World);
+				DrawWireSphere(PDI, Sphere.Location, FLinearColor::Black, Sphere.Radius, 24, SDPG_World);
+				DrawCoordinateSystem(PDI, Sphere.Location, Sphere.Rotation.Rotator(), Sphere.Radius, SDPG_World + 1);
+			}
+		}
+	}
+}
+
+void FKawaiiPhysicsEditMode::RenderCapsuleLimit(FPrimitiveDrawInterface* PDI)
+{
+	if (GraphNode->bEnableDebugDrawCapsuleLimit)
+	{
+		for (int i = 0; i < RuntimeNode->CapsuleLimits.Num(); i++)
+		{
+			auto& Capsule = RuntimeNode->CapsuleLimits[i];
+			if (Capsule.Radius > 0 && Capsule.Length > 0)
+			{
+				FVector XAxis = Capsule.Rotation.GetAxisX();
+				FVector YAxis = Capsule.Rotation.GetAxisY();
+				FVector ZAxis = Capsule.Rotation.GetAxisZ();
+
+				PDI->SetHitProxy(new HKawaiiPhysicsHitProxy(ECollisionLimitType::Capsule, i));
+				DrawCylinder(PDI, Capsule.Location, XAxis, YAxis, ZAxis, Capsule.Radius, 0.5f* Capsule.Length, 25,
+					GEngine->ConstraintLimitMaterialPrismatic->GetRenderProxy(), SDPG_World);
+				DrawSphere(PDI, Capsule.Location + ZAxis * Capsule.Length * 0.5f, Capsule.Rotation.Rotator(), FVector(Capsule.Radius),
+					24, 6, GEngine->ConstraintLimitMaterialPrismatic->GetRenderProxy(), SDPG_World);
+				DrawSphere(PDI, Capsule.Location - ZAxis * Capsule.Length * 0.5f, Capsule.Rotation.Rotator(), FVector(Capsule.Radius),
+					24, 6, GEngine->ConstraintLimitMaterialPrismatic->GetRenderProxy(), SDPG_World);
+
+				DrawWireCapsule(PDI, Capsule.Location, XAxis, YAxis, ZAxis,
+					FLinearColor::Black, Capsule.Radius, 0.5f* Capsule.Length + Capsule.Radius, 25, SDPG_World);
+
+				DrawCoordinateSystem(PDI, Capsule.Location, Capsule.Rotation.Rotator(), Capsule.Radius, SDPG_World + 1);
+
+			}
+		}
+
+		for (int i = 0; i < RuntimeNode->CapsuleLimitsData.Num(); i++)
+		{
+			auto& Capsule = RuntimeNode->CapsuleLimitsData[i];
+			if (Capsule.Radius > 0 && Capsule.Length > 0)
+			{
+				FVector XAxis = Capsule.Rotation.GetAxisX();
+				FVector YAxis = Capsule.Rotation.GetAxisY();
+				FVector ZAxis = Capsule.Rotation.GetAxisZ();
+
+				PDI->SetHitProxy(new HKawaiiPhysicsHitProxy(ECollisionLimitType::Capsule, i, true));
+				DrawCylinder(PDI, Capsule.Location, XAxis, YAxis, ZAxis, Capsule.Radius, 0.5f* Capsule.Length, 25,
+					GEngine->ConstraintLimitMaterialZ->GetRenderProxy(), SDPG_World);
+				DrawSphere(PDI, Capsule.Location + ZAxis * Capsule.Length * 0.5f, Capsule.Rotation.Rotator(), FVector(Capsule.Radius),
+					24, 6, GEngine->ConstraintLimitMaterialZ->GetRenderProxy(), SDPG_World);
+				DrawSphere(PDI, Capsule.Location - ZAxis * Capsule.Length * 0.5f, Capsule.Rotation.Rotator(), FVector(Capsule.Radius),
+					24, 6, GEngine->ConstraintLimitMaterialZ->GetRenderProxy(), SDPG_World);
+
+				DrawWireCapsule(PDI, Capsule.Location, XAxis, YAxis, ZAxis,
+					FLinearColor::Black, Capsule.Radius, 0.5f* Capsule.Length + Capsule.Radius, 25, SDPG_World);
+
+				DrawCoordinateSystem(PDI, Capsule.Location, Capsule.Rotation.Rotator(), Capsule.Radius, SDPG_World + 1);
+
+			}
+		}
+	}
+}
+
+void FKawaiiPhysicsEditMode::RenderPlanerLimit(FPrimitiveDrawInterface* PDI)
+{
+	if (GraphNode->bEnableDebugDrawPlanerLimit)
+	{
+		for (int i = 0; i < RuntimeNode->PlanarLimits.Num(); i++)
+		{
+			auto& Plane = RuntimeNode->PlanarLimits[i];
+			
+			FTransform PlaneTransform = FTransform(Plane.Rotation, Plane.Location);
+			PlaneTransform.NormalizeRotation();
+
+			PDI->SetHitProxy(new HKawaiiPhysicsHitProxy(ECollisionLimitType::Planar, i));
+			DrawPlane10x10(PDI, PlaneTransform.ToMatrixWithScale(), 200.0f, FVector2D(0.0f, 0.0f), FVector2D(1.0f, 1.0f), GEngine->ConstraintLimitMaterialPrismatic->GetRenderProxy(), SDPG_World);
+			DrawDirectionalArrow(PDI, FRotationMatrix(FRotator(90.0f, 0.0f, 0.0f)) * PlaneTransform.ToMatrixWithScale(), FLinearColor::Blue, 50.0f, 20.0f, SDPG_Foreground, 0.5f);
+		}
+
+		for (int i = 0; i < RuntimeNode->PlanarLimitsData.Num(); i++)
+		{
+			auto& Plane = RuntimeNode->PlanarLimitsData[i];
+
+			FTransform PlaneTransform = FTransform(Plane.Rotation, Plane.Location);
+			PlaneTransform.NormalizeRotation();
+
+			PDI->SetHitProxy(new HKawaiiPhysicsHitProxy(ECollisionLimitType::Planar, i, true));
+			DrawPlane10x10(PDI, PlaneTransform.ToMatrixWithScale(), 200.0f, FVector2D(0.0f, 0.0f), FVector2D(1.0f, 1.0f), GEngine->ConstraintLimitMaterialZ->GetRenderProxy(), SDPG_World);
+			DrawDirectionalArrow(PDI, FRotationMatrix(FRotator(90.0f, 0.0f, 0.0f)) * PlaneTransform.ToMatrixWithScale(), FLinearColor::Blue, 50.0f, 20.0f, SDPG_Foreground, 0.5f);
+		}
+	}
+}
+
+FVector FKawaiiPhysicsEditMode::GetWidgetLocation(ECollisionLimitType CollisionType, int Index) const
+{
+	if (!IsValidSelectCollision())
+	{
+		return GetAnimPreviewScene().GetPreviewMeshComponent()->GetComponentLocation();
+	}
+
+	FCollisionLimitBase* Collision = GetSelectCollisionLimitRuntime();
+	if (Collision)
+	{
+		return Collision->Location;
+	}
+
+	return GetAnimPreviewScene().GetPreviewMeshComponent()->GetComponentLocation();
+}
+
+FVector FKawaiiPhysicsEditMode::GetWidgetLocation() const
+{
+	return GetWidgetLocation(SelectCollisionType, SelectCollisionIndex);
+}
+
+bool FKawaiiPhysicsEditMode::GetCustomDrawingCoordinateSystem(FMatrix& InMatrix, void* InData)
+{
+	if (!IsValidSelectCollision())
+	{
+		return false;
+	}
+
+	FQuat Rotation = FQuat::Identity;
+
+	FCollisionLimitBase* Collision = GetSelectCollisionLimitRuntime();
+	if (Collision)
+	{
+		Rotation = Collision->Rotation;
+	}
+
+	InMatrix = FTransform(Rotation).ToMatrixNoScale();
+	return true;
+}
+
+UE_WIDGET::EWidgetMode FKawaiiPhysicsEditMode::GetWidgetMode() const
+{
+	FCollisionLimitBase* Collision = GetSelectCollisionLimitRuntime();
+	if (Collision)
+	{
+		CurWidgetMode = FindValidWidgetMode(CurWidgetMode);
+		return CurWidgetMode;
+	}
+
+	return UE_WIDGET::EWidgetMode::WM_Translate;
+}
+
+UE_WIDGET::EWidgetMode FKawaiiPhysicsEditMode::FindValidWidgetMode(UE_WIDGET::EWidgetMode InWidgetMode) const
+{
+	if (InWidgetMode == UE_WIDGET::EWidgetMode::WM_None)
+	{	
+		return UE_WIDGET::EWidgetMode::WM_Translate;
+	}
+
+	switch (InWidgetMode)
+	{
+	case UE_WIDGET::EWidgetMode::WM_Translate:
+		return UE_WIDGET::EWidgetMode::WM_Rotate;
+	case UE_WIDGET::EWidgetMode::WM_Rotate:
+		return UE_WIDGET::EWidgetMode::WM_Scale;
+	case UE_WIDGET::EWidgetMode::WM_Scale:
+		return UE_WIDGET::EWidgetMode::WM_Translate;
+	}
+
+	return UE_WIDGET::EWidgetMode::WM_None;
+}
+
+bool FKawaiiPhysicsEditMode::HandleClick(FEditorViewportClient* InViewportClient, HHitProxy* HitProxy, const FViewportClick& Click)
+{
+	bool bResult = FKawaiiPhysicsEditModeBase::HandleClick(InViewportClient, HitProxy, Click);
+
+	if (HitProxy != nullptr && HitProxy->IsA(HKawaiiPhysicsHitProxy::StaticGetType()))
+	{
+		HKawaiiPhysicsHitProxy* KawaiiPhysicsHitProxy = static_cast<HKawaiiPhysicsHitProxy*>(HitProxy);
+		SelectCollisionType = KawaiiPhysicsHitProxy->CollisionType;
+		SelectCollisionIndex = KawaiiPhysicsHitProxy->CollisionIndex;
+		SelectCollisionIsFromDataAsset = KawaiiPhysicsHitProxy->bFromDataAsset;
+		return true;
+	}
+
+	SelectCollisionType = ECollisionLimitType::None;
+	SelectCollisionIndex = -1;
+
+	return false;
+}
+
+bool FKawaiiPhysicsEditMode::InputKey(FEditorViewportClient* InViewportClient, FViewport* InViewport, FKey InKey, EInputEvent InEvent)
+{
+	bool bHandled = false;
+
+	if ((InEvent == IE_Pressed) && !bManipulating)
+	{
+		if (InKey == EKeys::SpaceBar)
+		{
+			GetModeManager()->SetWidgetMode(GetWidgetMode());
+			bHandled = true;
+			InViewportClient->Invalidate();
+		}
+		else if (InKey == EKeys::Q)
+		{
+			auto CoordSystem = GetModeManager()->GetCoordSystem();
+			GetModeManager()->SetCoordSystem(CoordSystem == COORD_Local ? COORD_World : COORD_Local);
+		}
+		else if (InKey == EKeys::Delete && IsValidSelectCollision())
+		{
+			switch (SelectCollisionType)
+			{
+			case ECollisionLimitType::Spherical:
+				RuntimeNode->SphericalLimits.RemoveAt(SelectCollisionIndex);
+				GraphNode->Node.SphericalLimits.RemoveAt(SelectCollisionIndex);
+				break;
+			case ECollisionLimitType::Capsule:
+				RuntimeNode->CapsuleLimits.RemoveAt(SelectCollisionIndex);
+				GraphNode->Node.CapsuleLimits.RemoveAt(SelectCollisionIndex);
+				break;
+			case ECollisionLimitType::Planar:
+				RuntimeNode->PlanarLimits.RemoveAt(SelectCollisionIndex);
+				GraphNode->Node.PlanarLimits.RemoveAt(SelectCollisionIndex);
+				break;
+			}
+		}
+	}
+
+	return bHandled;
+}
+
+ECoordSystem FKawaiiPhysicsEditMode::GetWidgetCoordinateSystem() const
+{
+	return COORD_Local;
+}
+
+void FKawaiiPhysicsEditMode::OnExternalNodePropertyChange(FPropertyChangedEvent& InPropertyEvent)
+{
+	USkeletalMeshComponent* SkelComponent = GetAnimPreviewScene().GetPreviewMeshComponent();
+
+	if (!IsValidSelectCollision())
+	{
+		SelectCollisionIndex = -1;
+		SelectCollisionType = ECollisionLimitType::None;
+		CurWidgetMode = UE_WIDGET::EWidgetMode::WM_None;
+	}
+}
+
+bool FKawaiiPhysicsEditMode::IsValidSelectCollision() const
+{
+	if (RuntimeNode == nullptr || GraphNode == nullptr || SelectCollisionIndex < 0 || SelectCollisionType == ECollisionLimitType::None)
+	{
+		return false;
+	}
+
+	switch (SelectCollisionType)
+	{
+	case ECollisionLimitType::Spherical:
+		return SelectCollisionIsFromDataAsset ? RuntimeNode->SphericalLimitsData.IsValidIndex(SelectCollisionIndex)
+			: RuntimeNode->SphericalLimits.IsValidIndex(SelectCollisionIndex);
+	case ECollisionLimitType::Capsule:
+		return SelectCollisionIsFromDataAsset ? RuntimeNode->CapsuleLimitsData.IsValidIndex(SelectCollisionIndex)
+			: RuntimeNode->CapsuleLimits.IsValidIndex(SelectCollisionIndex);
+	case ECollisionLimitType::Planar:
+		return SelectCollisionIsFromDataAsset ? RuntimeNode->PlanarLimitsData.IsValidIndex(SelectCollisionIndex)
+			: RuntimeNode->PlanarLimits.IsValidIndex(SelectCollisionIndex);
+	}
+	return false;
+}
+
+FCollisionLimitBase* FKawaiiPhysicsEditMode::GetSelectCollisionLimitRuntime() const
+{
+	if (!IsValidSelectCollision())
+	{
+		return nullptr;
+	}
+
+	switch (SelectCollisionType)
+	{
+	case ECollisionLimitType::Spherical:
+		return SelectCollisionIsFromDataAsset ? &(RuntimeNode->SphericalLimitsData[SelectCollisionIndex])
+			: &(RuntimeNode->SphericalLimits[SelectCollisionIndex]);
+	case ECollisionLimitType::Capsule:
+		return SelectCollisionIsFromDataAsset ? &(RuntimeNode->CapsuleLimitsData[SelectCollisionIndex])
+			: &(RuntimeNode->CapsuleLimits[SelectCollisionIndex]);
+	case ECollisionLimitType::Planar:
+		return SelectCollisionIsFromDataAsset ? &(RuntimeNode->PlanarLimitsData[SelectCollisionIndex])
+			: &(RuntimeNode->PlanarLimits[SelectCollisionIndex]);
+	}
+
+	return nullptr;
+}
+
+FCollisionLimitBase* FKawaiiPhysicsEditMode::GetSelectCollisionLimitGraph() const
+{
+	if (!IsValidSelectCollision())
+	{
+		return nullptr;
+	}
+
+	switch (SelectCollisionType)
+	{
+	case ECollisionLimitType::Spherical:
+		return SelectCollisionIsFromDataAsset ? &(GraphNode->Node.SphericalLimitsData[SelectCollisionIndex])
+			: &(GraphNode->Node.SphericalLimits[SelectCollisionIndex]);
+	case ECollisionLimitType::Capsule:
+		return SelectCollisionIsFromDataAsset ? &(GraphNode->Node.CapsuleLimitsData[SelectCollisionIndex])
+			: &(GraphNode->Node.CapsuleLimits[SelectCollisionIndex]);
+	case ECollisionLimitType::Planar:
+		return SelectCollisionIsFromDataAsset ? &(GraphNode->Node.PlanarLimitsData[SelectCollisionIndex])
+			: &(GraphNode->Node.PlanarLimits[SelectCollisionIndex]);
+	}
+
+	return nullptr;
+}
+
+void FKawaiiPhysicsEditMode::DoTranslation(FVector& InTranslation)
+{
+	if (InTranslation.IsNearlyZero())
+	{
+		return;
+	}
+
+	FCollisionLimitBase* CollisionRuntime = GetSelectCollisionLimitRuntime();
+	FCollisionLimitBase* CollisionGraph = GetSelectCollisionLimitGraph();
+	if (!CollisionRuntime || !CollisionGraph)
+	{
+		return;
+	}
+
+	FVector Offset = FVector::ZeroVector;
+	if (CollisionRuntime->DrivingBone.BoneIndex >= 0)
+	{
+		USkeletalMeshComponent* SkelComp = GetAnimPreviewScene().GetPreviewMeshComponent();
+		Offset = ConvertCSVectorToBoneSpace(SkelComp, InTranslation, RuntimeNode->ForwardedPose, CollisionRuntime->DrivingBone.BoneName, BCS_BoneSpace);
+	}
+	else
+	{
+		Offset = InTranslation;
+	}
+	CollisionRuntime->OffsetLocation += Offset;
+	CollisionGraph->OffsetLocation = CollisionRuntime->OffsetLocation;
+
+	if(SelectCollisionIsFromDataAsset)
+	{
+		RuntimeNode->LimitsDataAsset->UpdateLimit(CollisionRuntime);
+	}
+}
+
+void FKawaiiPhysicsEditMode::DoRotation(FRotator& InRotation)
+{
+	if (InRotation.IsNearlyZero())
+	{
+		return;
+	}
+
+	FCollisionLimitBase* CollisionRuntime = GetSelectCollisionLimitRuntime();
+	FCollisionLimitBase* CollisionGraph = GetSelectCollisionLimitGraph();
+	if (!CollisionRuntime || !CollisionGraph)
+	{
+		return;
+	}
+
+	USkeletalMeshComponent* SkelComp = GetAnimPreviewScene().GetPreviewMeshComponent();
+	FQuat DeltaQuat = ConvertCSRotationToBoneSpace(SkelComp, InRotation, RuntimeNode->ForwardedPose, CollisionRuntime->DrivingBone.BoneName, BCS_BoneSpace);
+	CollisionRuntime->OffsetRotation = FRotator(DeltaQuat * CollisionRuntime->OffsetRotation.Quaternion());
+	CollisionGraph->OffsetRotation = CollisionRuntime->OffsetRotation;
+
+	if (SelectCollisionIsFromDataAsset)
+	{
+		RuntimeNode->LimitsDataAsset->UpdateLimit(CollisionRuntime);
+	}
+}
+
+void FKawaiiPhysicsEditMode::DoScale(FVector& InScale)
+{
+	if (!IsValidSelectCollision() || InScale.IsNearlyZero() || SelectCollisionType == ECollisionLimitType::Planar)
+	{
+		return;
+	}
+
+
+	if (SelectCollisionType == ECollisionLimitType::Spherical)
+	{
+		FSphericalLimit& SphericalLimitRuntime = SelectCollisionIsFromDataAsset ? RuntimeNode->SphericalLimitsData[SelectCollisionIndex]
+			: RuntimeNode->SphericalLimits[SelectCollisionIndex];
+
+		FSphericalLimit& SphericalLimitGraph = SelectCollisionIsFromDataAsset ? (GraphNode->Node.SphericalLimitsData[SelectCollisionIndex])
+			: (GraphNode->Node.SphericalLimits[SelectCollisionIndex]);
+
+		SphericalLimitRuntime.Radius += InScale.X;
+		SphericalLimitRuntime.Radius += InScale.Y;
+		SphericalLimitRuntime.Radius += InScale.Z;
+		SphericalLimitRuntime.Radius = FMath::Max(SphericalLimitRuntime.Radius, 0.0f);
+		
+		SphericalLimitGraph.Radius = SphericalLimitRuntime.Radius;
+
+		if (SelectCollisionIsFromDataAsset)
+		{
+			RuntimeNode->LimitsDataAsset->UpdateLimit(&SphericalLimitRuntime);
+		}
+	}
+	else if (SelectCollisionType == ECollisionLimitType::Capsule)
+	{
+		FCapsuleLimit& CapsuleLimitRuntime = SelectCollisionIsFromDataAsset ? RuntimeNode->CapsuleLimitsData[SelectCollisionIndex]
+			: RuntimeNode->CapsuleLimits[SelectCollisionIndex];
+
+		FCapsuleLimit& CapsuleLimitGraph = SelectCollisionIsFromDataAsset ? GraphNode->Node.CapsuleLimitsData[SelectCollisionIndex]
+			: GraphNode->Node.CapsuleLimits[SelectCollisionIndex];
+
+		CapsuleLimitRuntime.Radius += InScale.X;
+		CapsuleLimitRuntime.Radius += InScale.Y;
+		CapsuleLimitRuntime.Radius = FMath::Max(CapsuleLimitRuntime.Radius, 0.0f);
+
+		CapsuleLimitRuntime.Length += InScale.Z;
+		CapsuleLimitRuntime.Length = FMath::Max(CapsuleLimitRuntime.Length, 0.0f);
+
+		CapsuleLimitGraph.Radius = CapsuleLimitRuntime.Radius;
+		CapsuleLimitGraph.Length = CapsuleLimitRuntime.Length;
+
+		if (SelectCollisionIsFromDataAsset)
+		{
+			RuntimeNode->LimitsDataAsset->UpdateLimit(&CapsuleLimitRuntime);
+		}
+	}
+}
+
+
+bool FKawaiiPhysicsEditMode::ShouldDrawWidget() const
+{
+	if (IsValidSelectCollision())
+	{
+		return true;
+	}
+
+	return false;
+}
+
+void FKawaiiPhysicsEditMode::DrawHUD(FEditorViewportClient* ViewportClient, FViewport* Viewport, const FSceneView* View, FCanvas* Canvas)
+{
+	float FontWidth, FontHeight;
+	GEngine->GetSmallFont()->GetCharSize(TEXT('L'), FontWidth, FontHeight);
+
+	const float XOffset = 5.0f;
+
+	float DrawPositionY = Viewport->GetSizeXY().Y / Canvas->GetDPIScale() - (3 + FontHeight) - 100 / Canvas->GetDPIScale();
+
+	DrawTextItem(LOCTEXT("", "Q : Cycle Transform Coordinate System"), Canvas, XOffset, DrawPositionY, FontHeight);
+	DrawTextItem(LOCTEXT("", "Space : Cycle Between Translate, Rotate and Scale"), Canvas, XOffset, DrawPositionY, FontHeight);
+	DrawTextItem(LOCTEXT("", "R : Scale Mode"), Canvas,XOffset, DrawPositionY, FontHeight);
+	DrawTextItem(LOCTEXT("", "E : Rotate Mode"), Canvas, XOffset, DrawPositionY, FontHeight);
+	DrawTextItem(LOCTEXT("", "W : Translate Mode"), Canvas, XOffset, DrawPositionY, FontHeight);
+	DrawTextItem(LOCTEXT("", "------------------"), Canvas, XOffset, DrawPositionY, FontHeight);
+	
+
+	FString CollisionDebugInfo = FString(TEXT("Select Collision : "));
+	switch (SelectCollisionType)
+	{
+	case ECollisionLimitType::Spherical:
+		CollisionDebugInfo.Append(FString(TEXT("Spherical")));
+		break;
+	case ECollisionLimitType::Capsule:
+		CollisionDebugInfo.Append(FString(TEXT("Capsule")));
+		break;
+	case ECollisionLimitType::Planar:
+		CollisionDebugInfo.Append(FString(TEXT("Planar")));
+		break;
+	default:
+		CollisionDebugInfo.Append(FString(TEXT("None")));
+		break;
+	}
+	if (SelectCollisionIndex >= 0)
+	{
+		CollisionDebugInfo.Append(FString(TEXT("[")));
+		CollisionDebugInfo.Append(FString::FromInt(SelectCollisionIndex));
+		CollisionDebugInfo.Append(FString(TEXT("]")));
+	}
+	DrawTextItem(FText::FromString(CollisionDebugInfo), Canvas, XOffset, DrawPositionY, FontHeight);
+
+	if (GraphNode->bEnableDebugBoneLengthRate)
+	{
+		UDebugSkelMeshComponent* PreviewMeshComponent = GetAnimPreviewScene().GetPreviewMeshComponent();
+		if (PreviewMeshComponent != nullptr && PreviewMeshComponent->MeshObject != nullptr)
+		{
+			for (auto& Bone : RuntimeNode->ModifyBones)
+			{
+				// Refer to FAnimationViewportClient::ShowBoneNames
+				const FVector BonePos = PreviewMeshComponent->GetComponentTransform().TransformPosition(Bone.Location);
+				Draw3DTextItem(FText::AsNumber(Bone.LengthFromRoot / RuntimeNode->GetTotalBoneLength()), Canvas, View, Viewport, BonePos );
+			}
+		}
+	}
+
+	FKawaiiPhysicsEditModeBase::DrawHUD(ViewportClient, Viewport, View, Canvas);
+}
+
+void FKawaiiPhysicsEditMode::DrawTextItem(FText Text, FCanvas* Canvas, float X, float& Y, float FontHeight)
+{
+	FCanvasTextItem TextItem(FVector2D::ZeroVector, Text, GEngine->GetSmallFont(), FLinearColor::White);
+	TextItem.EnableShadow(FLinearColor::Black);
+	Canvas->DrawItem(TextItem, X, Y);
+	Y -= (3 + FontHeight);
+}
+
+void FKawaiiPhysicsEditMode::Draw3DTextItem(FText Text, FCanvas* Canvas, const FSceneView* View, FViewport* Viewport, FVector Location)
+{
+	const int32 HalfX = Viewport->GetSizeXY().X / 2 / Canvas->GetDPIScale();
+	const int32 HalfY = Viewport->GetSizeXY().Y / 2 / Canvas->GetDPIScale();
+	
+	const FPlane proj = View->Project(Location);
+	if (proj.W > 0.f)
+	{
+		const int32 XPos = HalfX + (HalfX * proj.X);
+		const int32 YPos = HalfY + (HalfY * (proj.Y * -1));
+		FCanvasTextItem TextItem(FVector2D(XPos, YPos), Text, GEngine->GetSmallFont(), FLinearColor::White);
+		TextItem.EnableShadow(FLinearColor::Black);
+		Canvas->DrawItem(TextItem);
+	}
+
+}
+
+#undef LOCTEXT_NAMESPACE
+```
+
+`Plugins/KawaiiPhysics/Source/KawaiiPhysicsEd/Private/KawaiiPhysicsEditModeBase.cpp`:
+
+```cpp
+/** Copy from FAnimNodeEditMode to override **/
+
+// Copyright 1998-2019 Epic Games, Inc. All Rights Reserved.
+
+#include "KawaiiPhysicsEditModeBase.h"
+#include "EditorViewportClient.h"
+#include "IPersonaPreviewScene.h"
+#include "Animation/DebugSkelMeshComponent.h"
+#include "BoneControllers/AnimNode_SkeletalControlBase.h"
+#include "EngineUtils.h"
+#include "AnimGraphNode_SkeletalControlBase.h"
+#include "AssetEditorModeManager.h"
+
+#define LOCTEXT_NAMESPACE "AnimNodeEditMode"
+
+FKawaiiPhysicsEditModeBase::FKawaiiPhysicsEditModeBase()
+	: AnimNode(nullptr)
+	, RuntimeAnimNode(nullptr)
+	, bManipulating(false)
+	, bInTransaction(false)
+{
+	// Disable grid drawing for this mode as the viewport handles this
+	bDrawGrid = false;
+}
+
+bool FKawaiiPhysicsEditModeBase::GetCameraTarget(FSphere& OutTarget) const
+{
+	FVector Location(GetWidgetLocation());
+	OutTarget.Center = Location;
+	OutTarget.W = 50.0f;
+
+	return true;
+}
+
+IPersonaPreviewScene& FKawaiiPhysicsEditModeBase::GetAnimPreviewScene() const
+{
+	return *static_cast<IPersonaPreviewScene*>(static_cast<FAssetEditorModeManager*>(Owner)->GetPreviewScene());
+}
+
+void FKawaiiPhysicsEditModeBase::GetOnScreenDebugInfo(TArray<FText>& OutDebugInfo) const
+{
+	if (AnimNode != nullptr)
+	{
+		AnimNode->GetOnScreenDebugInfo(OutDebugInfo, RuntimeAnimNode, GetAnimPreviewScene().GetPreviewMeshComponent());
+	}
+}
+
+ECoordSystem FKawaiiPhysicsEditModeBase::GetWidgetCoordinateSystem() const
+{
+	UAnimGraphNode_SkeletalControlBase* SkelControl = Cast<UAnimGraphNode_SkeletalControlBase>(AnimNode);
+	if (SkelControl != nullptr)
+	{
+		PRAGMA_DISABLE_DEPRECATION_WARNINGS
+			return (ECoordSystem)SkelControl->GetWidgetCoordinateSystem(GetAnimPreviewScene().GetPreviewMeshComponent());
+		PRAGMA_ENABLE_DEPRECATION_WARNINGS
+	}
+
+	return ECoordSystem::COORD_None;
+}
+
+UE_WIDGET::EWidgetMode FKawaiiPhysicsEditModeBase::GetWidgetMode() const
+{
+	UAnimGraphNode_SkeletalControlBase* SkelControl = Cast<UAnimGraphNode_SkeletalControlBase>(AnimNode);
+	if (SkelControl != nullptr)
+	{
+		PRAGMA_DISABLE_DEPRECATION_WARNINGS
+			return (UE_WIDGET::EWidgetMode)SkelControl->GetWidgetMode(GetAnimPreviewScene().GetPreviewMeshComponent());
+		PRAGMA_ENABLE_DEPRECATION_WARNINGS
+	}
+
+	return UE_WIDGET::EWidgetMode::WM_None;
+}
+
+UE_WIDGET::EWidgetMode FKawaiiPhysicsEditModeBase::ChangeToNextWidgetMode(UE_WIDGET::EWidgetMode CurWidgetMode)
+{
+	UAnimGraphNode_SkeletalControlBase* SkelControl = Cast<UAnimGraphNode_SkeletalControlBase>(AnimNode);
+	if (SkelControl != nullptr)
+	{
+		PRAGMA_DISABLE_DEPRECATION_WARNINGS
+			return (UE_WIDGET::EWidgetMode)SkelControl->ChangeToNextWidgetMode(GetAnimPreviewScene().GetPreviewMeshComponent(), CurWidgetMode);
+		PRAGMA_ENABLE_DEPRECATION_WARNINGS
+	}
+
+	return UE_WIDGET::EWidgetMode::WM_None;
+}
+
+bool FKawaiiPhysicsEditModeBase::SetWidgetMode(UE_WIDGET::EWidgetMode InWidgetMode)
+{
+	UAnimGraphNode_SkeletalControlBase* SkelControl = Cast<UAnimGraphNode_SkeletalControlBase>(AnimNode);
+	if (SkelControl != nullptr)
+	{
+		PRAGMA_DISABLE_DEPRECATION_WARNINGS
+			return SkelControl->SetWidgetMode(GetAnimPreviewScene().GetPreviewMeshComponent(), InWidgetMode);
+		PRAGMA_ENABLE_DEPRECATION_WARNINGS
+	}
+
+	return false;
+}
+
+FName FKawaiiPhysicsEditModeBase::GetSelectedBone() const
+{
+	UAnimGraphNode_SkeletalControlBase* SkelControl = Cast<UAnimGraphNode_SkeletalControlBase>(AnimNode);
+	if (SkelControl != nullptr)
+	{
+		PRAGMA_DISABLE_DEPRECATION_WARNINGS
+			return SkelControl->FindSelectedBone();
+		PRAGMA_ENABLE_DEPRECATION_WARNINGS
+	}
+
+	return NAME_None;
+}
+
+void FKawaiiPhysicsEditModeBase::EnterMode(UAnimGraphNode_Base* InEditorNode, FAnimNode_Base* InRuntimeNode)
+{
+	AnimNode = InEditorNode;
+	RuntimeAnimNode = InRuntimeNode;
+
+	UAnimGraphNode_SkeletalControlBase* SkelControl = Cast<UAnimGraphNode_SkeletalControlBase>(AnimNode);
+	if (SkelControl != nullptr)
+	{
+		PRAGMA_DISABLE_DEPRECATION_WARNINGS
+			SkelControl->MoveSelectActorLocation(GetAnimPreviewScene().GetPreviewMeshComponent(), (FAnimNode_SkeletalControlBase*)RuntimeAnimNode);
+		SkelControl->CopyNodeDataTo(RuntimeAnimNode);
+		PRAGMA_ENABLE_DEPRECATION_WARNINGS
+	}
+
+	GetModeManager()->SetCoordSystem(GetWidgetCoordinateSystem());
+	GetModeManager()->SetWidgetMode(GetWidgetMode());
+}
+
+void FKawaiiPhysicsEditModeBase::ExitMode()
+{
+	UAnimGraphNode_SkeletalControlBase* SkelControl = Cast<UAnimGraphNode_SkeletalControlBase>(AnimNode);
+	if (SkelControl != nullptr)
+	{
+		PRAGMA_DISABLE_DEPRECATION_WARNINGS
+			SkelControl->DeselectActor(GetAnimPreviewScene().GetPreviewMeshComponent());
+		PRAGMA_ENABLE_DEPRECATION_WARNINGS
+	}
+
+	AnimNode = nullptr;
+	RuntimeAnimNode = nullptr;
+}
+
+void FKawaiiPhysicsEditModeBase::Render(const FSceneView* View, FViewport* Viewport, FPrimitiveDrawInterface* PDI)
+{
+	if (AnimNode != nullptr)
+	{
+		AnimNode->Draw(PDI, GetAnimPreviewScene().GetPreviewMeshComponent());
+	}
+}
+
+void FKawaiiPhysicsEditModeBase::DrawHUD(FEditorViewportClient* ViewportClient, FViewport* Viewport, const FSceneView* View, FCanvas* Canvas)
+{
+	if (AnimNode != nullptr)
+	{
+		AnimNode->DrawCanvas(*Viewport, *const_cast<FSceneView*>(View), *Canvas, GetAnimPreviewScene().GetPreviewMeshComponent());
+	}
+}
+
+bool FKawaiiPhysicsEditModeBase::HandleClick(FEditorViewportClient* InViewportClient, HHitProxy* HitProxy, const FViewportClick& Click)
+{
+	if (HitProxy != nullptr && HitProxy->IsA(HActor::StaticGetType()))
+	{
+		HActor* ActorHitProxy = static_cast<HActor*>(HitProxy);
+		GetAnimPreviewScene().SetSelectedActor(ActorHitProxy->Actor);
+
+		UAnimGraphNode_SkeletalControlBase* SkelControl = Cast<UAnimGraphNode_SkeletalControlBase>(AnimNode);
+		if (SkelControl != nullptr)
+		{
+			PRAGMA_DISABLE_DEPRECATION_WARNINGS
+				SkelControl->ProcessActorClick(ActorHitProxy);
+			PRAGMA_ENABLE_DEPRECATION_WARNINGS
+		}
+		return true;
+	}
+
+	return false;
+}
+
+FVector FKawaiiPhysicsEditModeBase::GetWidgetLocation() const
+{
+	UAnimGraphNode_SkeletalControlBase* SkelControl = Cast<UAnimGraphNode_SkeletalControlBase>(AnimNode);
+	if (SkelControl != nullptr)
+	{
+		PRAGMA_DISABLE_DEPRECATION_WARNINGS
+			return SkelControl->GetWidgetLocation(GetAnimPreviewScene().GetPreviewMeshComponent(), (FAnimNode_SkeletalControlBase*)RuntimeAnimNode);
+		PRAGMA_ENABLE_DEPRECATION_WARNINGS
+	}
+
+	return FVector::ZeroVector;
+}
+
+bool FKawaiiPhysicsEditModeBase::StartTracking(FEditorViewportClient* InViewportClient, FViewport* InViewport)
+{
+	if (!bInTransaction)
+	{
+		GEditor->BeginTransaction(LOCTEXT("EditSkelControlNodeTransaction", "Edit Skeletal Control Node"));
+		AnimNode->SetFlags(RF_Transactional);
+		AnimNode->Modify();
+		bInTransaction = true;
+	}
+
+	bManipulating = true;
+
+	return true;
+}
+
+bool FKawaiiPhysicsEditModeBase::EndTracking(FEditorViewportClient* InViewportClient, FViewport* InViewport)
+{
+	if (bManipulating)
+	{
+		bManipulating = false;
+	}
+
+	if (bInTransaction)
+	{
+		GEditor->EndTransaction();
+		bInTransaction = false;
+	}
+
+	return true;
+}
+
+bool FKawaiiPhysicsEditModeBase::InputKey(FEditorViewportClient* InViewportClient, FViewport* InViewport, FKey InKey, EInputEvent InEvent)
+{
+	bool bHandled = false;
+
+	// Handle switching modes - only allowed when not already manipulating
+	if ((InEvent == IE_Pressed) && (InKey == EKeys::SpaceBar) && !bManipulating)
+	{
+		UE_WIDGET::EWidgetMode WidgetMode = (UE_WIDGET::EWidgetMode)ChangeToNextWidgetMode(GetModeManager()->GetWidgetMode());
+		GetModeManager()->SetWidgetMode(WidgetMode);
+		if (WidgetMode == UE_WIDGET::EWidgetMode::WM_Scale)
+		{
+			GetModeManager()->SetCoordSystem(COORD_Local);
+		}
+		else
+		{
+			GetModeManager()->SetCoordSystem(COORD_World);
+		}
+
+		bHandled = true;
+		InViewportClient->Invalidate();
+	}
+
+	return bHandled;
+}
+
+bool FKawaiiPhysicsEditModeBase::InputDelta(FEditorViewportClient* InViewportClient, FViewport* InViewport, FVector& InDrag, FRotator& InRot, FVector& InScale)
+{
+	const EAxisList::Type CurrentAxis = InViewportClient->GetCurrentWidgetAxis();
+	const UE_WIDGET::EWidgetMode WidgetMode = InViewportClient->GetWidgetMode();
+
+	bool bHandled = false;
+
+	UDebugSkelMeshComponent* PreviewMeshComponent = GetAnimPreviewScene().GetPreviewMeshComponent();
+
+	if (bManipulating && CurrentAxis != EAxisList::None)
+	{
+		bHandled = true;
+
+		const bool bDoRotation = WidgetMode == UE_WIDGET::EWidgetMode::WM_Rotate || WidgetMode == UE_WIDGET::EWidgetMode::WM_TranslateRotateZ;
+		const bool bDoTranslation = WidgetMode == UE_WIDGET::EWidgetMode::WM_Translate || WidgetMode == UE_WIDGET::EWidgetMode::WM_TranslateRotateZ;
+		const bool bDoScale = WidgetMode == UE_WIDGET::EWidgetMode::WM_Scale;
+
+		if (bDoRotation)
+		{
+			DoRotation(InRot);
+		}
+
+		if (bDoTranslation)
+		{
+			DoTranslation(InDrag);
+		}
+
+		if (bDoScale)
+		{
+			DoScale(InScale);
+		}
+
+		InViewport->Invalidate();
+	}
+
+	return bHandled;
+}
+
+bool FKawaiiPhysicsEditModeBase::GetCustomDrawingCoordinateSystem(FMatrix& InMatrix, void* InData)
+{
+	UDebugSkelMeshComponent* PreviewMeshComponent = GetAnimPreviewScene().GetPreviewMeshComponent();
+	FName BoneName = GetSelectedBone();
+	int32 BoneIndex = PreviewMeshComponent->GetBoneIndex(BoneName);
+	if (BoneIndex != INDEX_NONE)
+	{
+		FTransform BoneMatrix = PreviewMeshComponent->GetBoneTransform(BoneIndex);
+		InMatrix = BoneMatrix.ToMatrixNoScale().RemoveTranslation();
+		return true;
+	}
+
+	return false;
+}
+
+bool FKawaiiPhysicsEditModeBase::GetCustomInputCoordinateSystem(FMatrix& InMatrix, void* InData)
+{
+	return GetCustomDrawingCoordinateSystem(InMatrix, InData);
+}
+
+bool FKawaiiPhysicsEditModeBase::ShouldDrawWidget() const
+{
+	return true;
+}
+
+void FKawaiiPhysicsEditModeBase::DoTranslation(FVector& InTranslation)
+{
+	UAnimGraphNode_SkeletalControlBase* SkelControl = Cast<UAnimGraphNode_SkeletalControlBase>(AnimNode);
+	if (SkelControl != nullptr)
+	{
+		PRAGMA_DISABLE_DEPRECATION_WARNINGS
+			SkelControl->DoTranslation(GetAnimPreviewScene().GetPreviewMeshComponent(), InTranslation, (FAnimNode_SkeletalControlBase*)RuntimeAnimNode);
+		PRAGMA_ENABLE_DEPRECATION_WARNINGS
+	}
+}
+
+void FKawaiiPhysicsEditModeBase::DoRotation(FRotator& InRotation)
+{
+	UAnimGraphNode_SkeletalControlBase* SkelControl = Cast<UAnimGraphNode_SkeletalControlBase>(AnimNode);
+	if (SkelControl != nullptr)
+	{
+		PRAGMA_DISABLE_DEPRECATION_WARNINGS
+			SkelControl->DoRotation(GetAnimPreviewScene().GetPreviewMeshComponent(), InRotation, (FAnimNode_SkeletalControlBase*)RuntimeAnimNode);
+		PRAGMA_ENABLE_DEPRECATION_WARNINGS
+	}
+}
+
+void FKawaiiPhysicsEditModeBase::DoScale(FVector& InScale)
+{
+	UAnimGraphNode_SkeletalControlBase* SkelControl = Cast<UAnimGraphNode_SkeletalControlBase>(AnimNode);
+	if (SkelControl != nullptr)
+	{
+		PRAGMA_DISABLE_DEPRECATION_WARNINGS
+			SkelControl->DoScale(GetAnimPreviewScene().GetPreviewMeshComponent(), InScale, (FAnimNode_SkeletalControlBase*)RuntimeAnimNode);
+		PRAGMA_ENABLE_DEPRECATION_WARNINGS
+	}
+}
+
+void FKawaiiPhysicsEditModeBase::Tick(FEditorViewportClient* ViewportClient, float DeltaTime)
+{
+	IAnimNodeEditMode::Tick(ViewportClient, DeltaTime);
+
+	// Keep actor location in sync with animation
+	UAnimGraphNode_SkeletalControlBase* SkelControl = Cast<UAnimGraphNode_SkeletalControlBase>(AnimNode);
+	if (SkelControl != nullptr)
+	{
+		PRAGMA_DISABLE_DEPRECATION_WARNINGS
+			SkelControl->MoveSelectActorLocation(GetAnimPreviewScene().GetPreviewMeshComponent(), (FAnimNode_SkeletalControlBase*)RuntimeAnimNode);
+		PRAGMA_ENABLE_DEPRECATION_WARNINGS
+	}
+}
+
+void FKawaiiPhysicsEditModeBase::ConvertToComponentSpaceTransform(const USkeletalMeshComponent* SkelComp, const FTransform & InTransform, FTransform & OutCSTransform, int32 BoneIndex, EBoneControlSpace Space)
+{
+	USkeleton* Skeleton = SkelComp->SkeletalMesh->GetSkeleton();
+
+	switch (Space)
+	{
+	case BCS_WorldSpace:
+	{
+		OutCSTransform = InTransform;
+		OutCSTransform.SetToRelativeTransform(SkelComp->GetComponentTransform());
+	}
+	break;
+
+	case BCS_ComponentSpace:
+	{
+		// Component Space, no change.
+		OutCSTransform = InTransform;
+	}
+	break;
+
+	case BCS_ParentBoneSpace:
+		if (BoneIndex != INDEX_NONE)
+		{
+			const int32 ParentIndex = Skeleton->GetReferenceSkeleton().GetParentIndex(BoneIndex);
+			if (ParentIndex != INDEX_NONE)
+			{
+				const int32 MeshParentIndex = Skeleton->GetMeshBoneIndexFromSkeletonBoneIndex(SkelComp->SkeletalMesh, ParentIndex);
+				if (MeshParentIndex != INDEX_NONE)
+				{
+					const FTransform ParentTM = SkelComp->GetBoneTransform(MeshParentIndex);
+					OutCSTransform = InTransform * ParentTM;
+				}
+				else
+				{
+					OutCSTransform = InTransform;
+				}
+			}
+		}
+		break;
+
+	case BCS_BoneSpace:
+		if (BoneIndex != INDEX_NONE)
+		{
+			const int32 MeshBoneIndex = Skeleton->GetMeshBoneIndexFromSkeletonBoneIndex(SkelComp->SkeletalMesh, BoneIndex);
+			if (MeshBoneIndex != INDEX_NONE)
+			{
+				const FTransform BoneTM = SkelComp->GetBoneTransform(MeshBoneIndex);
+				OutCSTransform = InTransform * BoneTM;
+			}
+			else
+			{
+				OutCSTransform = InTransform;
+			}
+		}
+		break;
+
+	default:
+		if (SkelComp->SkeletalMesh)
+		{
+			UE_LOG(LogAnimation, Warning, TEXT("ConvertToComponentSpaceTransform: Unknown BoneSpace %d  for Mesh: %s"), (uint8)Space, *SkelComp->SkeletalMesh->GetFName().ToString());
+		}
+		else
+		{
+			UE_LOG(LogAnimation, Warning, TEXT("ConvertToComponentSpaceTransform: Unknown BoneSpace %d  for Skeleton: %s"), (uint8)Space, *Skeleton->GetFName().ToString());
+		}
+		break;
+	}
+}
+
+
+void FKawaiiPhysicsEditModeBase::ConvertToBoneSpaceTransform(const USkeletalMeshComponent* SkelComp, const FTransform & InCSTransform, FTransform & OutBSTransform, int32 BoneIndex, EBoneControlSpace Space)
+{
+	USkeleton* Skeleton = SkelComp->SkeletalMesh->GetSkeleton();
+
+	switch (Space)
+	{
+	case BCS_WorldSpace:
+	{
+		OutBSTransform = InCSTransform * SkelComp->GetComponentTransform();
+		break;
+	}
+
+	case BCS_ComponentSpace:
+	{
+		// Component Space, no change.
+		OutBSTransform = InCSTransform;
+		break;
+	}
+
+	case BCS_ParentBoneSpace:
+	{
+		if (BoneIndex != INDEX_NONE)
+		{
+			const int32 ParentIndex = Skeleton->GetReferenceSkeleton().GetParentIndex(BoneIndex);
+			if (ParentIndex != INDEX_NONE)
+			{
+				const int32 MeshParentIndex = Skeleton->GetMeshBoneIndexFromSkeletonBoneIndex(SkelComp->SkeletalMesh, ParentIndex);
+				if (MeshParentIndex != INDEX_NONE)
+				{
+					const FTransform ParentTM = SkelComp->GetBoneTransform(MeshParentIndex);
+					OutBSTransform = InCSTransform.GetRelativeTransform(ParentTM);
+				}
+				else
+				{
+					OutBSTransform = InCSTransform;
+				}
+			}
+		}
+		break;
+	}
+
+	case BCS_BoneSpace:
+	{
+		if (BoneIndex != INDEX_NONE)
+		{
+			const int32 MeshBoneIndex = Skeleton->GetMeshBoneIndexFromSkeletonBoneIndex(SkelComp->SkeletalMesh, BoneIndex);
+			if (MeshBoneIndex != INDEX_NONE)
+			{
+				FTransform BoneCSTransform = SkelComp->GetBoneTransform(MeshBoneIndex);
+				OutBSTransform = InCSTransform.GetRelativeTransform(BoneCSTransform);
+			}
+			else
+			{
+				OutBSTransform = InCSTransform;
+			}
+		}
+		break;
+	}
+
+	default:
+	{
+		UE_LOG(LogAnimation, Warning, TEXT("ConvertToBoneSpaceTransform: Unknown BoneSpace %d  for Mesh: %s"), (int32)Space, *GetNameSafe(SkelComp->SkeletalMesh));
+		break;
+	}
+	}
+}
+
+FVector FKawaiiPhysicsEditModeBase::ConvertCSVectorToBoneSpace(const USkeletalMeshComponent* SkelComp, FVector& InCSVector, FCSPose<FCompactHeapPose>& MeshBases, const FBoneSocketTarget& InTarget, const EBoneControlSpace Space)
+{
+	FVector OutVector = FVector::ZeroVector;
+
+	if (MeshBases.GetPose().IsValid())
+	{
+		const FCompactPoseBoneIndex BoneIndex = InTarget.GetCompactPoseBoneIndex();
+
+		switch (Space)
+		{
+			// World Space, no change in preview window
+		case BCS_WorldSpace:
+		case BCS_ComponentSpace:
+			// Component Space, no change.
+			OutVector = InCSVector;
+			break;
+
+		case BCS_ParentBoneSpace:
+		{
+			if (BoneIndex != INDEX_NONE)
+			{
+				const FCompactPoseBoneIndex ParentIndex = MeshBases.GetPose().GetParentBoneIndex(BoneIndex);
+				if (ParentIndex != INDEX_NONE)
+				{
+					const FTransform& ParentTM = MeshBases.GetComponentSpaceTransform(ParentIndex);
+					OutVector = ParentTM.InverseTransformVector(InCSVector);
+				}
+			}
+		}
+		break;
+
+		case BCS_BoneSpace:
+		{
+			FTransform BoneTransform = InTarget.GetTargetTransform(FVector::ZeroVector, MeshBases, SkelComp->GetComponentToWorld());
+			OutVector = BoneTransform.InverseTransformVector(InCSVector);
+		}
+		break;
+		}
+	}
+
+	return OutVector;
+}
+
+FVector FKawaiiPhysicsEditModeBase::ConvertCSVectorToBoneSpace(const USkeletalMeshComponent* SkelComp, FVector& InCSVector, FCSPose<FCompactHeapPose>& MeshBases, const FName& BoneName, const EBoneControlSpace Space)
+{
+	FVector OutVector = FVector::ZeroVector;
+
+	if (MeshBases.GetPose().IsValid())
+	{
+		const FMeshPoseBoneIndex MeshBoneIndex(SkelComp->GetBoneIndex(BoneName));
+		const FCompactPoseBoneIndex BoneIndex = MeshBases.GetPose().GetBoneContainer().MakeCompactPoseIndex(MeshBoneIndex);
+
+		switch (Space)
+		{
+			// World Space, no change in preview window
+		case BCS_WorldSpace:
+		case BCS_ComponentSpace:
+			// Component Space, no change.
+			OutVector = InCSVector;
+			break;
+
+		case BCS_ParentBoneSpace:
+		{
+			const FCompactPoseBoneIndex ParentIndex = MeshBases.GetPose().GetParentBoneIndex(BoneIndex);
+			if (ParentIndex != INDEX_NONE)
+			{
+				const FTransform& ParentTM = MeshBases.GetComponentSpaceTransform(ParentIndex);
+				OutVector = ParentTM.InverseTransformVector(InCSVector);
+			}
+		}
+		break;
+
+		case BCS_BoneSpace:
+		{
+			if (BoneIndex != INDEX_NONE)
+			{
+				const FTransform& BoneTM = MeshBases.GetComponentSpaceTransform(BoneIndex);
+				OutVector = BoneTM.InverseTransformVector(InCSVector);
+			}
+		}
+		break;
+		}
+	}
+
+	return OutVector;
+}
+
+FQuat FKawaiiPhysicsEditModeBase::ConvertCSRotationToBoneSpace(const USkeletalMeshComponent* SkelComp, FRotator& InCSRotator, FCSPose<FCompactHeapPose>& MeshBases, const FName& BoneName, const EBoneControlSpace Space)
+{
+	FQuat OutQuat = FQuat::Identity;
+
+	if (MeshBases.GetPose().IsValid())
+	{
+		const FMeshPoseBoneIndex MeshBoneIndex(SkelComp->GetBoneIndex(BoneName));
+		const FCompactPoseBoneIndex BoneIndex = MeshBases.GetPose().GetBoneContainer().MakeCompactPoseIndex(MeshBoneIndex);
+
+		FVector RotAxis;
+		float RotAngle;
+		InCSRotator.Quaternion().ToAxisAndAngle(RotAxis, RotAngle);
+
+		switch (Space)
+		{
+			// World Space, no change in preview window
+		case BCS_WorldSpace:
+		case BCS_ComponentSpace:
+			// Component Space, no change.
+			OutQuat = InCSRotator.Quaternion();
+			break;
+
+		case BCS_ParentBoneSpace:
+		{
+			const FCompactPoseBoneIndex ParentIndex = MeshBases.GetPose().GetParentBoneIndex(BoneIndex);
+			if (ParentIndex != INDEX_NONE)
+			{
+				const FTransform& ParentTM = MeshBases.GetComponentSpaceTransform(ParentIndex);
+				FTransform InverseParentTM = ParentTM.Inverse();
+				//Calculate the new delta rotation
+				FVector4 BoneSpaceAxis = InverseParentTM.TransformVector(RotAxis);
+				FQuat DeltaQuat(BoneSpaceAxis, RotAngle);
+				DeltaQuat.Normalize();
+				OutQuat = DeltaQuat;
+			}
+		}
+		break;
+
+		case BCS_BoneSpace:
+		{
+			const FTransform& BoneTM = BoneIndex >= 0 ? MeshBases.GetComponentSpaceTransform(BoneIndex) : FTransform::Identity;
+			FTransform InverseBoneTM = BoneTM.Inverse();
+			FVector4 BoneSpaceAxis = InverseBoneTM.TransformVector(RotAxis);
+			//Calculate the new delta rotation
+			FQuat DeltaQuat(BoneSpaceAxis, RotAngle);
+			DeltaQuat.Normalize();
+			OutQuat = DeltaQuat;
+		}
+		break;
+		}
+	}
+
+	return OutQuat;
+}
+
+FVector FKawaiiPhysicsEditModeBase::ConvertWidgetLocation(const USkeletalMeshComponent* InSkelComp, FCSPose<FCompactHeapPose>& InMeshBases, const FBoneSocketTarget& Target, const FVector& InLocation, const EBoneControlSpace Space)
+{
+	FVector WidgetLoc = FVector::ZeroVector;
+
+	switch (Space)
+	{
+		// GetComponentTransform() must be Identity in preview window so same as ComponentSpace
+	case BCS_WorldSpace:
+	case BCS_ComponentSpace:
+	{
+		// Component Space, no change.
+		WidgetLoc = InLocation;
+	}
+	break;
+
+	case BCS_ParentBoneSpace:
+	{
+		const FCompactPoseBoneIndex CompactBoneIndex = Target.GetCompactPoseBoneIndex();
+
+		if (CompactBoneIndex != INDEX_NONE)
+		{
+			if (ensure(InMeshBases.GetPose().IsValidIndex(CompactBoneIndex)))
+			{
+				const FCompactPoseBoneIndex CompactParentIndex = InMeshBases.GetPose().GetParentBoneIndex(CompactBoneIndex);
+				if (CompactParentIndex != INDEX_NONE)
+				{
+					const FTransform& ParentTM = InMeshBases.GetComponentSpaceTransform(CompactParentIndex);
+					WidgetLoc = ParentTM.TransformPosition(InLocation);
+				}
+			}
+			else
+			{
+				UE_LOG(LogAnimation, Warning, TEXT("Using socket(%d), Socket name(%s), Bone name(%s)"),
+					Target.bUseSocket, *Target.SocketReference.SocketName.ToString(), *Target.BoneReference.BoneName.ToString());
+			}
+		}
+	}
+	break;
+
+	case BCS_BoneSpace:
+	{
+		FTransform BoneTM = Target.GetTargetTransform(FVector::ZeroVector, InMeshBases, InSkelComp->GetComponentToWorld());
+		WidgetLoc = BoneTM.TransformPosition(InLocation);
+	}
+	break;
+	}
+
+	return WidgetLoc;
+}
+FVector FKawaiiPhysicsEditModeBase::ConvertWidgetLocation(const USkeletalMeshComponent* SkelComp, FCSPose<FCompactHeapPose>& MeshBases, const FName& BoneName, const FVector& Location, const EBoneControlSpace Space)
+{
+	FVector WidgetLoc = FVector::ZeroVector;
+
+	auto GetCompactBoneIndex = [](const USkeletalMeshComponent* InSkelComp, FCSPose<FCompactHeapPose>& InMeshBases, const FName& InBoneName)
+	{
+		if (InMeshBases.GetPose().IsValid())
+		{
+			USkeleton* Skeleton = InSkelComp->SkeletalMesh->GetSkeleton();
+			const int32 MeshBoneIndex = InSkelComp->GetBoneIndex(InBoneName);
+			if (MeshBoneIndex != INDEX_NONE)
+			{
+				return InMeshBases.GetPose().GetBoneContainer().MakeCompactPoseIndex(FMeshPoseBoneIndex(MeshBoneIndex));
+			}
+		}
+
+		return FCompactPoseBoneIndex(INDEX_NONE);
+	};
+
+	switch (Space)
+	{
+		// GetComponentTransform() must be Identity in preview window so same as ComponentSpace
+	case BCS_WorldSpace:
+	case BCS_ComponentSpace:
+	{
+		// Component Space, no change.
+		WidgetLoc = Location;
+	}
+	break;
+
+	case BCS_ParentBoneSpace:
+	{
+		const FCompactPoseBoneIndex CompactBoneIndex = GetCompactBoneIndex(SkelComp, MeshBases, BoneName);
+		if (CompactBoneIndex != INDEX_NONE)
+		{
+			const FCompactPoseBoneIndex CompactParentIndex = MeshBases.GetPose().GetParentBoneIndex(CompactBoneIndex);
+			if (CompactParentIndex != INDEX_NONE)
+			{
+				const FTransform& ParentTM = MeshBases.GetComponentSpaceTransform(CompactParentIndex);
+				WidgetLoc = ParentTM.TransformPosition(Location);
+			}
+		}
+	}
+	break;
+
+	case BCS_BoneSpace:
+	{
+		const FCompactPoseBoneIndex CompactBoneIndex = GetCompactBoneIndex(SkelComp, MeshBases, BoneName);
+		if (CompactBoneIndex != INDEX_NONE)
+		{
+			const FTransform& BoneTM = MeshBases.GetComponentSpaceTransform(CompactBoneIndex);
+			WidgetLoc = BoneTM.TransformPosition(Location);
+		}
+	}
+	break;
+	}
+
+	return WidgetLoc;
+}
+
+#undef LOCTEXT_NAMESPACE
+
+```
+
+`Plugins/KawaiiPhysics/Source/KawaiiPhysicsEd/Public/AnimGraphNode_KawaiiPhysics.h`:
+
+```h
+#pragma once
+
+#include "AnimGraphNode_Base.h"
+#include "AnimNode_KawaiiPhysics.h"
+#include "AnimGraphNode_SkeletalControlBase.h"
+#include "EdGraph/EdGraphNodeUtils.h"
+
+#include "AnimGraphNode_KawaiiPhysics.generated.h"
+
+class FCompilerResultsLog;
+
+UCLASS()
+class UAnimGraphNode_KawaiiPhysics : public UAnimGraphNode_SkeletalControlBase
+{
+	GENERATED_UCLASS_BODY()
+
+	UPROPERTY(EditAnywhere, Category = Settings)
+	FAnimNode_KawaiiPhysics Node;
+
+	UPROPERTY(EditAnywhere, Category = Debug)
+	bool bEnableDebugDrawBone = true;
+	UPROPERTY(EditAnywhere, Category = Debug)
+	bool bEnableDebugBoneLengthRate= true;
+	UPROPERTY(EditAnywhere, Category = Debug)
+	bool bEnableDebugDrawAngleLimit = true;
+	UPROPERTY(EditAnywhere, Category = Debug)
+	bool bEnableDebugDrawSphereLimit = true;
+	UPROPERTY(EditAnywhere, Category = Debug)
+	bool bEnableDebugDrawCapsuleLimit = true;
+	UPROPERTY(EditAnywhere, Category = Debug)
+	bool bEnableDebugDrawPlanerLimit = true;
+
+public:
+	virtual FText GetNodeTitle(ENodeTitleType::Type TitleType) const override;
+
+	// UObject interface
+	virtual void PostEditChangeProperty(struct FPropertyChangedEvent& PropertyChangedEvent) override;
+
+protected:
+
+	// UAnimGraphNode_Base interface
+	virtual FEditorModeID GetEditorMode() const;
+	virtual void ValidateAnimNodePostCompile(FCompilerResultsLog& MessageLog, UAnimBlueprintGeneratedClass* CompiledClass, int32 CompiledNodeIndex) override;
+	// End of UAnimGraphNode_Base interface
+
+	//virtual FText GetControllerDescription() const override;
+	virtual FText GetControllerDescription() const override;
+	virtual const FAnimNode_SkeletalControlBase* GetNode() const override { return &Node; }
+	virtual void Draw(FPrimitiveDrawInterface* PDI, USkeletalMeshComponent* SkelMeshComp) const override;
+	// End of UAnimGraphNode_SkeletalControlBase interface
+
+	// UObject interface
+	virtual void Serialize(FArchive& Ar) override;
+	// End of UObject interface
+
+private:
+	/** Constructing FText strings can be costly, so we cache the node's title */
+	FNodeTitleTextTable CachedNodeTitles;
+};
+```
+
+`Plugins/KawaiiPhysics/Source/KawaiiPhysicsEd/Public/KawaiiPhysicsEd.h`:
+
+```h
+// Fill out your copyright notice in the Description page of Project Settings.
+
+#pragma once
+
+#include "CoreMinimal.h"
+
+#include "Modules/ModuleManager.h"
+
+class FKawaiiPhysicsEdModule : public IModuleInterface
+{
+public:
+
+	/** IModuleInterface implementation */
+	virtual void StartupModule() override;
+	virtual void ShutdownModule() override;
+};
+
+
+```
+
+`Plugins/KawaiiPhysics/Source/KawaiiPhysicsEd/Public/KawaiiPhysicsEditMode.h`:
+
+```h
+#pragma once
+
+#include "CoreMinimal.h"
+#include "UnrealWidget.h"
+#include "KawaiiPhysicsEditModeBase.h"
+#include "AnimNodeEditMode.h"
+#include "AnimGraphNode_KawaiiPhysics.h"
+#include "AnimNode_KawaiiPhysics.h"
+
+class FEditorViewportClient;
+class FPrimitiveDrawInterface;
+class USkeletalMeshComponent;
+struct FViewportClick;
+
+
+
+class FKawaiiPhysicsEditMode : public FKawaiiPhysicsEditModeBase
+{
+public:
+
+	FKawaiiPhysicsEditMode();
+	
+	/** IAnimNodeEditMode interface */
+	virtual void EnterMode(class UAnimGraphNode_Base* InEditorNode, struct FAnimNode_Base* InRuntimeNode) override;
+	virtual void ExitMode() override;
+	virtual FVector GetWidgetLocation() const override;
+	virtual UE_WIDGET::EWidgetMode GetWidgetMode() const override;
+	virtual ECoordSystem GetWidgetCoordinateSystem() const override;
+	virtual void DoTranslation(FVector& InTranslation) override;
+	virtual void DoRotation(FRotator& InRotation) override;
+	virtual void DoScale(FVector& InScale) override;
+
+	/** FEdMode interface */
+	virtual void Render(const FSceneView* View, FViewport* Viewport, FPrimitiveDrawInterface* PDI) override;
+	virtual bool HandleClick(FEditorViewportClient* InViewportClient, HHitProxy* HitProxy, const FViewportClick& Click) override;
+	virtual bool GetCustomDrawingCoordinateSystem(FMatrix& InMatrix, void* InData) override;
+	virtual bool InputKey(FEditorViewportClient* InViewportClient, FViewport* InViewport, FKey InKey, EInputEvent InEvent) override;
+	virtual bool ShouldDrawWidget() const override;
+	virtual void DrawHUD(FEditorViewportClient* ViewportClient, FViewport* Viewport, const FSceneView* View, FCanvas* Canvas) override;
+
+
+protected:
+	void OnExternalNodePropertyChange(FPropertyChangedEvent& InPropertyEvent);
+	FDelegateHandle NodePropertyDelegateHandle;
+
+private:
+
+	/** Render each collisions */
+	void RenderSphericalLimits(FPrimitiveDrawInterface* PDI);
+	void RenderCapsuleLimit(FPrimitiveDrawInterface* PDI);
+	void RenderPlanerLimit(FPrimitiveDrawInterface* PDI);
+
+	/** Helper funciton for GetWidgetLocation() and joint rendering */
+	FVector GetWidgetLocation(ECollisionLimitType CollisionType, int Index) const;
+
+	// methods to find a valid widget mode for gizmo because doesn't need to show gizmo when the mode is "Ignore"
+	UE_WIDGET::EWidgetMode FindValidWidgetMode(UE_WIDGET::EWidgetMode InWidgetMode) const;
+
+	/** Checking if a collision is selected and the collision is valid */
+	bool IsValidSelectCollision() const;
+
+	FCollisionLimitBase* GetSelectCollisionLimitRuntime() const;
+	FCollisionLimitBase* GetSelectCollisionLimitGraph() const;
+
+	/** Draw text func for DrawHUD */
+	void DrawTextItem(FText Text, FCanvas* Canvas, float X, float& Y, float FontHeight);
+	void Draw3DTextItem(FText Text, FCanvas* Canvas, const FSceneView* View, FViewport* Viewport, FVector Location);
+
+private:
+	/** Cache the typed nodes */
+	struct FAnimNode_KawaiiPhysics* RuntimeNode;
+	UAnimGraphNode_KawaiiPhysics* GraphNode;
+
+	/** The current bone selection mode */
+	ECollisionLimitType SelectCollisionType = ECollisionLimitType::None;
+	int SelectCollisionIndex = -1;
+	bool SelectCollisionIsFromDataAsset;
+
+	// storing current widget mode 
+	mutable UE_WIDGET::EWidgetMode CurWidgetMode;
+};
+```
+
+`Plugins/KawaiiPhysics/Source/KawaiiPhysicsEd/Public/KawaiiPhysicsEditModeBase.h`:
+
+```h
+/** Copy from FAnimNodeEditMode to override **/
+
+// Copyright 1998-2019 Epic Games, Inc. All Rights Reserved.
+
+#pragma once
+
+#include "CoreMinimal.h"
+#include "InputCoreTypes.h"
+#include "UnrealWidget.h"
+#include "IAnimNodeEditMode.h"
+#include "BonePose.h"
+#include "Runtime/Launch/Resources/Version.h"
+
+
+#if	ENGINE_MAJOR_VERSION == 5
+#define UE_WIDGET UE::Widget
+#else
+#define UE_WIDGET FWidget
+#endif
+
+class FCanvas;
+class FEditorViewportClient;
+class FPrimitiveDrawInterface;
+class USkeletalMeshComponent;
+struct FViewportClick;
+struct FBoneSocketTarget;
+
+/** Base implementation for anim node edit modes */
+class FKawaiiPhysicsEditModeBase : public IAnimNodeEditMode
+{
+public:
+	FKawaiiPhysicsEditModeBase();
+
+	/** IAnimNodeEditMode interface */
+	virtual ECoordSystem GetWidgetCoordinateSystem() const override;
+
+	virtual UE_WIDGET::EWidgetMode GetWidgetMode() const override;
+	virtual UE_WIDGET::EWidgetMode ChangeToNextWidgetMode(UE_WIDGET::EWidgetMode CurWidgetMode) override;
+
+	virtual bool SetWidgetMode(UE_WIDGET::EWidgetMode InWidgetMode) override;
+	virtual FName GetSelectedBone() const override;
+	virtual void DoTranslation(FVector& InTranslation) override;
+	virtual void DoRotation(FRotator& InRotation) override;
+	virtual void DoScale(FVector& InScale) override;
+	virtual void EnterMode(class UAnimGraphNode_Base* InEditorNode, struct FAnimNode_Base* InRuntimeNode) override;
+	virtual void ExitMode() override;
+
+	/** IPersonaEditMode interface */
+	virtual bool GetCameraTarget(FSphere& OutTarget) const override;
+	virtual class IPersonaPreviewScene& GetAnimPreviewScene() const override;
+	virtual void GetOnScreenDebugInfo(TArray<FText>& OutDebugInfo) const override;
+
+	/** FEdMode interface */
+	virtual void Render(const FSceneView* View, FViewport* Viewport, FPrimitiveDrawInterface* PDI) override;
+	virtual void DrawHUD(FEditorViewportClient* ViewportClient, FViewport* Viewport, const FSceneView* View, FCanvas* Canvas) override;
+	virtual bool HandleClick(FEditorViewportClient* InViewportClient, HHitProxy* HitProxy, const FViewportClick& Click) override;
+	virtual FVector GetWidgetLocation() const override;
+	virtual bool StartTracking(FEditorViewportClient* InViewportClient, FViewport* InViewport) override;
+	virtual bool EndTracking(FEditorViewportClient* InViewportClient, FViewport* InViewport) override;
+	virtual bool InputKey(FEditorViewportClient* InViewportClient, FViewport* InViewport, FKey InKey, EInputEvent InEvent) override;
+	virtual bool InputDelta(FEditorViewportClient* InViewportClient, FViewport* InViewport, FVector& InDrag, FRotator& InRot, FVector& InScale) override;
+	virtual bool GetCustomDrawingCoordinateSystem(FMatrix& InMatrix, void* InData) override;
+	virtual bool GetCustomInputCoordinateSystem(FMatrix& InMatrix, void* InData) override;
+	virtual bool ShouldDrawWidget() const override;
+	virtual void Tick(FEditorViewportClient* ViewportClient, float DeltaTime) override;
+
+protected:
+	// local conversion functions for drawing
+	static void ConvertToComponentSpaceTransform(const USkeletalMeshComponent* SkelComp, const FTransform & InTransform, FTransform & OutCSTransform, int32 BoneIndex, EBoneControlSpace Space);
+	static void ConvertToBoneSpaceTransform(const USkeletalMeshComponent* SkelComp, const FTransform & InCSTransform, FTransform & OutBSTransform, int32 BoneIndex, EBoneControlSpace Space);
+	// convert drag vector in component space to bone space 
+	static FVector ConvertCSVectorToBoneSpace(const USkeletalMeshComponent* SkelComp, FVector& InCSVector, FCSPose<FCompactHeapPose>& MeshBases, const FName& BoneName, const EBoneControlSpace Space);
+	static FVector ConvertCSVectorToBoneSpace(const USkeletalMeshComponent* SkelComp, FVector& InCSVector, FCSPose<FCompactHeapPose>& MeshBases, const FBoneSocketTarget& InTarget, const EBoneControlSpace Space);
+	// convert rotator in component space to bone space 
+	static FQuat ConvertCSRotationToBoneSpace(const USkeletalMeshComponent* SkelComp, FRotator& InCSRotator, FCSPose<FCompactHeapPose>& MeshBases, const FName& BoneName, const EBoneControlSpace Space);
+	// convert widget location according to bone control space
+	static FVector ConvertWidgetLocation(const USkeletalMeshComponent* InSkelComp, FCSPose<FCompactHeapPose>& InMeshBases, const FName& BoneName, const FVector& InLocation, const EBoneControlSpace Space);
+	static FVector ConvertWidgetLocation(const USkeletalMeshComponent* InSkelComp, FCSPose<FCompactHeapPose>& InMeshBases, const FBoneSocketTarget& Target, const FVector& InLocation, const EBoneControlSpace Space);
+
+protected:
+	/** The node we are operating on */
+	class UAnimGraphNode_Base* AnimNode;
+
+	/** The runtime node in the preview scene */
+	struct FAnimNode_Base* RuntimeAnimNode;
+
+	bool bManipulating;
+
+private:
+
+	bool bInTransaction;
+};
+
+```
+
+`README.md`:
+
+```md
+# Kawaii Physics
+English doc :   
+https://github.com/pafuhana1213/KawaiiPhysics/blob/master/README_en.md  
+
+Forum :   
+日本語  https://forums.unrealengine.com/international/japan/1679269  
+英語  https://forums.unrealengine.com/community/released-projects/1638095
+
+## はじめに
+Kawaii Physicsは UnrealEngine4用に作成した疑似物理プラグインです。  
+髪、スカート、胸などの揺れものを「かんたんに」「かわいく」揺らすことができます。
+
+![](https://github.com/pafuhana1213/Screenshot/blob/master/KawaiiPhysics1.gif)  
+お借りしたキャラクタ：Gray ちゃん http://rarihoma.xvs.jp/products/graychan
+
+![](https://github.com/pafuhana1213/Screenshot/blob/master/KawaiiPhysics0.gif)  
+https://www.youtube.com/watch?v=UvpEIBGegvs  
+お借りしたキャラクタ：ミライ小町 https://www.bandainamcostudios.com/works/miraikomachi/
+
+## 特徴
+![](https://github.com/pafuhana1213/Screenshot/blob/master/KawaiiPhysics2.jpg)  
+![](https://github.com/pafuhana1213/Screenshot/blob/master/KawaiiPhysics4.gif)  
+- 元の形状を尊重しつつ、アニメーションやSkeletalMeshComponentの移動・回転を元に物理制御を行います。
+- プラグインに含まれる「KawaiiPhysicsノード」をAnimationBPのAnimGraphで使う形です。
+- 指定したボーンとそれ以下のボーンをキャラクタの動きに合わせて揺らせます。
+- 物理制御用のパラメータは2種類だけなので、エンジン標準の[AnimDynamics](https://docs.unrealengine.com/ja/Engine/Animation/NodeReference/SkeletalControls/AnimDynamics/index.html)に比べて簡単にセットアップできます。
+- 球・カプセル・平面コリジョンを追加することができます
+- アニメーションエディタのビューポート上で各コリジョンの位置・向き・大きさを調整できます
+- 骨の長さを維持するため、仮に計算が破綻しても骨が伸び縮みすることがありません。
+- PhysXは使わずにシンプルなアルゴリズムを使用しているため、エンジン標準の物理システムに比べて負荷が低い（はず）です。
+
+物理挙動を実装するにあたって参考にした資料  
+[次期アイドルマスター グラフィクス＆アニメーション プログラミング プレビュー](https://cedil.cesa.or.jp/cedil_sessions/view/416)
+
+## 動作環境
+- UE4.27.2, UE5.0
+
+- UE4.27, UE5.0以降（Pluginのみ）  
+https://github.com/pafuhana1213/KawaiiPhysics/releases/
+
+- UE4.26以前（Pluginのみ）  
+https://github.com/pafuhana1213/KawaiiPhysics/releases/tag/20201202-v1.7.0
+
+UE4.26以前でビルドする際は、GetSkeleton()をSkeletonに修正する必要があります。
+
+UE4.21以前でビルドする場合は、KawaiiPhysicsEditMode.cpp における  
+GEngine->ConstraintLimitMaterialPrismatic->GetRenderProxy () を  
+GEngine->ConstraintLimitMaterialPrismatic->GetRenderProxy (false)　に修正する必要があります。 
+
+UE4.23以前でビルドする場合は、awaiiPhysics.uplugin における  
+"Type": "UncookedOnly",　を "Type": "DeveloperTool", に修正する必要があります（たぶん）。
+
+## 使い方
+- **プロジェクト**のPluginsフォルダにKawaiiPhysicsフォルダを入れてください
+- 各パラメータについて：https://github.com/pafuhana1213/KawaiiPhysics/wiki/%E5%90%84%E3%83%91%E3%83%A9%E3%83%A1%E3%83%BC%E3%82%BF%E3%81%AB%E3%81%A4%E3%81%84%E3%81%A6
+
+- BPプロジェクトの場合、パッケージ時にエラーが発生します。お手数ですがC++プロジェクトに変換してみてください
+
+## サンプル
+![](https://github.com/pafuhana1213/Screenshot/blob/master/KawaiiPhysics3.jpg)  
+- Content/KawaiiPhysicsSample/KawaiiPhysicsSample
+- お借りしたキャラクタ：Gray ちゃん http://rarihoma.xvs.jp/products/graychan
+
+## 内部実装について
+その1 http://pafuhana1213.hatenablog.com/entry/2019/07/26/171046
+
+## ライセンス
+MIT
+
+## 採用実績
+https://github.com/pafuhana1213/KawaiiPhysics/wiki/%E6%8E%A1%E7%94%A8%E5%AE%9F%E7%B8%BE-Adoption
+
+## 作者
+[おかず@pafuhana1213](https://twitter.com/pafuhana1213)
+
+## ハッシュタグ
+[#KawaiiPhysics](https://twitter.com/search?q=%23kawaiiphysics&src=typed_query&f=live)
+
+## 履歴
+- 2022/4/11 v1.9.0
+  -  カーブアセットを作らなくても、カーブでのパラメーター編集ができるようになりました　https://github.com/pafuhana1213/KawaiiPhysics/pull/32 
+  -  ワールドコリジョン機能が入りました。サンプルにも追加してます　https://github.com/pafuhana1213/KawaiiPhysics/pull/26 
+  -  LOD設定などにより末端のボーンが機能しない場合、DummyBoneが生成されない不具合を修正しました　https://github.com/pafuhana1213/KawaiiPhysics/pull/26 
+  -  ResetPhysics時に物理設定がリセットされる不具合を修正しました　https://github.com/pafuhana1213/KawaiiPhysics/issues/38
+  -  LOD切り替え時のあらぶりを抑える（かもしれない）処理を追加しました。ResetBoneTransformWhenBoneNotFoundを有効にしたら以前の処理に戻ります　https://github.com/pafuhana1213/KawaiiPhysics/issues/44 
+- 2022/4/11 v1.8.0
+  - UE5正式版に対応
+  - UE4.26以下のサポートを一旦切りました。  
+- 2020/12/2 v1.7.0
+  - UAnimInstance::ResetDynamics(ETeleportType::ResetPhysics)呼び出しでのリセットに対応
+    - 説明：https://twitter.com/pafuhana1213/status/1334141624666910722
+    - https://github.com/pafuhana1213/KawaiiPhysics/pull/30
+      - KazumasaOhashi様、ありがとうございました！
+    - サンプルレベルの2キーでテストできるようにしました
+- 2020/11/17 v.1.6.2
+  - FKawaiiPhysicsEditMode::DrawHUDが正常に動作していない不具合を修正
+- 2020/9/4 v1.6.1  
+  - プロパティのカテゴリ指定忘れによるパッケージ作成エラーの修正
+- 2020/8/29 v1.6.0
+  - 専用のDataAsset(KawaiiPhysicsLimitsDataAsset)でコリジョン設定を管理・流用できるようになりました
+    - 使い方：https://youtu.be/jnJqRu7zn3c
+    - 動作実績があまりないのでExperimentalということでお願いします
+  - UE4.25.3をデフォルトにしました
+- 2020/7/28 v1.5.3
+  - MeshとSkeletonのBoneIndexが違う場合に、正しい長さが取得できなくて、カーブでのパラメータが正常に動作しなくなる不具合修正
+    - https://github.com/pafuhana1213/KawaiiPhysics/pull/21
+    - nkinta 様ありがとうございました！
+- 2020/5/29 v1.5.2  
+  - v1.5.1 における対応がDummyBoneを考慮してなかった不具合の修正
+- 2020/5/29 v1.5.1
+  - bEnableDebugBoneLengthRate によるデバッグ表示の表示位置がズレていた不具合の修正
+  - ↑のデバッグ表示のテキスト形式をエンジン標準のボーン名表示と同じに
+    - https://twitter.com/pafuhana1213/status/1266264162788765696
+- 2020/5/29 v1.5.0
+  - ボーンの向きを設定するBoneForwardAxisプロパティを追加。これはDummyBoneの挙動にのみ影響します  
+  (SAM-tak 様、ありがとうございました！)
+    - https://twitter.com/pafuhana1213/status/1266224108657762307
+- 2020/5/15 v1.4.6  
+  - Rootと同じボーンをExcludeBoneに指定するとクラッシュする不具合を修正  
+  - 不正な設定の場合はノードをWarning または Error表示にする処理を追加
+    - 技術解説：http://pafuhana1213.hatenablog.com/entry/2020/05/16/173837
+- 2020/5/15 v1.4.5
+  - GravityをComponentSpaceで動作するように変更  
+  (dxd39 様、ありがとうございました！)
+- 2020/3/13 v1.4.4  
+  - MacOSでビルドに失敗する不具合の修正  
+  (melMass 様、ありがとうございました！)  
+- 2020/3/13 v1.4.3  
+  - Package作成に失敗する不具合を修正  
+- 2020/2/16 v1.4.2  
+  - Standalone実行時に正常に動作しない不具合を修正  
+- 2020/1/31 v1.4.1  
+  - **SphereLimitのLimitTypeがInnerの場合、Outer設定時に異なりBoneのRadius設定を考慮してなかった不具合の修正  
+  1.3.1以前の挙動に戻したい方は CVarEnableOldPhysicsMethodSphereLimit を 1 に設定してください**    
+- 2020/1/31 v1.4.0  
+  - **重力変数の位置更新の計算がgt^2でなくgtになっていたので修正  
+  1.3.1以前の重力計算を使用したい場合は　p.KawaiiPhysics.EnableOldPhysicsMethodGravity を 1 に設定してください**  
+- 2020/1/31 v1.3.1  
+  - TeleportRotationThresholdの計算にてラジアンと度が混在していたことでWorldRotationのテレポート対応がほぼ機能してなかった不具合を修正  
+  (monguri 様、ありがとうございました！)  
+- 2020/1/31 v1.3.0  
+  - UE4.24.2 に対応  
+  (TheHoodieGuy02 様、ありがとうございました！)  
+- 2019/10/29 v1.2.1  
+  - World Damping系を従来処理に差し戻し。30fps時の挙動が更に安定しました  
+  (@seiko_dev 様、ありがとうございました！)  
+- 2019/10/26 v1.2.0  
+  - 簡易可変フレームレート対応。フレームレート低下時の挙動が少し安定するようになったはず  
+  (@seiko_dev 様、ありがとうございました！)  
+  - 基準フレームレートを設定できるようにしました(デフォルト：60)（正直テスト不足です。何かあったらissueへ  
+  - カーブの調整用に各ボーンの始点からの長さの割合をデバッグ表示するようにしました  
+- 2019/10/19 v1.1.2   
+  - BoneのScaleが(1,1,1)以外の環境に対応できてなかったので修正  
+  (shop-0761様、ありがとうございました！)  
+- 2019/9/11 v1.1.1  
+  - Bone.LengthFromRoot の計算が間違っていたのを修正  
+  (KazumasaOhashi様、ありがとうございました！)  
+- 2019/8/26 v1.1   
+  - WindDirectionalSourceに対応しました(注意：従来のWind設定に対して破壊的変更が入ります)  
+- 2019/7/20 v1.0.1   
+  - CollisionのOffsetLocationがボーンのRotationを考慮していない不具合の修正  
+  (v1.0 におけるOffsetLocationの挙動が大きく変化します)  
+- 2019/7/2 v1.0 公開 v1.0
+
+```
+
+`README_en.md`:
+
+```md
+# Kawaii Physics
+Forum :   
+https://forums.unrealengine.com/community/released-projects/1638095-kawaii-physics-simple-fake-physics-to-sway-bones-more-easily-and-more-cutely
+
+## Description
+Kawaii Physics is a pseudo-physical plug-in created for Unreal Engine 4 & 5.  
+You can sway your hair, skirt, chest, etc easily and in a Kawaii way.
+
+![](https://github.com/pafuhana1213/Screenshot/blob/master/KawaiiPhysics1.gif)  
+She is Gray-chan http://rarihoma.xvs.jp/products/graychan
+
+![](https://github.com/pafuhana1213/Screenshot/blob/master/KawaiiPhysics0.gif)  
+https://www.youtube.com/watch?v=UvpEIBGegvs  
+She is MiraiKomachi https://www.bandainamcostudios.com/works/miraikomachi/
+
+## Features
+![](https://github.com/pafuhana1213/Screenshot/blob/master/KawaiiPhysics2.jpg)  
+- Controls each bone physically while respecting the pre-physics shape
+- All you need to do is add Kawaii Node to AnimGraph and adjust few parameters.
+- Sway the specified bone and the bone below it according to the movement of the character.
+- Much easier to set up than [AnimDynamics](https://docs.unrealengine.com/en-US/Engine/Animation/NodeReference/SkeletalControls/AnimDynamics/index.html)
+- You can use sphere, capsule, plane collision
+- You can adjust the position, orientation and size of each collision in the animation editor viewport
+- Since the bone length is maintained, even if the calculation is broken, the bone does not expand or contract.
+- Uses a simple algorithm without using PhysX, so the cost is lower compared to the engine's standard physical system.
+
+Reference materials  
+https://cedil.cesa.or.jp/cedil_sessions/view/416
+
+## Requirement
+- UE4.27, UE5
+
+- UE4.27, UE5(Only Plugin)
+https://github.com/pafuhana1213/KawaiiPhysics/releases/
+
+- UE4.24~4.26(Only Plugin)
+https://github.com/pafuhana1213/KawaiiPhysics/releases/tag/20201202-v1.7.0
+
+## Usage
+- Put the KawaiiPhysics folder in the PROJECT's Plugins folder
+- About each parameters：https://github.com/pafuhana1213/KawaiiPhysics/wiki/%E5%90%84%E3%83%91%E3%83%A9%E3%83%A1%E3%83%BC%E3%82%BF%E3%81%AB%E3%81%A4%E3%81%84%E3%81%A6
+- In case of BP project, an error occurs when packaging. Try converting your prohject to C ++ project
+
+## SampleMap
+![](https://github.com/pafuhana1213/Screenshot/blob/master/KawaiiPhysics3.jpg)  
+- Content/KawaiiPhysicsSample/KawaiiPhysicsSample
+- She is Gray-chan http://rarihoma.xvs.jp/products/graychan
+
+## License
+MIT
+
+## Adoption
+https://github.com/pafuhana1213/KawaiiPhysics/wiki/%E6%8E%A1%E7%94%A8%E5%AE%9F%E7%B8%BE-Adoption
+
+## Author
+[@pafuhana1213](https://twitter.com/pafuhana1213)
+
+```
